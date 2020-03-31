@@ -1,2 +1,2 @@
 # Smooch That Dog
-# By our awesome team
+# By our horrible team
