@@ -34,9 +34,16 @@ public class CharacterMovement : MonoBehaviour
     public float fieldOfView = 90f;
     [Range(0f, 20f)]
     public float fieldOfViewModifier = 10f;
+    [Range(0f, 0.5f)]
+    public float bobIntensity = 0.1f;
+    [Range(0f, 5f)]
+    public float bobSpeed = 2f;
+    [Range(0f, 1f)]
+    public float bobThreshold = 0.01f;
 
     float verticalSpeed = 0f;
     bool isPaused = false;
+    float currentBobCycle = 0f;
 
     [HideInInspector] public float verticalAngle, horizontalAngle;
     public float speed { get; private set; } = 0f;
@@ -155,7 +162,9 @@ public class CharacterMovement : MonoBehaviour
 
             move = move * usedSpeed * Time.deltaTime;
 
-            move = transform.TransformDirection(move);
+            bool bobHead = move.magnitude > bobThreshold && isGrounded;
+
+            move = transform.TransformDirection(move );
 
             //Calculate speed with momentum
             float transformedMomentum = (100f - momentumValue) / 100f;
@@ -182,7 +191,30 @@ public class CharacterMovement : MonoBehaviour
                 fpsCamera.fieldOfView = Mathf.Lerp(fpsCamera.fieldOfView, fieldOfView, 0.3f);
             }
 
-            fpsCamera.fieldOfView = Mathf.Clamp(fpsCamera.fieldOfView, 30f, 110f);
+            fpsCamera.fieldOfView = Mathf.Clamp(fpsCamera.fieldOfView, 30f, 120f);
+
+            //Head Bobbing
+            if (bobHead)
+            {
+                currentBobCycle += move.magnitude * 2;
+                currentBobCycle %= 2 * Mathf.PI;
+                fpsPosition.localPosition = new Vector3
+                { 
+                    x = fpsPosition.localPosition.x,
+                    y = (bobIntensity * (Mathf.Cos(currentBobCycle)) + (1 - bobIntensity)), //TODO: FIX TO NOT EXCEED 1
+                    z = fpsPosition.localPosition.z
+                };
+            }
+            else
+            {
+                currentBobCycle = 0f;
+                fpsPosition.localPosition = new Vector3
+                {
+                    x = fpsPosition.localPosition.x,
+                    y = Mathf.Lerp(fpsPosition.localPosition.y, 1, 0.3f),
+                    z = fpsPosition.localPosition.z
+                };
+            }
 
             //Trun the player
             float turnPlayer = Input.GetAxis("Mouse X") * mouseSensitivity;
