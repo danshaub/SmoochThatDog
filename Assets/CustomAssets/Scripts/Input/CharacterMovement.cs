@@ -14,32 +14,44 @@ public class CharacterMovement : MonoBehaviour
     //public Transform topDownPosition;
 
     [Header("Control Settings")]
-    public float mouseSensitivity = 100.0f;
+    [Range(1f, 10f)]
+    public float mouseSensitivity = 5f;
+    [Range(0f, 50f)]
     public float playerSpeed = 5.0f;
-    public float runningSpeed = 7.0f;
+    [Range(1f, 2f)]
+    public float runningSpeedMultiplier = 1.25f;
+    [Range(0f, 1f)]
     public float crouchSpeedMultiplier = 0.75f;
+    [Range(0f, 100f)]
+    public float momentumValue = 75f;
+    [Range(0f, 2f)]
     public float crouchCameraOffset = 0.5f;
+    [Range(1f, 10f)]
     public float jumpSpeed = 5.0f;
+    [Range(5f, 20f)]
     public float gravityStrength = 10f;
+    [Range(30f, 110f)]
     public float fieldOfView = 90f;
+    [Range(0f, 20f)]
     public float fieldOfViewModifier = 10f;
 
     float verticalSpeed = 0f;
     bool isPaused = false;
 
-    public float verticalAngle, horizontalAngle;
+    [HideInInspector] public float verticalAngle, horizontalAngle;
     public float speed { get; private set; } = 0f;
     public bool lockControl { get; set; }
     public bool canPause { get; set; } = true;
     public bool crouched { get; private set; } = false;
 
-    public bool grounded => isGrounded;
+    public bool isGrounded { get; private set; } = true;
 
     CharacterController controller;
 
-    bool isGrounded;
     float groundedTimer;
     float speedAtJump = 0f;
+
+    private Vector2 previousLateralMovement = Vector2.zero;
 
     private void Awake()
     {
@@ -128,15 +140,14 @@ public class CharacterMovement : MonoBehaviour
 
             //Calculate top speed
             bool running = Input.GetButton("Run") && !crouched; //TODO: Also check if weapons are being fired
-            float actualSpeed = running ? runningSpeed : playerSpeed;
-            actualSpeed = crouched ? actualSpeed * crouchSpeedMultiplier : actualSpeed;
+            float actualSpeed = crouched ? playerSpeed * crouchSpeedMultiplier : running ? playerSpeed * runningSpeedMultiplier : playerSpeed;
 
             if (loosedGrounding)
             {
                 speedAtJump = actualSpeed;
             }
 
-            //Move player character
+            //Calculate Target Speed
             move = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
             if (move.sqrMagnitude > 1f) move.Normalize();
 
@@ -145,7 +156,17 @@ public class CharacterMovement : MonoBehaviour
             move = move * usedSpeed * Time.deltaTime;
 
             move = transform.TransformDirection(move);
+
+            //Calculate speed with momentum
+            float transformedMomentum = (100f - momentumValue) / 100f;
+            move.x = Mathf.Lerp(previousLateralMovement.x, move.x, transformedMomentum);
+            move.z = Mathf.Lerp(previousLateralMovement.y, move.z, transformedMomentum);
+
+            //Move Character
             controller.Move(move);
+
+            previousLateralMovement.x = move.x;
+            previousLateralMovement.y = move.z;
 
             //Set FOV
             if (crouched)
@@ -160,6 +181,8 @@ public class CharacterMovement : MonoBehaviour
             {
                 fpsCamera.fieldOfView = Mathf.Lerp(fpsCamera.fieldOfView, fieldOfView, 0.3f);
             }
+
+            fpsCamera.fieldOfView = Mathf.Clamp(fpsCamera.fieldOfView, 30f, 110f);
 
             //Trun the player
             float turnPlayer = Input.GetAxis("Mouse X") * mouseSensitivity;
