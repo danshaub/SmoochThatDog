@@ -57,6 +57,7 @@ public class CharacterMovement : MonoBehaviour
 
     float groundedTimer;
     float speedAtJump = 0f;
+    float defaultControllerHeight;
 
     private Vector2 previousLateralMovement = Vector2.zero;
 
@@ -81,6 +82,7 @@ public class CharacterMovement : MonoBehaviour
 
         verticalAngle = 0f;
         horizontalAngle = transform.localEulerAngles.y;
+        defaultControllerHeight = controller.height;
     }
 
     // Update is called once per frame
@@ -137,12 +139,18 @@ public class CharacterMovement : MonoBehaviour
                 crouched = true;
                 Vector3 targetCameraPosition = new Vector3(0, -crouchCameraOffset, 0);
                 fpsCamera.transform.localPosition = Vector3.Lerp(fpsCamera.transform.localPosition, targetCameraPosition, 0.3f); //
+                controller.height = Mathf.Lerp(controller.height, defaultControllerHeight - crouchCameraOffset, 0.3f);
+                Vector3 targetControllerPosition = new Vector3(0, -crouchCameraOffset / 2f, 0);
+                controller.center = Vector3.Lerp(controller.center, targetControllerPosition, 0.3f);
             }
             else
             {
                 crouched = false;
                 Vector3 targetCameraPosition = new Vector3(0, 0, 0);
                 fpsCamera.transform.localPosition = Vector3.Lerp(fpsCamera.transform.localPosition, targetCameraPosition, 0.3f);
+                controller.height = Mathf.Lerp(controller.height, defaultControllerHeight, 0.3f);
+                Vector3 targetControllerPosition = new Vector3(0, 0, 0);
+                controller.center = Vector3.Lerp(controller.center, targetControllerPosition, 0.3f);
             }
 
             //Calculate top speed
