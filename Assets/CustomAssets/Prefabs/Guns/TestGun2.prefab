@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7282836446445885}
   - component: {fileID: 7282836446445882}
   m_Layer: 0
-  m_Name: TestGun
+  m_Name: TestGun2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,14 +43,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 429b145959525b544aa15d476cae64e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animations: {fileID: 9100000, guid: 7e860b6b0c11f764784a25d0089c98c0, type: 2}
-  gunName: Test
+  animations: {fileID: 9100000, guid: d94722373fe2608458744c866406854b, type: 2}
+  gunName: Test2
   automatic: 1
-  maxAmmo: 100
-  bulletsPerShot: 2
+  unlimitedAmmo: 1
+  maxAmmo: 200
+  bulletsPerShot: 100
   damagePerBullet: 1
-  bulletSpread: 1
-  fireRate: 5
+  bulletSpread: 30
+  fireRate: 0
   range: 100
   hitParticlePrefab: {fileID: 7369708233715015968, guid: 342539eb94570f54aa0c40472ffb63c0,
     type: 3}
+  shootSound: {fileID: 8300000, guid: 08bf6e1e1e6110d4ea7e06dfaa870c00, type: 3}
+  emptyClipSound: {fileID: 8300000, guid: e841e457e8143e441b78c99f627eb7cf, type: 3}

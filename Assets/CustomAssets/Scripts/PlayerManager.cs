@@ -11,6 +11,14 @@ public class PlayerManager : MonoBehaviour
     public List<Gun> guns;
     public int currentGunIndex;
 
+    public AudioSource audio;
+    public AudioClip walkSound;
+    public AudioClip jumpSound;
+    public AudioClip landingSound;
+    public AudioClip weaponPickupSound;
+    public AudioClip ammoPickupSound;
+
+
     public Text ammoDisplay;
 
     private void Awake()
@@ -47,7 +55,7 @@ public class PlayerManager : MonoBehaviour
         }
         else
         {
-            ammoDisplay.text = CurrentGun().name + "\n" + CurrentGun().ammoRemaining.ToString() + "/" + CurrentGun().maxAmmo.ToString();
+            ammoDisplay.text = CurrentGun().gunName + "\n" + CurrentGun().ammoRemaining.ToString() + "/" + CurrentGun().maxAmmo.ToString();
         }
         
     }

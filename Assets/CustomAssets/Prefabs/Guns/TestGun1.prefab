@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7282836446445885}
   - component: {fileID: 7282836446445882}
   m_Layer: 0
-  m_Name: TestGun 1
+  m_Name: TestGun1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,11 +47,13 @@ MonoBehaviour:
   gunName: Test
   automatic: 1
   unlimitedAmmo: 0
-  maxAmmo: 200
-  bulletsPerShot: 5
+  maxAmmo: 10
+  bulletsPerShot: 2
   damagePerBullet: 1
-  bulletSpread: 10
-  fireRate: 0
+  bulletSpread: 1
+  fireRate: 10
   range: 100
   hitParticlePrefab: {fileID: 7369708233715015968, guid: 342539eb94570f54aa0c40472ffb63c0,
     type: 3}
+  shootSound: {fileID: 8300000, guid: 2ce833b4cbd198946ad195103bf57b8c, type: 3}
+  emptyClipSound: {fileID: 8300000, guid: e841e457e8143e441b78c99f627eb7cf, type: 3}

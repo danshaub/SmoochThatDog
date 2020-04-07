@@ -10,6 +10,7 @@ public class WeaponPickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            PlayerManager.instance.audio.PlayOneShot(PlayerManager.instance.weaponPickupSound);
             PlayerManager.instance.AddGun(gun);
             Destroy(gameObject);
         }

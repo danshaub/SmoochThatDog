@@ -15,6 +15,8 @@ public class Gun : MonoBehaviour
     public float fireRate;
     public float range;
     public GameObject hitParticlePrefab;
+    public AudioClip shootSound;
+    public AudioClip emptyClipSound;
 
     [HideInInspector] public int ammoRemaining { get; protected set; }
 

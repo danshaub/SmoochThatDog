@@ -44,6 +44,7 @@ public class CharacterActions : MonoBehaviour
     float verticalSpeed = 0f;
     bool isPaused = false;
     float currentBobCycle = 0f;
+    bool playWalkSound = true;
 
     [HideInInspector] public float verticalAngle, horizontalAngle;
     public float speed { get; private set; } = 0f;
@@ -201,7 +202,7 @@ public class CharacterActions : MonoBehaviour
                 verticalSpeed = jumpSpeed;
                 isGrounded = false;
                 loosedGrounding = true;
-                //TODO: play jump audio clip
+                PlayerManager.instance.audio.PlayOneShot(PlayerManager.instance.jumpSound);
             }
 
             //Crouch
@@ -277,10 +278,21 @@ public class CharacterActions : MonoBehaviour
             {
                 currentBobCycle += move.magnitude * 2;
                 currentBobCycle %= 2 * Mathf.PI;
+
+                if(Mathf.Abs(Mathf.PI - currentBobCycle) < 0.25 && playWalkSound)
+                {
+                    PlayerManager.instance.audio.PlayOneShot(PlayerManager.instance.walkSound);
+                    playWalkSound = false;
+                }
+                else if(Mathf.Abs(Mathf.PI - currentBobCycle) > 0.25)
+                {
+                    playWalkSound = true;
+                }
+
                 fpsPosition.localPosition = new Vector3
                 { 
                     x = fpsPosition.localPosition.x,
-                    y = (bobIntensity * (Mathf.Cos(currentBobCycle)) + (1 - bobIntensity)), //TODO: FIX TO NOT EXCEED 1
+                    y = (bobIntensity * (Mathf.Cos(currentBobCycle)) + (1 - bobIntensity)),
                     z = fpsPosition.localPosition.z
                 };
             }
@@ -313,8 +325,6 @@ public class CharacterActions : MonoBehaviour
             currentAngles = fpsPosition.transform.localEulerAngles;
             currentAngles.x = verticalAngle;
             fpsCamera.transform.localEulerAngles = currentAngles;
-
-            //TODO: Reload, Change Weapon
         }
 
         //Gravity!
@@ -329,20 +339,25 @@ public class CharacterActions : MonoBehaviour
 
         if(!wasGrounded && isGrounded)
         {
-            //Play landing sound
+            PlayerManager.instance.audio.PlayOneShot(PlayerManager.instance.landingSound);
         }
     }
     
     void Shoot()
     {
         Gun currentGun = PlayerManager.instance.CurrentGun();
+
+        canShoot = false;
+        StartCoroutine(ShootCooldown());
+
         if (currentGun.AmmoRemaining())
         {
-            canShoot = false;
-            StartCoroutine(ShootCooldown());
+            
 
             currentGun.UseAmmo();
             PlayerManager.instance.UpdateAmmoText();
+
+            PlayerManager.instance.audio.PlayOneShot(currentGun.shootSound);
 
             PlayerManager.instance.playerAnimation.SetTrigger("Shoot");
             for(int i = 0; i < currentGun.bulletsPerShot; i++)
@@ -372,10 +387,14 @@ public class CharacterActions : MonoBehaviour
                     }
                 }
 
-                Debug.DrawRay(fpsCamera.transform.position, raycastDirection * currentGun.range, Color.black, 1f);
+                //Debug.DrawRay(fpsCamera.transform.position, raycastDirection * currentGun.range, Color.black, 1f);
                 
             }
             
+        }
+        else
+        {
+            PlayerManager.instance.audio.PlayOneShot(currentGun.emptyClipSound);
         }
     }
 
