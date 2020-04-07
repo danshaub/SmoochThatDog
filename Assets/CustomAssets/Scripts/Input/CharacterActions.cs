@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // This movement script is heavily based on unity's FPS kit movement script
-public class CharacterMovement : MonoBehaviour
+public class CharacterActions : MonoBehaviour
 {
-    public static CharacterMovement instance { get; protected set; }
+    public static CharacterActions instance { get; protected set; }
 
     public Camera fpsCamera;
     //public Camera topDownCamera;
@@ -53,6 +53,8 @@ public class CharacterMovement : MonoBehaviour
 
     public bool isGrounded { get; private set; } = true;
 
+    bool canShoot = true;
+
     CharacterController controller;
 
     float groundedTimer;
@@ -86,7 +88,7 @@ public class CharacterMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if(canPause && Input.GetButtonDown("Menu"))
         {
@@ -124,6 +126,75 @@ public class CharacterMovement : MonoBehaviour
 
         if(!isPaused && !lockControl)
         {
+            #region Weapon Switching
+            if(Input.GetAxis("Mouse ScrollWheel") > 0)
+            {
+                PlayerManager.instance.SwapGun(true);
+            }
+            else if (Input.GetAxis("Mouse ScrollWheel") < 0)
+            {
+                PlayerManager.instance.SwapGun(false);
+            }
+            else if (Input.GetButtonDown("Swap Weapon 1"))
+            {
+                PlayerManager.instance.SwapGun(0);
+            }
+            else if (Input.GetButtonDown("Swap Weapon 2"))
+            {
+                PlayerManager.instance.SwapGun(1);
+            }
+            else if (Input.GetButtonDown("Swap Weapon 3"))
+            {
+                PlayerManager.instance.SwapGun(2);
+            }
+            else if (Input.GetButtonDown("Swap Weapon 4"))
+            {
+                PlayerManager.instance.SwapGun(3);
+            }
+            else if (Input.GetButtonDown("Swap Weapon 5"))
+            {
+                PlayerManager.instance.SwapGun(4);
+            }
+            else if (Input.GetButtonDown("Swap Weapon 6"))
+            {
+                PlayerManager.instance.SwapGun(5);
+            }
+            else if (Input.GetButtonDown("Swap Weapon 7"))
+            {
+                PlayerManager.instance.SwapGun(6);
+            }
+            else if (Input.GetButtonDown("Swap Weapon 8"))
+            {
+                PlayerManager.instance.SwapGun(7);
+            }
+            else if (Input.GetButtonDown("Swap Weapon 9"))
+            {
+                PlayerManager.instance.SwapGun(8);
+            }
+            else if (Input.GetButtonDown("Swap Weapon 10"))
+            {
+                PlayerManager.instance.SwapGun(9);
+            }
+            #endregion
+            
+            if (canShoot)
+            {
+                if (PlayerManager.instance.CurrentGun().automatic)
+                {
+                    if (Input.GetButton("Fire1"))
+                    {
+                        Shoot();
+                    }
+                }
+                else
+                {
+                    if (Input.GetButtonDown("Fire1"))
+                    {
+                        Shoot();
+                    }
+                }
+            }
+
             //Jump
             if(isGrounded && Input.GetButtonDown("Jump"))
             {
@@ -241,7 +312,7 @@ public class CharacterMovement : MonoBehaviour
             verticalAngle = Mathf.Clamp(turnCam + verticalAngle, -90f, 90f);
             currentAngles = fpsPosition.transform.localEulerAngles;
             currentAngles.x = verticalAngle;
-            fpsPosition.transform.localEulerAngles = currentAngles;
+            fpsCamera.transform.localEulerAngles = currentAngles;
 
             //TODO: Reload, Change Weapon
         }
@@ -260,5 +331,66 @@ public class CharacterMovement : MonoBehaviour
         {
             //Play landing sound
         }
+    }
+    
+    void Shoot()
+    {
+        Gun currentGun = PlayerManager.instance.CurrentGun();
+        if (currentGun.AmmoRemaining())
+        {
+            canShoot = false;
+            StartCoroutine(ShootCooldown());
+
+            currentGun.UseAmmo();
+            PlayerManager.instance.UpdateAmmoText();
+
+            PlayerManager.instance.playerAnimation.SetTrigger("Shoot");
+            for(int i = 0; i < currentGun.bulletsPerShot; i++)
+            {
+                Vector3 raycastDirection = fpsCamera.transform.forward;
+
+                Vector3 spreadOffset = new Vector3
+                {
+                    x = Random.Range(-currentGun.bulletSpread / 100, currentGun.bulletSpread / 100),
+                    y = Random.Range(-currentGun.bulletSpread / 100, currentGun.bulletSpread / 100),
+                    z = Random.Range(-currentGun.bulletSpread / 100, currentGun.bulletSpread / 100)
+                };
+
+                raycastDirection = (spreadOffset + raycastDirection).normalized;
+                
+                RaycastHit hit;
+                if (Physics.Raycast(fpsCamera.transform.position, raycastDirection, out hit, currentGun.range))
+                {
+                    if(hit.transform.GetComponent<Target>() != null)
+                    {
+                        hit.transform.GetComponent<Target>().Hit(currentGun.damagePerBullet);
+                    }
+                    else
+                    {
+                        GameObject particles = Instantiate(currentGun.hitParticlePrefab, hit.point, Quaternion.LookRotation(hit.normal));
+                        Destroy(particles, 1f);
+                    }
+                }
+
+                Debug.DrawRay(fpsCamera.transform.position, raycastDirection * currentGun.range, Color.black, 1f);
+                
+            }
+            
+        }
+    }
+
+    IEnumerator ShootCooldown()
+    {
+        if(PlayerManager.instance.CurrentGun().fireRate == 0f)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        else
+        {
+            yield return new WaitForSeconds(1f / PlayerManager.instance.CurrentGun().fireRate);
+        }
+
+        canShoot = true;
+
     }
 }
