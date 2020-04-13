@@ -48,12 +48,13 @@ MonoBehaviour:
   automatic: 1
   unlimitedAmmo: 1
   maxAmmo: 200
-  bulletsPerShot: 100
+  bulletsPerShot: 1000
   damagePerBullet: 1
-  bulletSpread: 30
-  fireRate: 0
+  bulletSpread: 20
+  fireRate: 1
   range: 100
   hitParticlePrefab: {fileID: 7369708233715015968, guid: 342539eb94570f54aa0c40472ffb63c0,
     type: 3}
   shootSound: {fileID: 8300000, guid: 08bf6e1e1e6110d4ea7e06dfaa870c00, type: 3}
   emptyClipSound: {fileID: 8300000, guid: e841e457e8143e441b78c99f627eb7cf, type: 3}
+  weaponPulloutSound: {fileID: 0}
