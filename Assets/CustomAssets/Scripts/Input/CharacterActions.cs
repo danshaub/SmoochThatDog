@@ -55,6 +55,7 @@ public class CharacterActions : MonoBehaviour
     public bool isGrounded { get; private set; } = true;
 
     bool canShoot = true;
+    [HideInInspector] public float currentSpread = 0f;
 
     CharacterController controller;
 
@@ -186,12 +187,20 @@ public class CharacterActions : MonoBehaviour
                     {
                         Shoot();
                     }
+                    else
+                    {
+                        currentSpread = Mathf.Lerp(currentSpread, 0f, PlayerManager.instance.CurrentGun().spreadRate/2);
+                    }
                 }
                 else
                 {
                     if (Input.GetButtonDown("Fire1"))
                     {
                         Shoot();
+                    }
+                    else
+                    {
+                        currentSpread = Mathf.Lerp(currentSpread, 0f, PlayerManager.instance.CurrentGun().spreadRate/2);
                     }
                 }
             }
@@ -352,7 +361,14 @@ public class CharacterActions : MonoBehaviour
 
         if (currentGun.AmmoRemaining())
         {
-            
+            if (!currentGun.spreadOverTime)
+            {
+                currentSpread = currentGun.maxBulletSpread;
+            }
+            else
+            {
+                currentSpread = Mathf.Lerp(currentSpread, currentGun.maxBulletSpread, currentGun.spreadRate);
+            }
 
             currentGun.UseAmmo();
             PlayerManager.instance.UpdateAmmoText();
@@ -366,10 +382,12 @@ public class CharacterActions : MonoBehaviour
 
                 Vector3 spreadOffset = new Vector3
                 {
-                    x = Random.Range(-currentGun.bulletSpread / 100, currentGun.bulletSpread / 100),
-                    y = Random.Range(-currentGun.bulletSpread / 100, currentGun.bulletSpread / 100),
-                    z = Random.Range(-currentGun.bulletSpread / 100, currentGun.bulletSpread / 100)
+                    x = Random.Range(-1f, 1f),
+                    y = Random.Range(-1f, 1f),
+                    z = Random.Range(-1f, 1f)
                 };
+
+                spreadOffset = spreadOffset.normalized * Random.Range(0f, currentSpread/100);
 
                 raycastDirection = (spreadOffset + raycastDirection).normalized;
                 
@@ -378,7 +396,7 @@ public class CharacterActions : MonoBehaviour
                 {
                     if(hit.transform.GetComponent<Target>() != null)
                     {
-                        hit.transform.GetComponent<Target>().Hit(currentGun.damagePerBullet);
+                        currentGun.Hit(hit);
                     }
                     else
                     {
@@ -388,7 +406,17 @@ public class CharacterActions : MonoBehaviour
                 }
 
                 //Debug.DrawRay(fpsCamera.transform.position, raycastDirection * currentGun.range, Color.black, 1f);
-                
+
+                Vector3 currentAngles = transform.localEulerAngles;
+                currentAngles.y = horizontalAngle;
+                transform.localEulerAngles = currentAngles;
+
+                //Look up/down
+                var turnCam = -currentGun.recoilStrength * Time.deltaTime;
+                verticalAngle = Mathf.Clamp(turnCam + verticalAngle, -90f, 90f);
+                currentAngles = fpsPosition.transform.localEulerAngles;
+                currentAngles.x = verticalAngle;
+                fpsCamera.transform.localEulerAngles = currentAngles;
             }
             
         }

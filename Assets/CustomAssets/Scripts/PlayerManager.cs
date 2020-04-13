@@ -17,6 +17,10 @@ public class PlayerManager : MonoBehaviour
     public AudioClip landingSound;
     public AudioClip weaponPickupSound;
     public AudioClip ammoPickupSound;
+    public AudioClip playerHurtSound;
+    public AudioClip rageModeSound;
+    public AudioClip healthPickupSound;
+    public AudioClip armorPickupSound;
 
 
     public Text ammoDisplay;
@@ -84,13 +88,25 @@ public class PlayerManager : MonoBehaviour
 
     public void SwapGun(int gunIndex)
     {
+        if(gunIndex == currentGunIndex)
+        {
+            return;
+        }
+
         currentGunIndex = (int)Mathf.Clamp(gunIndex, 0, guns.Count - 1);
+
+        playerAnimation.SetTrigger("PutAway");
         UpdateAmmoText();
-        UpdateAnimator();
+        CharacterActions.instance.currentSpread = 0f;
+
     }
 
     public void SwapGun(bool up)
     {
+        if(guns.Count == 1)
+        {
+            return;
+        }
         if (up)
         {
             currentGunIndex = (currentGunIndex + 1) % guns.Count;
@@ -100,7 +116,8 @@ public class PlayerManager : MonoBehaviour
             currentGunIndex = (currentGunIndex - 1) < 0 ? guns.Count - 1 : currentGunIndex - 1;
         }
 
+        playerAnimation.SetTrigger("PutAway");
         UpdateAmmoText();
-        UpdateAnimator();
+        CharacterActions.instance.currentSpread = 0f;
     }
 }

@@ -1415,6 +1415,7 @@ MonoBehaviour:
   bobThreshold: 0.01
   verticalAngle: 0
   horizontalAngle: 0
+  currentSpread: 0
 --- !u!114 &1677026125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1437,6 +1438,10 @@ MonoBehaviour:
   landingSound: {fileID: 8300000, guid: 59f5ea16d2f8a644196ace1d2abbdea6, type: 3}
   weaponPickupSound: {fileID: 8300000, guid: 2303b04073222964bbcaa0ea999708e9, type: 3}
   ammoPickupSound: {fileID: 8300000, guid: 38a32bd47405b474ab5d4f4c85964a3b, type: 3}
+  playerHurtSound: {fileID: 0}
+  rageModeSound: {fileID: 0}
+  healthPickupSound: {fileID: 0}
+  armorPickupSound: {fileID: 0}
   ammoDisplay: {fileID: 1687370854}
 --- !u!82 &1677026126
 AudioSource:
