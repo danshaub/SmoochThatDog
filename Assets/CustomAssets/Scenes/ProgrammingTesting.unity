@@ -1405,14 +1405,18 @@ MonoBehaviour:
   runningSpeedMultiplier: 1.25
   crouchSpeedMultiplier: 0.75
   momentumValue: 75
+  rageMovementSpeedMultiplier: 1
   crouchCameraOffset: 0.5
   jumpSpeed: 5
+  rageJumpHeightMultiplier: 1
   gravityStrength: 10
   fieldOfView: 90
   fieldOfViewModifier: 10
   bobIntensity: 0.257
   bobSpeed: 1.04
   bobThreshold: 0.01
+  knockbackOffset: {x: 0, y: 0, z: 0}
+  recoilOffset: {x: 0, y: 0}
   verticalAngle: 0
   horizontalAngle: 0
   currentSpread: 0

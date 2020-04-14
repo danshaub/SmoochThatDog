@@ -45,15 +45,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animations: {fileID: 9100000, guid: d94722373fe2608458744c866406854b, type: 2}
   gunName: Test2
-  automatic: 1
+  automatic: 0
   unlimitedAmmo: 1
+  spreadOverTime: 0
   maxAmmo: 200
-  bulletsPerShot: 10
+  bulletsPerShot: 20
   damagePerBullet: 1
-  bulletSpread: 20
-  fireRate: 0.8
+  spreadRate: 0
+  maxBulletSpread: 30
+  fireRate: 1
   range: 100
+  verticalRecoilStrength: 15
+  maxVerticalRecoil: 20
+  horizontalRecoilStrength: 5
+  maxHorizontalRecoil: 10
+  recoilResistance: 0.05
+  groundedKnockback: 0
+  airborneKnockback: 0
   hitParticlePrefab: {fileID: 7369708233715015968, guid: 342539eb94570f54aa0c40472ffb63c0,
     type: 3}
-  shootSound: {fileID: 8300000, guid: 08bf6e1e1e6110d4ea7e06dfaa870c00, type: 3}
+  shootSound: {fileID: 8300000, guid: 52908b1183775044b8e105a4a99503a6, type: 3}
+  cooldownSound: {fileID: 8300000, guid: 03cf28a67d10e944c910203c94bd0ef6, type: 3}
   emptyClipSound: {fileID: 8300000, guid: e841e457e8143e441b78c99f627eb7cf, type: 3}
+  weaponPulloutSound: {fileID: 0}

@@ -98,7 +98,7 @@ public class PlayerManager : MonoBehaviour
         playerAnimation.SetTrigger("PutAway");
         UpdateAmmoText();
         CharacterActions.instance.currentSpread = 0f;
-
+        CharacterActions.instance.recoilOffset = Vector2.zero;
     }
 
     public void SwapGun(bool up)
