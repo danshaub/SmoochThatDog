@@ -45,6 +45,8 @@ public class CharacterActions : MonoBehaviour
     public float bobSpeed = 2f;
     [Range(0f, 1f)]
     public float bobThreshold = 0.01f;
+    [Range(0f, 1f)]
+    public float knockbackResistance = 0.1f;
     #endregion
 
     #region OtherVariables
@@ -269,7 +271,7 @@ public class CharacterActions : MonoBehaviour
 
             bool bobHead = move.magnitude > bobThreshold && isGrounded;
 
-            move = transform.TransformDirection(move );
+            move = transform.TransformDirection(move);
 
             //Calculate speed with momentum
             float transformedMomentum = (100f - momentumValue) / 100f;
@@ -277,7 +279,9 @@ public class CharacterActions : MonoBehaviour
             move.z = Mathf.Lerp(previousLateralMovement.y, move.z, transformedMomentum);
 
             //Move Character
-            controller.Move(move);
+            controller.Move(move + (knockbackOffset * Time.deltaTime));
+
+            knockbackOffset = Vector3.Lerp(knockbackOffset, Vector3.zero, knockbackResistance);
 
             previousLateralMovement.x = move.x;
             previousLateralMovement.y = move.z;
@@ -335,8 +339,6 @@ public class CharacterActions : MonoBehaviour
                 };
             }
 
-            recoilOffset = Vector2.Lerp(recoilOffset, Vector2.zero, PlayerManager.instance.CurrentGun().recoilResistance);
-
             //Trun the player
             float turnPlayer = Input.GetAxis("Mouse X") * mouseSensitivity;
             horizontalAngle += turnPlayer;
@@ -356,6 +358,8 @@ public class CharacterActions : MonoBehaviour
             currentAngles.x = Mathf.Clamp(verticalAngle - recoilOffset.y, -90f, 90f);
             currentAngles.y = recoilOffset.x;
             fpsPosition.transform.localEulerAngles = currentAngles;
+
+            recoilOffset = Vector2.Lerp(recoilOffset, Vector2.zero, PlayerManager.instance.CurrentGun().recoilResistance);
         }
 
         #endregion
@@ -396,11 +400,11 @@ public class CharacterActions : MonoBehaviour
 
             if (isGrounded)
             {
-                controller.Move(-transform.forward.normalized * currentGun.groundedKnockback);
+                knockbackOffset += (-transform.forward.normalized * currentGun.groundedKnockback);
             }
             else
             {
-                controller.Move(-fpsPosition.forward.normalized * currentGun.airborneKnockback);
+                knockbackOffset += ((-transform.forward.normalized - (.25f * fpsPosition.forward)).normalized * currentGun.airborneKnockback);
             }
 
 

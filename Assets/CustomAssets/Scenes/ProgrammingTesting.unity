@@ -1415,6 +1415,7 @@ MonoBehaviour:
   bobIntensity: 0.257
   bobSpeed: 1.04
   bobThreshold: 0.01
+  knockbackResistance: 0
   knockbackOffset: {x: 0, y: 0, z: 0}
   recoilOffset: {x: 0, y: 0}
   verticalAngle: 0
