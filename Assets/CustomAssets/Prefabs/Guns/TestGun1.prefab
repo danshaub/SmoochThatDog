@@ -47,21 +47,21 @@ MonoBehaviour:
   gunName: Test
   automatic: 1
   unlimitedAmmo: 1
-  spreadOverTime: 0
-  maxAmmo: 10
+  spreadOverTime: 1
+  maxAmmo: 200
   bulletsPerShot: 1
   damagePerBullet: 1
-  spreadRate: 0
-  maxBulletSpread: 0
-  fireRate: 50
+  spreadRate: 0.2
+  maxBulletSpread: 20
+  fireRate: 20
   range: 100
-  verticalRecoilStrength: 10
-  maxVerticalRecoil: 30
-  horizontalRecoilStrength: 6
-  maxHorizontalRecoil: 12
-  recoilResistance: 0.13
-  groundedKnockback: 30
-  airborneKnockback: 100
+  verticalRecoilStrength: 2
+  maxVerticalRecoil: 10
+  horizontalRecoilStrength: 0.5
+  maxHorizontalRecoil: 9
+  recoilResistance: 0.05
+  groundedKnockback: 0
+  airborneKnockback: 0
   hitParticlePrefab: {fileID: 7369708233715015968, guid: 342539eb94570f54aa0c40472ffb63c0,
     type: 3}
   shootSound: {fileID: 8300000, guid: 2ce833b4cbd198946ad195103bf57b8c, type: 3}

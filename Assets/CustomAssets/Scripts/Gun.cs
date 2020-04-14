@@ -66,6 +66,11 @@ public class Gun : MonoBehaviour
         ammoRemaining = (int)Mathf.Clamp(ammoRemaining + bullets, 0, maxAmmo);
     }
 
+    public void Shoot(Transform origin)
+    {
+
+    }
+
     public void Hit(RaycastHit hit)
     {
         hit.transform.GetComponent<Target>().Hit(damagePerBullet);

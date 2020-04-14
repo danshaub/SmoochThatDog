@@ -60,8 +60,8 @@ MonoBehaviour:
   horizontalRecoilStrength: 5
   maxHorizontalRecoil: 10
   recoilResistance: 0.05
-  groundedKnockback: 2
-  airborneKnockback: 5
+  groundedKnockback: 10
+  airborneKnockback: 20
   hitParticlePrefab: {fileID: 7369708233715015968, guid: 342539eb94570f54aa0c40472ffb63c0,
     type: 3}
   shootSound: {fileID: 8300000, guid: 52908b1183775044b8e105a4a99503a6, type: 3}
