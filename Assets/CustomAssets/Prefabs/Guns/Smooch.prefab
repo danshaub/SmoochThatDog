@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7282836446445883
+--- !u!1 &6384366232937241144
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7282836446445885}
-  - component: {fileID: 7282836446445882}
+  - component: {fileID: 6384366232937241146}
+  - component: {fileID: 6384366232937241147}
   m_Layer: 0
-  m_Name: TestGun1
+  m_Name: Smooch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7282836446445885
+--- !u!4 &6384366232937241146
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7282836446445883}
+  m_GameObject: {fileID: 6384366232937241144}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,40 +31,41 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7282836446445882
+--- !u!114 &6384366232937241147
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7282836446445883}
+  m_GameObject: {fileID: 6384366232937241144}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 429b145959525b544aa15d476cae64e2, type: 3}
+  m_Script: {fileID: 11500000, guid: 88397ceed1ba0fa42ad2a9d9a7b48651, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animations: {fileID: 9100000, guid: 49d4b10616ae6114895c75a68c5e7b25, type: 2}
-  gunName: Test
-  automatic: 1
+  animations: {fileID: 9100000, guid: ffb0a7e5053259f489bccba19a13e76a, type: 2}
+  gunName: Smooch
+  automatic: 0
   unlimitedAmmo: 1
-  spreadOverTime: 1
-  maxAmmo: 200
-  bulletsPerShot: 1
-  damagePerBullet: 1
-  spreadRate: 0.2
-  maxBulletSpread: 20
-  fireRate: 20
-  range: 100
-  verticalRecoilStrength: 2
-  maxVerticalRecoil: 10
-  horizontalRecoilStrength: 0.5
-  maxHorizontalRecoil: 9
-  recoilResistance: 0.05
+  spreadOverTime: 0
+  maxAmmo: 100
+  bulletsPerShot: 30
+  damagePerBullet: 1000
+  spreadRate: 0
+  maxBulletSpread: 2
+  fireRate: 2
+  range: 3
+  verticalRecoilStrength: 0
+  maxVerticalRecoil: 0
+  horizontalRecoilStrength: 0
+  maxHorizontalRecoil: 0
+  recoilResistance: 0.5
   groundedKnockback: 0
   airborneKnockback: 0
-  hitParticlePrefab: {fileID: 7369708233715015968, guid: 342539eb94570f54aa0c40472ffb63c0,
+  hitParticlePrefab: {fileID: 7369708233715015968, guid: c5fd3d21b9651a04cab718a7839398f6,
     type: 3}
-  shootSound: {fileID: 8300000, guid: 2ce833b4cbd198946ad195103bf57b8c, type: 3}
+  shootSound: {fileID: 8300000, guid: 08bf6e1e1e6110d4ea7e06dfaa870c00, type: 3}
   cooldownSound: {fileID: 0}
   emptyClipSound: {fileID: 8300000, guid: e841e457e8143e441b78c99f627eb7cf, type: 3}
   weaponPulloutSound: {fileID: 0}
+  targetsInRange: []
