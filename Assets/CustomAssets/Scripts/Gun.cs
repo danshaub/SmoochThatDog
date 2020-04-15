@@ -7,16 +7,37 @@ public class Gun : MonoBehaviour
 
     public bool automatic;
     public bool unlimitedAmmo;
+    public bool spreadOverTime;
     public int maxAmmo;
 
     public int bulletsPerShot;
     public int damagePerBullet;
-    public float bulletSpread;
+    [Range(0f, 1f)]
+    public float spreadRate;
+    [Range(0f, 180f)]
+    public float maxBulletSpread;
+    [Range(0f, 50f)]
     public float fireRate;
+    [Range(0f, 100f)]
     public float range;
+    [Range(0f, 30f)]
+    public float verticalRecoilStrength;
+    [Range(0f, 90f)]
+    public float maxVerticalRecoil;
+    [Range(0f, 30f)]
+    public float horizontalRecoilStrength;
+    [Range(0f, 90f)]
+    public float maxHorizontalRecoil;
+    [Range(0f, 1f)]
+    public float recoilResistance = 0.5f;
+    public float groundedKnockback;
+    public float airborneKnockback;
+    
     public GameObject hitParticlePrefab;
     public AudioClip shootSound;
+    public AudioClip cooldownSound;
     public AudioClip emptyClipSound;
+    public AudioClip weaponPulloutSound;
 
     [HideInInspector] public int ammoRemaining { get; protected set; }
 
@@ -43,5 +64,15 @@ public class Gun : MonoBehaviour
     public void AddAmmo(int bullets)
     {
         ammoRemaining = (int)Mathf.Clamp(ammoRemaining + bullets, 0, maxAmmo);
+    }
+
+    public void Shoot(Transform origin)
+    {
+
+    }
+
+    public void Hit(RaycastHit hit)
+    {
+        hit.transform.GetComponent<Target>().Hit(damagePerBullet);
     }
 }

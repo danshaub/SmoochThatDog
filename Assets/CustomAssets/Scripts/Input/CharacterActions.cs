@@ -7,6 +7,7 @@ public class CharacterActions : MonoBehaviour
 {
     public static CharacterActions instance { get; protected set; }
 
+    #region InspectorVariables
     public Camera fpsCamera;
     //public Camera topDownCamera;
 
@@ -24,10 +25,14 @@ public class CharacterActions : MonoBehaviour
     public float crouchSpeedMultiplier = 0.75f;
     [Range(0f, 100f)]
     public float momentumValue = 75f;
+    [Range(1f, 5f)]
+    public float rageMovementSpeedMultiplier = 1f;
     [Range(0f, 2f)]
     public float crouchCameraOffset = 0.5f;
     [Range(1f, 10f)]
     public float jumpSpeed = 5.0f;
+    [Range(1f, 5f)]
+    public float rageJumpHeightMultiplier = 1f;
     [Range(5f, 20f)]
     public float gravityStrength = 10f;
     [Range(30f, 110f)]
@@ -40,21 +45,28 @@ public class CharacterActions : MonoBehaviour
     public float bobSpeed = 2f;
     [Range(0f, 1f)]
     public float bobThreshold = 0.01f;
+    [Range(0f, 1f)]
+    public float knockbackResistance = 0.1f;
+    #endregion
 
+    #region OtherVariables
     float verticalSpeed = 0f;
     bool isPaused = false;
     float currentBobCycle = 0f;
     bool playWalkSound = true;
 
+    [HideInInspector] public Vector3 knockbackOffset = Vector3.zero;
+    [HideInInspector] public Vector2 recoilOffset = Vector2.zero;
     [HideInInspector] public float verticalAngle, horizontalAngle;
     public float speed { get; private set; } = 0f;
     public bool lockControl { get; set; }
     public bool canPause { get; set; } = true;
     public bool crouched { get; private set; } = false;
-
     public bool isGrounded { get; private set; } = true;
+    public bool isRaged { get; private set; } = false;
 
     bool canShoot = true;
+    [HideInInspector] public float currentSpread = 0f;
 
     CharacterController controller;
 
@@ -63,7 +75,9 @@ public class CharacterActions : MonoBehaviour
     float defaultControllerHeight;
 
     private Vector2 previousLateralMovement = Vector2.zero;
+    #endregion
 
+    #region Methods
     private void Awake()
     {
         instance = this;
@@ -177,7 +191,8 @@ public class CharacterActions : MonoBehaviour
                 PlayerManager.instance.SwapGun(9);
             }
             #endregion
-            
+
+            #region Shooting
             if (canShoot)
             {
                 if (PlayerManager.instance.CurrentGun().automatic)
@@ -186,6 +201,10 @@ public class CharacterActions : MonoBehaviour
                     {
                         Shoot();
                     }
+                    else
+                    {
+                        currentSpread = Mathf.Lerp(currentSpread, 0f, PlayerManager.instance.CurrentGun().spreadRate/2);
+                    }
                 }
                 else
                 {
@@ -193,13 +212,19 @@ public class CharacterActions : MonoBehaviour
                     {
                         Shoot();
                     }
+                    else
+                    {
+                        currentSpread = Mathf.Lerp(currentSpread, 0f, PlayerManager.instance.CurrentGun().spreadRate/2);
+                    }
                 }
             }
+            #endregion
 
+            #region Movement
             //Jump
-            if(isGrounded && Input.GetButtonDown("Jump"))
+            if (isGrounded && Input.GetButtonDown("Jump"))
             {
-                verticalSpeed = jumpSpeed;
+                verticalSpeed = isRaged ? jumpSpeed * rageJumpHeightMultiplier : jumpSpeed;
                 isGrounded = false;
                 loosedGrounding = true;
                 PlayerManager.instance.audio.PlayOneShot(PlayerManager.instance.jumpSound);
@@ -240,11 +265,13 @@ public class CharacterActions : MonoBehaviour
 
             float usedSpeed = isGrounded ? actualSpeed : speedAtJump;
 
+            if (isRaged) usedSpeed *= rageMovementSpeedMultiplier;
+
             move = move * usedSpeed * Time.deltaTime;
 
             bool bobHead = move.magnitude > bobThreshold && isGrounded;
 
-            move = transform.TransformDirection(move );
+            move = transform.TransformDirection(move);
 
             //Calculate speed with momentum
             float transformedMomentum = (100f - momentumValue) / 100f;
@@ -252,11 +279,16 @@ public class CharacterActions : MonoBehaviour
             move.z = Mathf.Lerp(previousLateralMovement.y, move.z, transformedMomentum);
 
             //Move Character
-            controller.Move(move);
+            controller.Move(move + (knockbackOffset * Time.deltaTime));
+
+            knockbackOffset = Vector3.Lerp(knockbackOffset, Vector3.zero, knockbackResistance);
 
             previousLateralMovement.x = move.x;
             previousLateralMovement.y = move.z;
 
+            #endregion
+
+            #region Camera Control
             //Set FOV
             if (crouched)
             {
@@ -321,11 +353,16 @@ public class CharacterActions : MonoBehaviour
             //Look up/down
             var turnCam = -Input.GetAxis("Mouse Y");
             turnCam *= mouseSensitivity;
-            verticalAngle = Mathf.Clamp(turnCam + verticalAngle, -90f, 90f);
+            verticalAngle = Mathf.Clamp(turnCam + verticalAngle, -89.5f, 89.5f);
             currentAngles = fpsPosition.transform.localEulerAngles;
-            currentAngles.x = verticalAngle;
-            fpsCamera.transform.localEulerAngles = currentAngles;
+            currentAngles.x = Mathf.Clamp(verticalAngle - recoilOffset.y, -90f, 90f);
+            currentAngles.y = recoilOffset.x;
+            fpsPosition.transform.localEulerAngles = currentAngles;
+
+            recoilOffset = Vector2.Lerp(recoilOffset, Vector2.zero, PlayerManager.instance.CurrentGun().recoilResistance);
         }
+
+        #endregion
 
         //Gravity!
 
@@ -352,7 +389,24 @@ public class CharacterActions : MonoBehaviour
 
         if (currentGun.AmmoRemaining())
         {
-            
+            if (!currentGun.spreadOverTime)
+            {
+                currentSpread = currentGun.maxBulletSpread;
+            }
+            else
+            {
+                currentSpread = Mathf.Lerp(currentSpread, currentGun.maxBulletSpread, currentGun.spreadRate);
+            }
+
+            if (isGrounded)
+            {
+                knockbackOffset += (-transform.forward.normalized * currentGun.groundedKnockback);
+            }
+            else
+            {
+                knockbackOffset += ((-transform.forward.normalized - (.25f * fpsPosition.forward)).normalized * currentGun.airborneKnockback);
+            }
+
 
             currentGun.UseAmmo();
             PlayerManager.instance.UpdateAmmoText();
@@ -362,14 +416,22 @@ public class CharacterActions : MonoBehaviour
             PlayerManager.instance.playerAnimation.SetTrigger("Shoot");
             for(int i = 0; i < currentGun.bulletsPerShot; i++)
             {
+                recoilOffset.y = Mathf.Clamp(recoilOffset.y + currentGun.verticalRecoilStrength, 0f, currentGun.maxVerticalRecoil);
+                float horizRecoil = Random.Range(-currentGun.horizontalRecoilStrength, currentGun.horizontalRecoilStrength);
+                recoilOffset.x = Mathf.Clamp(recoilOffset.x + horizRecoil, -currentGun.maxHorizontalRecoil, currentGun.maxHorizontalRecoil);
+
+                
+
                 Vector3 raycastDirection = fpsCamera.transform.forward;
 
                 Vector3 spreadOffset = new Vector3
                 {
-                    x = Random.Range(-currentGun.bulletSpread / 100, currentGun.bulletSpread / 100),
-                    y = Random.Range(-currentGun.bulletSpread / 100, currentGun.bulletSpread / 100),
-                    z = Random.Range(-currentGun.bulletSpread / 100, currentGun.bulletSpread / 100)
+                    x = Random.Range(-1f, 1f),
+                    y = Random.Range(-1f, 1f),
+                    z = Random.Range(-1f, 1f)
                 };
+
+                spreadOffset = spreadOffset.normalized * Random.Range(0f, currentSpread/100);
 
                 raycastDirection = (spreadOffset + raycastDirection).normalized;
                 
@@ -378,7 +440,7 @@ public class CharacterActions : MonoBehaviour
                 {
                     if(hit.transform.GetComponent<Target>() != null)
                     {
-                        hit.transform.GetComponent<Target>().Hit(currentGun.damagePerBullet);
+                        currentGun.Hit(hit);
                     }
                     else
                     {
@@ -388,9 +450,11 @@ public class CharacterActions : MonoBehaviour
                 }
 
                 //Debug.DrawRay(fpsCamera.transform.position, raycastDirection * currentGun.range, Color.black, 1f);
-                
+
+                Vector3 currentAngles = transform.localEulerAngles;
+                currentAngles.y = horizontalAngle;
+                transform.localEulerAngles = currentAngles;
             }
-            
         }
         else
         {
@@ -400,9 +464,13 @@ public class CharacterActions : MonoBehaviour
 
     IEnumerator ShootCooldown()
     {
+        if(PlayerManager.instance.CurrentGun().cooldownSound != null)
+        {
+            PlayerManager.instance.audio.PlayOneShot(PlayerManager.instance.CurrentGun().cooldownSound);
+        }
         if(PlayerManager.instance.CurrentGun().fireRate == 0f)
         {
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForFixedUpdate();
         }
         else
         {
@@ -412,4 +480,6 @@ public class CharacterActions : MonoBehaviour
         canShoot = true;
 
     }
+
+    #endregion
 }
