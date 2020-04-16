@@ -18,4 +18,9 @@ public class TriggerBridge : MonoBehaviour
     {
         listener.OnTriggerExit(other);
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        listener.OnTriggerStay(other);
+    }
 }
