@@ -72,7 +72,7 @@ public class CharacterActions : MonoBehaviour
     public bool canPause { get; set; } = true;
     public bool crouched { get; private set; } = false;
     public bool isGrounded { get; private set; } = true;
-    
+    private float startFPSPosHeight;
 
     
 
@@ -103,6 +103,7 @@ public class CharacterActions : MonoBehaviour
         verticalAngle = 0f;
         horizontalAngle = transform.localEulerAngles.y;
         defaultControllerHeight = controller.height;
+        startFPSPosHeight = fpsPosition.localPosition.y;
     }
 
     // Update is called once per frame
@@ -126,7 +127,7 @@ public class CharacterActions : MonoBehaviour
             if (isGrounded)
             {
                 groundedTimer += Time.deltaTime;
-                if(groundedTimer >= 0.5f)
+                if(groundedTimer >= 0.05f)
                 {
                     loosedGrounding = true;
                     isGrounded = false;
@@ -339,7 +340,7 @@ public class CharacterActions : MonoBehaviour
                 fpsPosition.localPosition = new Vector3
                 { 
                     x = fpsPosition.localPosition.x,
-                    y = (bobIntensity * (Mathf.Cos(currentBobCycle)) + (1 - bobIntensity)),
+                    y = (bobIntensity * (Mathf.Cos(currentBobCycle)) + (startFPSPosHeight - bobIntensity)),
                     z = fpsPosition.localPosition.z
                 };
             }
@@ -349,7 +350,7 @@ public class CharacterActions : MonoBehaviour
                 fpsPosition.localPosition = new Vector3
                 {
                     x = fpsPosition.localPosition.x,
-                    y = Mathf.Lerp(fpsPosition.localPosition.y, 1, 0.3f),
+                    y = Mathf.Lerp(fpsPosition.localPosition.y, startFPSPosHeight, 0.3f),
                     z = fpsPosition.localPosition.z
                 };
             }
