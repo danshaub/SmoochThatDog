@@ -3,34 +3,47 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Smooch : Gun, TriggerListener
-{ 
+{
     private BoxCollider hitBox;
     [HideInInspector] public List<GameObject> targetsInRange;
+    private List<GameObject> targetsInRangeTemp;
+
 
     private void Start()
     {
+        enabled = true;
+        targetsInRange.Clear();
         hitBox = CharacterActions.instance.GetComponent<BoxCollider>();
         TriggerBridge tb = hitBox.gameObject.AddComponent<TriggerBridge>();
         tb.Initialize(this);
         hitBox.size = new Vector3(maxBulletSpread, 3, range);
         hitBox.center = new Vector3(0f, 0.5f, (range + 1f) / 2f);
+        
     }
+
+    public void CallStart()
+    {
+        Start();
+    }
+
     override
     public void Shoot(Transform origin)
     {
         PlayerManager.instance.playerAnimation.SetTrigger("Shoot");
         PlayerManager.instance.GetComponent<AudioSource>().PlayOneShot(shootSound);
-        foreach(GameObject gm in targetsInRange)
+        targetsInRangeTemp = targetsInRange;
+        for(int i = targetsInRange.Count-1; i >= 0; i--)
         {
-            Hit(gm);
+            Hit(targetsInRange[i]);
         }
+        targetsInRangeTemp.Clear();
     }
 
 
     public void Hit(GameObject hit)
     {
         Target hitTarget;
-        Debug.Log("Smooch Hit!");
+
         try
         {
             hitTarget = hit.GetComponent<Target>();
@@ -52,11 +65,25 @@ public class Smooch : Gun, TriggerListener
 
     public void OnTriggerEnter(Collider other)
     {
-        targetsInRange.Add(other.gameObject);
+        
     }
 
     public void OnTriggerExit(Collider other)
     {
         targetsInRange.Remove(other.gameObject);
+    }
+
+    public void OnTriggerStay(Collider other)
+    {
+        if (!targetsInRange.Contains(other.gameObject) && other.GetComponent<Target>() != null)
+        {
+            targetsInRange.Add(other.gameObject);
+        }
+        
+    }
+
+    public void RemoveFromTargetList(GameObject go)
+    {
+        targetsInRange.Remove(go);
     }
 }

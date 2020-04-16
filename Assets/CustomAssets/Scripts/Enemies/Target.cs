@@ -7,6 +7,9 @@ public class Target : MonoBehaviour
     public int maxHealth = 10;
     public int health;
     public int rageFill;
+    public bool respawn = false;
+    public float respawnTime = 0f;
+
     private void Start()
     {
         health = maxHealth;
@@ -14,7 +17,7 @@ public class Target : MonoBehaviour
 
     virtual public void Stun()
     {
-        Debug.Log("Stunned");
+
     }
 
     virtual public void Hit(int damageHit)
@@ -34,6 +37,29 @@ public class Target : MonoBehaviour
 
     virtual public void Kill()
     {
-        Destroy(gameObject);
+        if(PlayerManager.instance.currentGunIndex == 0)
+        {
+
+            ((Smooch)PlayerManager.instance.CurrentGun()).RemoveFromTargetList(gameObject);
+        }
+        if (respawn)
+        {
+            StartCoroutine(Respawn());
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    IEnumerator Respawn()
+    {
+        GetComponent<MeshRenderer>().enabled = false;
+        GetComponent<Collider>().enabled = false;
+
+        yield return new WaitForSeconds(respawnTime);
+        GetComponent<MeshRenderer>().enabled = true;
+        GetComponent<Collider>().enabled = true;
+        health = maxHealth;
     }
 }
