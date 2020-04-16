@@ -9,11 +9,11 @@ public class Smooch : Gun, TriggerListener
 
     private void Start()
     {
-        hitBox = CharacterActions.instance.fpsCamera.GetComponent<BoxCollider>();
+        hitBox = CharacterActions.instance.GetComponent<BoxCollider>();
         TriggerBridge tb = hitBox.gameObject.AddComponent<TriggerBridge>();
         tb.Initialize(this);
-        hitBox.size = new Vector3(maxBulletSpread, 2f, range);
-        hitBox.center = new Vector3(0f, -1f, (range + 1f) / 2f);
+        hitBox.size = new Vector3(maxBulletSpread, 3, range);
+        hitBox.center = new Vector3(0f, 0.5f, (range + 1f) / 2f);
     }
     override
     public void Shoot(Transform origin)

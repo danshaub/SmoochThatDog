@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 429b145959525b544aa15d476cae64e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animations: {fileID: 9100000, guid: d94722373fe2608458744c866406854b, type: 2}
+  animations: {fileID: 9100000, guid: f11fffb6fce897d41a6c7944105e6f55, type: 2}
   gunName: Test2
   automatic: 0
   unlimitedAmmo: 1

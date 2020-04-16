@@ -25,7 +25,7 @@ public class CharacterActions : MonoBehaviour
     public float crouchSpeedMultiplier = 0.75f;
     [Range(0f, 100f)]
     public float momentumValue = 75f;
-    [Range(1f, 5f)]
+    [Range(1f, 10f)]
     public float rageMovementSpeedMultiplier = 1f;
     [Range(0f, 2f)]
     public float crouchCameraOffset = 0.5f;
