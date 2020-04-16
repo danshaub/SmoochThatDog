@@ -40,6 +40,7 @@ public class PlayerManager : MonoBehaviour
     void Start()
     {
         CurrentGun().ResetAmmo();
+        ((Smooch)CurrentGun()).CallStart();
         UpdateAmmoText();
         playerAnimation.runtimeAnimatorController = CurrentGun().animations;
         UpdateRageBar();
@@ -88,6 +89,10 @@ public class PlayerManager : MonoBehaviour
     public void SwapGun(int gunIndex)
     {
         if(gunIndex == currentGunIndex)
+        {
+            return;
+        }
+        else if(gunIndex >= guns.Count)
         {
             return;
         }

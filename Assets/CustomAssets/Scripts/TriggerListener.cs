@@ -5,4 +5,6 @@ public interface TriggerListener
 {
     void OnTriggerEnter(Collider other);
     void OnTriggerExit(Collider other);
+
+    void OnTriggerStay(Collider other);
 }
