@@ -211,8 +211,9 @@ public class CharacterActions : MonoBehaviour
                     if (Input.GetButton("Fire1"))
                     {
                         canShoot = false;
-                        StartCoroutine(PlayerManager.instance.ShootCooldown());
+                        
                         PlayerManager.instance.CurrentGun().Shoot(fpsCamera.transform);
+                        StartCoroutine(PlayerManager.instance.ShootCooldown());
                     }
                     else
                     {
@@ -225,8 +226,9 @@ public class CharacterActions : MonoBehaviour
                     if (Input.GetButtonDown("Fire1"))
                     {
                         canShoot = false;
-                        StartCoroutine(PlayerManager.instance.ShootCooldown());
                         PlayerManager.instance.CurrentGun().Shoot(fpsCamera.transform);
+                        StartCoroutine(PlayerManager.instance.ShootCooldown());
+
                     }
                     else
                     {

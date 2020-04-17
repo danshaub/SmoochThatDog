@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
+    public bool respawns;
+    public float respawnTime;
     public float bobSpeed;
     public float bobHeight;
 
@@ -32,5 +34,36 @@ public class Pickup : MonoBehaviour
                                      transform.position.y,
                                      PlayerManager.instance.gameObject.transform.position.z));
 
+    }
+
+    virtual
+    public void TakePickup()
+    {
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            TakePickup();
+            if (respawns)
+            {
+                StartCoroutine(Respawn());
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        } 
+    }
+
+    public IEnumerator Respawn()
+    {
+        GetComponent<MeshRenderer>().enabled = false;
+        GetComponent<BoxCollider>().enabled = false;
+        yield return new WaitForSeconds(respawnTime);
+        GetComponent<MeshRenderer>().enabled = true;
+        GetComponent<BoxCollider>().enabled = true;
     }
 }

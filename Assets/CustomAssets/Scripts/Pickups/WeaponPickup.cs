@@ -6,18 +6,10 @@ public class WeaponPickup : Pickup
 {
     public Gun gun;
 
-    private void OnTriggerEnter(Collider other)
+    override
+    public void TakePickup()
     {
-        if (PlayerManager.instance.currentGunIndex == 0)
-        {
-
-            ((Smooch)PlayerManager.instance.CurrentGun()).RemoveFromTargetList(gameObject);
-        }
-        if (other.CompareTag("Player"))
-        {
-            PlayerManager.instance.GetComponent<AudioSource>().PlayOneShot(PlayerManager.instance.weaponPickupSound);
-            PlayerManager.instance.AddGun(gun);
-            Destroy(gameObject);
-        }
+        PlayerManager.instance.GetComponent<AudioSource>().PlayOneShot(PlayerManager.instance.weaponPickupSound);
+        PlayerManager.instance.AddGun(gun);
     }
 }

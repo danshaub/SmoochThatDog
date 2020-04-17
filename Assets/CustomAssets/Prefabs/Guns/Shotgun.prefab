@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7282836446445885}
   - component: {fileID: 7282836446445882}
   m_Layer: 0
-  m_Name: TestGun2
+  m_Name: Shotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,11 +44,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animations: {fileID: 9100000, guid: f11fffb6fce897d41a6c7944105e6f55, type: 2}
-  gunName: Test2
+  gunName: Shotgun
   automatic: 0
   unlimitedAmmo: 0
   spreadOverTime: 0
-  maxAmmo: 2
+  maxAmmo: 5
   bulletsPerShot: 20
   damagePerBullet: 1
   spreadRate: 0
