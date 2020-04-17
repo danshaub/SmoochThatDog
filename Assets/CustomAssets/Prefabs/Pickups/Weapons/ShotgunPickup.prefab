@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3040905596023425962}
   - component: {fileID: 3040905596023425958}
   m_Layer: 0
-  m_Name: WeaponPickup
+  m_Name: ShotgunPickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,7 +92,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.88, y: 0.73, z: 0}
+  m_Size: {x: 0.88, y: 0.73, z: 0.4}
   m_Center: {x: -0.03, y: -0.03, z: 0}
 --- !u!114 &3040905596023425958
 MonoBehaviour:
@@ -106,6 +106,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 785059e1e23ead447954611309bf8124, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  respawns: 0
+  respawnTime: 0
   bobSpeed: 5
   bobHeight: 0.1
   gun: {fileID: 7282836446445882, guid: 7d5ae3c205029ef47a715dcc7e710a0b, type: 3}

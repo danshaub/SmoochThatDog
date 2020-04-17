@@ -49,8 +49,8 @@ MonoBehaviour:
   unlimitedAmmo: 1
   spreadOverTime: 0
   maxAmmo: 100
-  bulletsPerShot: 30
-  damagePerBullet: 1000
+  bulletsPerShot: 1
+  damagePerBullet: 1
   spreadRate: 0
   maxBulletSpread: 2
   fireRate: 2
