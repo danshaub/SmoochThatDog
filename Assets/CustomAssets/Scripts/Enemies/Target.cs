@@ -9,6 +9,7 @@ public class Target : MonoBehaviour
     public int rageFill;
     public bool respawn = false;
     public float respawnTime = 0f;
+    public bool isStunned;
 
     private void Start()
     {

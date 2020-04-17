@@ -55,10 +55,10 @@ MonoBehaviour:
   runningSpeedMultiplier: 1.5
   crouchSpeedMultiplier: 0.75
   momentumValue: 50
-  rageMovementSpeedMultiplier: 5
+  rageMovementSpeedMultiplier: 2
   crouchCameraOffset: 0.5
   jumpSpeed: 5
-  rageJumpHeightMultiplier: 5
+  rageJumpHeightMultiplier: 1.2
   gravityStrength: 10
   fieldOfView: 100
   fieldOfViewModifier: 0
