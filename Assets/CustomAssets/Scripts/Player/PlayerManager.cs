@@ -130,6 +130,7 @@ public class PlayerManager : MonoBehaviour
         if (CurrentGun().cooldownSound != null)
         {
             GetComponent<AudioSource>().PlayOneShot(CurrentGun().cooldownSound);
+            playerAnimation.SetBool("Cooldown", true);
         }
         if (CurrentGun().fireRate == 0f)
         {

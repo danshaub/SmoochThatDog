@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AmmoPickup : MonoBehaviour
+public class AmmoPickup : Pickup
 {
     public bool maxAmmo;
     public int ammoReturned;
@@ -12,7 +12,6 @@ public class AmmoPickup : MonoBehaviour
     {
         if (PlayerManager.instance.currentGunIndex == 0)
         {
-
             ((Smooch)PlayerManager.instance.CurrentGun()).RemoveFromTargetList(gameObject);
         }
         if (other.CompareTag("Player"))

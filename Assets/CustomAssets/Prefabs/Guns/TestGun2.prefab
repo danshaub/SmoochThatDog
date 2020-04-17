@@ -46,9 +46,9 @@ MonoBehaviour:
   animations: {fileID: 9100000, guid: f11fffb6fce897d41a6c7944105e6f55, type: 2}
   gunName: Test2
   automatic: 0
-  unlimitedAmmo: 1
+  unlimitedAmmo: 0
   spreadOverTime: 0
-  maxAmmo: 200
+  maxAmmo: 2
   bulletsPerShot: 20
   damagePerBullet: 1
   spreadRate: 0
