@@ -2124,26 +2124,6 @@ Transform:
   m_Father: {fileID: 1332083256}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1776940997 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4375857691429292042, guid: 74e2be198b66726468d33dd20521764f,
-    type: 3}
-  m_PrefabInstance: {fileID: 4375857691812488571}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1776940999
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1776940997}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42cd8dcae69d178488f5efa28e7c7e78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shader: {fileID: 4800000, guid: 95703b29f49b899499233ea7308bb800, type: 3}
-  BlockCount: 128
 --- !u!1 &1875659593
 GameObject:
   m_ObjectHideFlags: 0
@@ -2723,12 +2703,6 @@ PrefabInstance:
       propertyPath: playerAnimation
       value: 
       objectReference: {fileID: 1114847289}
-    - target: {fileID: 4375857690263520822, guid: 74e2be198b66726468d33dd20521764f,
-        type: 3}
-      propertyPath: defaultGun
-      value: 
-      objectReference: {fileID: 6384366232937241147, guid: a397034c478543940bd30e27797f2449,
-        type: 3}
     - target: {fileID: 4375857690263520822, guid: 74e2be198b66726468d33dd20521764f,
         type: 3}
       propertyPath: ammoDisplay
