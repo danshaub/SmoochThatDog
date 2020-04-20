@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 // This movement script is heavily based on unity's FPS kit movement script
 public class CharacterActions : MonoBehaviour
 {
@@ -54,6 +55,7 @@ public class CharacterActions : MonoBehaviour
 
     bool isPaused = false;
 
+    bool loosedGrounding = false;
     float groundedTimer;
     float speedAtJump = 0f;
     float verticalSpeed = 0f;
@@ -71,6 +73,7 @@ public class CharacterActions : MonoBehaviour
     public bool lockControl { get; set; }
     public bool canPause { get; set; } = true;
     public bool crouched { get; private set; } = false;
+    public bool running { get; private set; } = false;
     public bool isGrounded { get; private set; } = true;
     private float startFPSPosHeight;
 
@@ -106,47 +109,20 @@ public class CharacterActions : MonoBehaviour
         startFPSPosHeight = fpsPosition.localPosition.y;
     }
 
-    // Update is called once per frame
-    void Update()
+    /*************************************
+    INPUT TO PLACE IN UPDATE OR TURN INTO EVENT */
+    private void Update()
     {
-        if(canPause && Input.GetButtonDown("Menu"))
-        {
-            //PauseMenu.Instance.Display();
-        }
-
-        //FullscreenMap.Instance.gameObject.SetActive(Input.GetButton("Map"));
-
-        bool wasGrounded = isGrounded;
-        bool loosedGrounding = false;
-
-        //we define our own grounded and not use the Character controller one as the character controller can flicker
-        //between grounded/not grounded on small step and the like. So we actually make the controller "not grounded" only
-        //if the character controller reported not being grounded for at least .5 second;
-        if (!controller.isGrounded)
-        {
-            if (isGrounded)
-            {
-                groundedTimer += Time.deltaTime;
-                if(groundedTimer >= 0.05f)
-                {
-                    loosedGrounding = true;
-                    isGrounded = false;
-                }
-            }
-        }
-        else
-        {
-            groundedTimer = 0f;
-            isGrounded = true;
-        }
-
-        speed = 0;
-        Vector3 move = Vector3.zero;
-
         if(!isPaused && !lockControl)
         {
+            if (canPause && Input.GetButtonDown("Menu"))
+            {
+                //PauseMenu.Instance.Display();
+            }
+
             #region Rage
-            if(PlayerManager.instance.RageFull() && Input.GetButtonDown("Rage")){
+            if (PlayerManager.instance.RageFull() && Input.GetButtonDown("Rage"))
+            {
                 Debug.Log("Rage Initated");
                 StartCoroutine(PlayerManager.instance.Rage());
             }
@@ -203,6 +179,7 @@ public class CharacterActions : MonoBehaviour
             }
             #endregion
 
+
             #region Shooting
             if (canShoot)
             {
@@ -211,14 +188,14 @@ public class CharacterActions : MonoBehaviour
                     if (Input.GetButton("Fire1"))
                     {
                         canShoot = false;
-                        
+
                         PlayerManager.instance.CurrentGun().Shoot(fpsCamera.transform);
                         StartCoroutine(PlayerManager.instance.ShootCooldown());
                     }
                     else
                     {
 
-                        currentSpread = Mathf.Lerp(currentSpread, 0f, PlayerManager.instance.CurrentGun().spreadRate/2);
+                        currentSpread = Mathf.Lerp(currentSpread, 0f, PlayerManager.instance.CurrentGun().spreadRate / 2);
                     }
                 }
                 else
@@ -232,24 +209,25 @@ public class CharacterActions : MonoBehaviour
                     }
                     else
                     {
-                        currentSpread = Mathf.Lerp(currentSpread, 0f, PlayerManager.instance.CurrentGun().spreadRate/2);
+                        currentSpread = Mathf.Lerp(currentSpread, 0f, PlayerManager.instance.CurrentGun().spreadRate / 2);
                     }
                 }
             }
             #endregion
 
-            #region Movement
+            loosedGrounding = false;
             //Jump
             if (isGrounded && Input.GetButtonDown("Jump"))
             {
                 verticalSpeed = PlayerManager.instance.isRaged ? jumpSpeed * rageJumpHeightMultiplier : jumpSpeed;
+
                 isGrounded = false;
                 loosedGrounding = true;
                 PlayerManager.instance.GetComponent<AudioSource>().PlayOneShot(PlayerManager.instance.jumpSound);
             }
 
             //Crouch
-            if(isGrounded && Input.GetButton("Crouch"))
+            if (isGrounded && Input.GetButton("Crouch"))
             {
                 crouched = true;
                 Vector3 targetCameraPosition = new Vector3(0, -crouchCameraOffset, 0);
@@ -268,8 +246,65 @@ public class CharacterActions : MonoBehaviour
                 controller.center = Vector3.Lerp(controller.center, targetControllerPosition, 0.3f);
             }
 
+            running = Input.GetButton("Run") && !crouched; //TODO: Also check if weapons are being fired
+
+            //Trun the player
+            float turnPlayer = Input.GetAxis("Mouse X") * mouseSensitivity; //Use new input system!!!
+            horizontalAngle += turnPlayer;
+
+            if (horizontalAngle > 360) horizontalAngle -= 360f;
+            if (horizontalAngle < 0) horizontalAngle += 360f;
+
+            Vector3 currentAngles = transform.localEulerAngles;
+            currentAngles.y = horizontalAngle;
+            transform.localEulerAngles = currentAngles;
+
+            //Look up/down
+            var turnCam = -Input.GetAxis("Mouse Y");
+            turnCam *= mouseSensitivity;
+            verticalAngle = Mathf.Clamp(turnCam + verticalAngle, -89.5f, 89.5f);
+            currentAngles = fpsPosition.transform.localEulerAngles;
+            currentAngles.x = Mathf.Clamp(verticalAngle - recoilOffset.y, -90f, 90f);
+            currentAngles.y = recoilOffset.x;
+            fpsPosition.transform.localEulerAngles = currentAngles;
+        }
+    }
+        
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        bool wasGrounded = isGrounded;
+
+        //we define our own grounded and not use the Character controller one as the character controller can flicker
+        //between grounded/not grounded on small step and the like. So we actually make the controller "not grounded" only
+        //if the character controller reported not being grounded for at least .5 second;
+        if (!controller.isGrounded)
+        {
+            if (isGrounded)
+            {
+                groundedTimer += Time.deltaTime;
+                if(groundedTimer >= 0.1f)
+                {
+                    loosedGrounding = true;
+                    isGrounded = false;
+                }
+            }
+        }
+        else
+        {
+            groundedTimer = 0f;
+            isGrounded = true;
+        }
+
+        speed = 0;
+        Vector3 move = Vector3.zero;
+
+        if(!isPaused && !lockControl)
+        {
+            #region Movement
             //Calculate top speed
-            bool running = Input.GetButton("Run") && !crouched; //TODO: Also check if weapons are being fired
+            
             float actualSpeed = crouched ? playerSpeed * crouchSpeedMultiplier : running ? playerSpeed * runningSpeedMultiplier : playerSpeed;
 
             if (loosedGrounding)
@@ -278,7 +313,7 @@ public class CharacterActions : MonoBehaviour
             }
 
             //Calculate Target Speed
-            move = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
+            move = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")); // @@@@@@@@@@@@@@@@@@@ Use new input system equivilant here!!!!!
             if (move.sqrMagnitude > 1f) move.Normalize();
 
             float usedSpeed = isGrounded ? actualSpeed : speedAtJump;
@@ -357,25 +392,7 @@ public class CharacterActions : MonoBehaviour
                 };
             }
 
-            //Trun the player
-            float turnPlayer = Input.GetAxis("Mouse X") * mouseSensitivity;
-            horizontalAngle += turnPlayer;
-
-            if (horizontalAngle > 360) horizontalAngle -= 360f;
-            if (horizontalAngle < 0) horizontalAngle += 360f;
-
-            Vector3 currentAngles = transform.localEulerAngles;
-            currentAngles.y = horizontalAngle;
-            transform.localEulerAngles = currentAngles;
-
-            //Look up/down
-            var turnCam = -Input.GetAxis("Mouse Y");
-            turnCam *= mouseSensitivity;
-            verticalAngle = Mathf.Clamp(turnCam + verticalAngle, -89.5f, 89.5f);
-            currentAngles = fpsPosition.transform.localEulerAngles;
-            currentAngles.x = Mathf.Clamp(verticalAngle - recoilOffset.y, -90f, 90f);
-            currentAngles.y = recoilOffset.x;
-            fpsPosition.transform.localEulerAngles = currentAngles;
+            
 
             recoilOffset = Vector2.Lerp(recoilOffset, Vector2.zero, PlayerManager.instance.CurrentGun().recoilResistance);
         }
@@ -392,7 +409,7 @@ public class CharacterActions : MonoBehaviour
 
         if ((flag & CollisionFlags.Below) != 0) verticalSpeed = 0;
 
-        if(!wasGrounded && isGrounded)
+        if(!wasGrounded && isGrounded && !loosedGrounding)
         {
             PlayerManager.instance.GetComponent<AudioSource>().PlayOneShot(PlayerManager.instance.landingSound);
         }
