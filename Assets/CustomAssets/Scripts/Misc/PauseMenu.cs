@@ -58,6 +58,9 @@ public class PauseMenu : MonoBehaviour
 
     public void Quit()
     {
+        paused = false;
+        Time.timeScale = 1;
+        CharacterActions.instance.lockControl = false;
         GameManager.instance.LoadSceneByIndex(0);
     } 
 }
