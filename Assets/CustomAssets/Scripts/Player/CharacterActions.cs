@@ -16,6 +16,8 @@ public class CharacterActions : MonoBehaviour
     //public Transform topDownPosition;
 
     [Header("Control Settings")]
+    [Range(0f, 5f)]
+    public float interactRange = 1f;
     [Range(1f, 10f)]
     public float mouseSensitivity = 5f;
     [Range(0f, 50f)]
@@ -113,12 +115,28 @@ public class CharacterActions : MonoBehaviour
     INPUT TO PLACE IN UPDATE OR TURN INTO EVENT */
     private void Update()
     {
-        if(!isPaused && !lockControl)
+        
+        if (!isPaused && !lockControl)
         {
             if (canPause && Input.GetButtonDown("Menu"))
             {
                 //PauseMenu.Instance.Display();
             }
+
+            #region Interact
+
+            if (Input.GetButtonDown("Interact"))
+            {
+                LayerMask mask = LayerMask.GetMask("Interactable");
+                RaycastHit hit;
+                if(Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, interactRange, mask))
+                {
+                    hit.collider.gameObject.GetComponentInParent<InteractableObject>().Action();
+                }
+
+            }
+
+            #endregion
 
             #region Rage
             if (PlayerManager.instance.RageFull() && Input.GetButtonDown("Rage"))
@@ -227,7 +245,7 @@ public class CharacterActions : MonoBehaviour
             }
 
             //Crouch
-            if (isGrounded && Input.GetButton("Crouch"))
+            if (Input.GetButton("Crouch"))
             {
                 crouched = true;
                 Vector3 targetCameraPosition = new Vector3(0, -crouchCameraOffset, 0);
@@ -263,10 +281,10 @@ public class CharacterActions : MonoBehaviour
             var turnCam = -Input.GetAxis("Mouse Y");
             turnCam *= mouseSensitivity;
             verticalAngle = Mathf.Clamp(turnCam + verticalAngle, -89.5f, 89.5f);
-            currentAngles = fpsPosition.transform.localEulerAngles;
+            currentAngles = fpsCamera.transform.localEulerAngles;
             currentAngles.x = Mathf.Clamp(verticalAngle - recoilOffset.y, -90f, 90f);
             currentAngles.y = recoilOffset.x;
-            fpsPosition.transform.localEulerAngles = currentAngles;
+            fpsCamera.transform.localEulerAngles = currentAngles;
         }
     }
         

@@ -136,7 +136,7 @@ public class Gun : MonoBehaviour
                     }
                 }
 
-                //Debug.DrawRay(fpsCamera.transform.position, raycastDirection * currentGun.range, Color.black, 1f);
+                Debug.DrawRay(CharacterActions.instance.fpsCamera.transform.position, raycastDirection * range, Color.black, 1f);
                 /*
                 Vector3 currentAngles = transform.localEulerAngles;
                 currentAngles.y = horizontalAngle;

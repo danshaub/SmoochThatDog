@@ -9,6 +9,7 @@ public class PlayerManager : MonoBehaviour
     public Animator playerAnimation;
     public Gun defaultGun;
     public List<Gun> guns;
+    public List<int> keyIDs;
     public int currentGunIndex;
 
     public AudioClip walkSound;
@@ -67,6 +68,23 @@ public class PlayerManager : MonoBehaviour
     public void UpdateAnimator()
     {
         playerAnimation.runtimeAnimatorController = CurrentGun().animations;
+    }
+
+    public bool HasKey(int keyID)
+    {
+        return keyIDs.Contains(keyID);
+    }
+    public void AddKey(int keyID)
+    {
+        keyIDs.Add(keyID);
+    }
+    public void RemoveKey(int keyID)
+    {
+        keyIDs.Remove(keyID);
+    }
+    public void ClearKeys()
+    {
+        keyIDs.Clear();
     }
 
     public void AddGun(Gun gun)

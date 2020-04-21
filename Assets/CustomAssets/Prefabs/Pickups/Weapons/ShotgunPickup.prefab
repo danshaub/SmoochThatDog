@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3040905596023425963}
   - component: {fileID: 3040905596023425962}
   - component: {fileID: 3040905596023425958}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ShotgunPickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
