@@ -11,7 +11,6 @@ public class AmmoPickup : Pickup
     override
     public void TakePickup()
     {
-        PlayerManager.instance.GetComponent<AudioSource>().PlayOneShot(PlayerManager.instance.ammoPickupSound);
         for (int i = 0; i < PlayerManager.instance.guns.Count; i++)
         {
             if (gunsEffected.Contains(PlayerManager.instance.guns[i].gunName))

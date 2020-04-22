@@ -50,11 +50,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fpsCamera: {fileID: 4375857691429292040}
   fpsPosition: {fileID: 4375857690577086453}
+  interactRange: 1
   mouseSensitivity: 5
   playerSpeed: 12
   runningSpeedMultiplier: 1.5
   crouchSpeedMultiplier: 0.75
-  momentumValue: 50
+  groundedMomentumValue: 50
+  airborneMomentumValue: 80
   rageMovementSpeedMultiplier: 2
   crouchCameraOffset: 0.5
   jumpSpeed: 5
@@ -106,6 +108,7 @@ MonoBehaviour:
   defaultGun: {fileID: 6384366232937241147, guid: a397034c478543940bd30e27797f2449,
     type: 3}
   guns: []
+  keyIDs: 
   currentGunIndex: 0
   walkSound: {fileID: 8300000, guid: 4e29a724426be3e4493e2e4d0107a34c, type: 3}
   jumpSound: {fileID: 8300000, guid: 40c0f39cbdc4e16439f20f86542fd0fb, type: 3}

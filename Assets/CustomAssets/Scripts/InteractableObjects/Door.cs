@@ -15,9 +15,14 @@ public class Door : MonoBehaviour, InteractableObject
     public int sequenceFrames = 1;
     public bool closeAutomatically = false;
     public float closeTime = 1f;
+    [Header("Lock options: (Use lockID 0 for scripted unlock)")]
     public bool locked = false;
     public int lockID = 0;
+    public bool consumeKey = false;
     public bool interactable = true;
+
+    public AudioClip openSound;
+    public AudioClip closeSound;
 
     public bool open { get; private set; } = false;
     public int sequenceFrame { get; private set; } = 0;
@@ -98,22 +103,34 @@ public class Door : MonoBehaviour, InteractableObject
         }
         else if (!locked || (locked && PlayerManager.instance.HasKey(lockID)))
         {
+            Unlock();
             Open();
         }
     }
 
     virtual public void Close()
     {
+        GetComponent<AudioSource>().PlayOneShot(closeSound);
         open = false;
     }
 
     virtual public void Open()
     {
+        GetComponent<AudioSource>().PlayOneShot(openSound);
         open = true;
 
         if (closeAutomatically)
         {
             Invoke("Close", closeTime);
+        }
+    }
+
+    public void Unlock()
+    {
+        locked = false;
+        if (consumeKey)
+        {
+            PlayerManager.instance.RemoveKey(lockID);
         }
     }
 }

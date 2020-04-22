@@ -9,7 +9,7 @@ public class PlayerManager : MonoBehaviour
     public Animator playerAnimation;
     public Gun defaultGun;
     public List<Gun> guns;
-    public List<int> keyIDs;
+    public List<KeyPickup.Key> keys;
     public int currentGunIndex;
 
     public AudioClip walkSound;
@@ -27,9 +27,11 @@ public class PlayerManager : MonoBehaviour
 
     public float rageTime;
 
-    public Text ammoDisplay;
+    public Text currentAmmoDisplay;
+    public Text maxAmmoDisplay;
     public Slider rageBar;
     public Image rageOverlay;
+    public List<Image> keySlots;
 
     private void Awake()
     {
@@ -56,11 +58,13 @@ public class PlayerManager : MonoBehaviour
     {
         if (CurrentGun().unlimitedAmmo)
         {
-            ammoDisplay.text = CurrentGun().name;
+            currentAmmoDisplay.text = "∞";
+            maxAmmoDisplay.text = "∞";
         }
         else
         {
-            ammoDisplay.text = CurrentGun().gunName + "\n" + CurrentGun().ammoRemaining.ToString() + "/" + CurrentGun().maxAmmo.ToString();
+            currentAmmoDisplay.text = CurrentGun().ammoRemaining.ToString();
+            maxAmmoDisplay.text = CurrentGun().maxAmmo.ToString();
         }
         
     }
@@ -72,19 +76,51 @@ public class PlayerManager : MonoBehaviour
 
     public bool HasKey(int keyID)
     {
-        return keyIDs.Contains(keyID);
+        for (int i = keys.Count - 1; i >= 0; i--)
+        {
+            if (keys[i].keyID == keyID)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
-    public void AddKey(int keyID)
+    public void AddKey(KeyPickup.Key key)
     {
-        keyIDs.Add(keyID);
+        keys.Add(key);
+        UpdateKeySlots();
     }
     public void RemoveKey(int keyID)
     {
-        keyIDs.Remove(keyID);
+        for(int i = keys.Count - 1; i >= 0; i--)
+        {
+            if(keys[i].keyID == keyID)
+            {
+                keys.RemoveAt(i);
+            }
+        }
+        UpdateKeySlots();
     }
     public void ClearKeys()
     {
-        keyIDs.Clear();
+        keys.Clear();
+        UpdateKeySlots();
+    }
+
+    public void UpdateKeySlots()
+    {
+        foreach(Image img in keySlots)
+        {
+            img.sprite = null;
+            img.color = Color.clear;
+        }
+
+        for(int i = 0; i < keySlots.Count && i < keys.Count; i++)
+        {
+            keySlots[i].sprite = keys[i].image;
+            keySlots[i].color = Color.white;
+        }
     }
 
     public void AddGun(Gun gun)
@@ -183,11 +219,11 @@ public class PlayerManager : MonoBehaviour
         rageBar.value = rageGauge;
         if (RageFull())
         {
-            rageBar.image.color = Color.red;
+            rageBar.fillRect.gameObject.GetComponent<Image>().color = Color.red;
         }
         else
         {
-            rageBar.image.color = Color.blue;
+            rageBar.fillRect.gameObject.GetComponent<Image>().color = Color.blue;
         }
     }
 
@@ -195,13 +231,13 @@ public class PlayerManager : MonoBehaviour
     {
         isRaged = true;
         rageOverlay.gameObject.SetActive(true);
-        rageBar.image.color = Color.magenta;
+        rageBar.fillRect.gameObject.GetComponent<Image>().color = Color.magenta;
 
         yield return new WaitForSeconds(rageTime);
 
         isRaged = false;
         rageOverlay.gameObject.SetActive(false);
-        rageBar.image.color = Color.blue;
+        rageBar.fillRect.gameObject.GetComponent<Image>().color = Color.blue;
 
         AddRage(-1000);
 

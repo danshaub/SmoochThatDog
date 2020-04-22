@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
+    public AudioClip pickupSound;
     public bool respawns;
     public float respawnTime;
     public float bobSpeed;
@@ -46,6 +47,10 @@ public class Pickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            if(pickupSound != null)
+            {
+                PlayerManager.instance.GetComponent<AudioSource>().PlayOneShot(pickupSound);
+            }
             TakePickup();
             if (respawns)
             {

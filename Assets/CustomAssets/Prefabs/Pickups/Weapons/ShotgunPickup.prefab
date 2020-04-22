@@ -92,7 +92,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.88, y: 0.73, z: 0.4}
+  m_Size: {x: 0.88, y: 0.73, z: 0.88}
   m_Center: {x: -0.03, y: -0.03, z: 0}
 --- !u!114 &3040905596023425958
 MonoBehaviour:
@@ -106,6 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 785059e1e23ead447954611309bf8124, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupSound: {fileID: 8300000, guid: 2303b04073222964bbcaa0ea999708e9, type: 3}
   respawns: 0
   respawnTime: 0
   bobSpeed: 5

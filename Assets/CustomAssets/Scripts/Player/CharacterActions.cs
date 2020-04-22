@@ -27,7 +27,9 @@ public class CharacterActions : MonoBehaviour
     [Range(0f, 1f)]
     public float crouchSpeedMultiplier = 0.75f;
     [Range(0f, 100f)]
-    public float momentumValue = 75f;
+    public float groundedMomentumValue = 50f;
+    [Range(0f, 100f)]
+    public float airborneMomentumValue = 75f;
     [Range(1f, 10f)]
     public float rageMovementSpeedMultiplier = 1f;
     [Range(0f, 2f)]
@@ -57,7 +59,7 @@ public class CharacterActions : MonoBehaviour
 
     bool isPaused = false;
 
-    bool loosedGrounding = false;
+    bool jumpNextFixedFrame = false;
     float groundedTimer;
     float speedAtJump = 0f;
     float verticalSpeed = 0f;
@@ -141,7 +143,6 @@ public class CharacterActions : MonoBehaviour
             #region Rage
             if (PlayerManager.instance.RageFull() && Input.GetButtonDown("Rage"))
             {
-                Debug.Log("Rage Initated");
                 StartCoroutine(PlayerManager.instance.Rage());
             }
             #endregion
@@ -233,15 +234,10 @@ public class CharacterActions : MonoBehaviour
             }
             #endregion
 
-            loosedGrounding = false;
             //Jump
             if (isGrounded && Input.GetButtonDown("Jump"))
             {
-                verticalSpeed = PlayerManager.instance.isRaged ? jumpSpeed * rageJumpHeightMultiplier : jumpSpeed;
-
-                isGrounded = false;
-                loosedGrounding = true;
-                PlayerManager.instance.GetComponent<AudioSource>().PlayOneShot(PlayerManager.instance.jumpSound);
+                jumpNextFixedFrame = true;
             }
 
             //Crouch
@@ -292,6 +288,13 @@ public class CharacterActions : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (jumpNextFixedFrame)
+        {
+            verticalSpeed = PlayerManager.instance.isRaged ? jumpSpeed * rageJumpHeightMultiplier : jumpSpeed;
+
+            isGrounded = false;
+            PlayerManager.instance.GetComponent<AudioSource>().PlayOneShot(PlayerManager.instance.jumpSound);
+        }
         bool wasGrounded = isGrounded;
 
         //we define our own grounded and not use the Character controller one as the character controller can flicker
@@ -304,7 +307,7 @@ public class CharacterActions : MonoBehaviour
                 groundedTimer += Time.deltaTime;
                 if(groundedTimer >= 0.1f)
                 {
-                    loosedGrounding = true;
+                    jumpNextFixedFrame = true;
                     isGrounded = false;
                 }
             }
@@ -325,7 +328,7 @@ public class CharacterActions : MonoBehaviour
             
             float actualSpeed = crouched ? playerSpeed * crouchSpeedMultiplier : running ? playerSpeed * runningSpeedMultiplier : playerSpeed;
 
-            if (loosedGrounding)
+            if (jumpNextFixedFrame)
             {
                 speedAtJump = actualSpeed;
             }
@@ -345,7 +348,7 @@ public class CharacterActions : MonoBehaviour
             move = transform.TransformDirection(move);
 
             //Calculate speed with momentum
-            float transformedMomentum = (100f - momentumValue) / 100f;
+            float transformedMomentum = (100f - (isGrounded ? groundedMomentumValue : airborneMomentumValue)) / 100f;
             move.x = Mathf.Lerp(previousLateralMovement.x, move.x, transformedMomentum);
             move.z = Mathf.Lerp(previousLateralMovement.y, move.z, transformedMomentum);
 
@@ -427,10 +430,12 @@ public class CharacterActions : MonoBehaviour
 
         if ((flag & CollisionFlags.Below) != 0) verticalSpeed = 0;
 
-        if(!wasGrounded && isGrounded && !loosedGrounding)
+        if(!wasGrounded && isGrounded && !jumpNextFixedFrame)
         {
             PlayerManager.instance.GetComponent<AudioSource>().PlayOneShot(PlayerManager.instance.landingSound);
         }
+
+        jumpNextFixedFrame = false;
     }
 
 
