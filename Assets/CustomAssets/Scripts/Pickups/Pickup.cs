@@ -31,9 +31,9 @@ public class Pickup : MonoBehaviour
 
         currentTime = (currentTime + (Time.deltaTime * bobSpeed)) % (2 * Mathf.PI);
 
-        transform.localEulerAngles = new Vector3 {
+        transform.eulerAngles = new Vector3 {
             x = 0,
-            y = CharacterActions.instance.transform.localEulerAngles.y,
+            y = CharacterActions.instance.transform.eulerAngles.y,
             z = 0
         };
 
