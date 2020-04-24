@@ -9,8 +9,8 @@ public class Target : MonoBehaviour
     public int rageFill;
     public bool respawn = false;
     public float respawnTime = 0f;
-    public bool isStunned;
-
+    public bool isStunned { get; protected set; }
+    public bool killed { get; protected set; }
     private void Start()
     {
         health = maxHealth;
@@ -23,10 +23,16 @@ public class Target : MonoBehaviour
 
     virtual public void Hit(int damageHit)
     {
+        if (killed)
+        {
+            return;
+        }
+
         health -= damageHit;
 
         if(health <= 0)
         {
+            killed = true;
             Kill();
         }
     }

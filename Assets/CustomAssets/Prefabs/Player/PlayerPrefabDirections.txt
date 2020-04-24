@@ -1,8 +1,0 @@
-1- Place Player prefab and Canvas prefab into scene
-2- Player Manager objects
-	-Player Animation: Canvas->HUD->HandView
-	-Default Gun: Smooch prefab
-	-Ammo Display: Canvas->HUD->AmmoText
-	-Rage Bar: Canvas->HUD->RageBar
-	-Rage Overlay: Canvas->HUD->RageVisionOverlay
-3- Delete all other cameras in scene (or untag them as main camera)

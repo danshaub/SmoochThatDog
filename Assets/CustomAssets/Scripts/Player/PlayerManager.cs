@@ -6,9 +6,13 @@ using UnityEngine.UI;
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance;
-    public Animator playerAnimation;
+    public Animator gunAnimations;
+    public Animator smoochAnimations;
+    public Animator faceAnimations;
+    public Animator damageAnimations;
     public Gun defaultGun;
-    public List<Gun> guns;
+    public Smooch smooch;
+    public string[] gunNames;
     public List<KeyPickup.Key> keys;
     public int currentGunIndex;
 
@@ -27,15 +31,27 @@ public class PlayerManager : MonoBehaviour
 
     public float rageTime;
 
+    [Header("UI Elements")]
     public Text currentAmmoDisplay;
     public Text maxAmmoDisplay;
     public Slider rageBar;
     public Image rageOverlay;
     public List<Image> keySlots;
+    public Text[] gunTexts;
+    public Image[] gunTextBackgrounds;
+    public string undiscoveredGunText;
+    public Color activeGunHighlight;
+    public Color inactiveGun;
+    public Color emptyGunSlot;
+
+    [HideInInspector] public Gun[] guns;
+    private int numGuns = 0;
+    private int rageGunStorage = 0;
 
     private void Awake()
     {
         instance = this;
+        guns = new Gun[gunNames.Length];
         AddGun(defaultGun);
         currentGunIndex = 0;
     }
@@ -43,9 +59,10 @@ public class PlayerManager : MonoBehaviour
     void Start()
     {
         CurrentGun().ResetAmmo();
-        ((Smooch)CurrentGun()).CallStart();
+        smooch.CallStart();
         UpdateAmmoText();
-        playerAnimation.runtimeAnimatorController = CurrentGun().animations;
+        gunAnimations.runtimeAnimatorController = CurrentGun().animations;
+        damageAnimations.SetInteger("Health", 100);
         UpdateRageBar();
     }
 
@@ -71,7 +88,7 @@ public class PlayerManager : MonoBehaviour
 
     public void UpdateAnimator()
     {
-        playerAnimation.runtimeAnimatorController = CurrentGun().animations;
+        gunAnimations.runtimeAnimatorController = CurrentGun().animations;
     }
 
     public bool HasKey(int keyID)
@@ -125,58 +142,103 @@ public class PlayerManager : MonoBehaviour
 
     public void AddGun(Gun gun)
     {
-        for (int i = 0; i < guns.Count; i++)
+        for (int i = 0; i < gunNames.Length; i++)
         {
-            if (guns[i].name.Equals(gun.name))
+            if (gun.gunName.Equals(gunNames[i]))
             {
-                SwapGun(i);
+                if (guns[i] == null)
+                { 
+                    guns[i] = gun;
+                    numGuns++;
+                }
+
                 guns[i].ResetAmmo();
-                return;
+                if(currentGunIndex != i)
+                {
+
+                    if (isRaged)
+                    {
+                        rageGunStorage = i;
+                    }
+                    else
+                    {
+                        SwapGun(i);
+                    }
+                }
             }
         }
+        UpdateGunTexts();
+    }
 
-        gun.ResetAmmo();
-        guns.Add(gun);
-        SwapGun(guns.Count - 1);
+    public void UpdateGunTexts()
+    {
+        for(int i = 0; i < gunNames.Length; i++)
+        {
+            if(guns[i] != null)
+            {
+                gunTexts[i].text = "[" + ((i + 1) % 10).ToString() + "] " + gunNames[i];
+                if(i == currentGunIndex)
+                {
+                    gunTextBackgrounds[i].color = activeGunHighlight;
+                }
+                else
+                {
+                    gunTextBackgrounds[i].color = inactiveGun;
+                }
+            }
+            else
+            {
+                gunTextBackgrounds[i].color = emptyGunSlot;
+                gunTexts[i].text = "[" + ((i + 1) % 10).ToString() + "] " + undiscoveredGunText;
+            }
+        }
     }
 
     public void SwapGun(int gunIndex)
     {
-        if(gunIndex == currentGunIndex)
-        {
-            return;
-        }
-        else if(gunIndex >= guns.Count)
+        if(gunIndex == currentGunIndex || gunIndex >= gunNames.Length || gunIndex < 0 || guns[gunIndex] == null)
         {
             return;
         }
 
-        currentGunIndex = (int)Mathf.Clamp(gunIndex, 0, guns.Count - 1);
+        currentGunIndex = gunIndex;
 
-        playerAnimation.SetTrigger("PutAway");
+        gunAnimations.SetTrigger("PutAway");
         UpdateAmmoText();
         CharacterActions.instance.currentSpread = 0f;
         CharacterActions.instance.recoilOffset = Vector2.zero;
+
+        UpdateGunTexts();
     }
 
     public void SwapGun(bool up)
     {
-        if(guns.Count == 1)
+        if(numGuns == 1)
         {
             return;
         }
         if (up)
         {
-            currentGunIndex = (currentGunIndex + 1) % guns.Count;
+            do
+            {
+                currentGunIndex = (currentGunIndex + 1) % guns.Length;
+            } while (guns[currentGunIndex] == null);
+            
         }
         else
         {
-            currentGunIndex = (currentGunIndex - 1) < 0 ? guns.Count - 1 : currentGunIndex - 1;
+            do
+            {
+                currentGunIndex = (currentGunIndex - 1) < 0 ? guns.Length - 1 : currentGunIndex - 1;
+            } while (guns[currentGunIndex] == null);
+            
         }
 
-        playerAnimation.SetTrigger("PutAway");
+        gunAnimations.SetTrigger("PutAway");
         UpdateAmmoText();
         CharacterActions.instance.currentSpread = 0f;
+
+        UpdateGunTexts();
     }
 
     public IEnumerator ShootCooldown()
@@ -184,7 +246,7 @@ public class PlayerManager : MonoBehaviour
         if (CurrentGun().cooldownSound != null && CurrentGun().AmmoRemaining())
         {
             GetComponent<AudioSource>().PlayOneShot(CurrentGun().cooldownSound);
-            playerAnimation.SetBool("Cooldown", true);
+            gunAnimations.SetBool("Cooldown", true);
         }
         if (CurrentGun().fireRate == 0f)
         {
@@ -193,6 +255,25 @@ public class PlayerManager : MonoBehaviour
         else
         {
             yield return new WaitForSeconds(1f / CurrentGun().fireRate);
+        }
+
+        CharacterActions.instance.canShoot = true;
+    }
+
+    public IEnumerator SmoochCooldown()
+    {
+        if (smooch.cooldownSound != null && smooch.AmmoRemaining())
+        {
+            GetComponent<AudioSource>().PlayOneShot(smooch.cooldownSound);
+            smoochAnimations.SetBool("Cooldown", true);
+        }
+        if (smooch.fireRate == 0f)
+        {
+            yield return new WaitForFixedUpdate();
+        }
+        else
+        {
+            yield return new WaitForSeconds(1f / smooch.fireRate);
         }
 
         CharacterActions.instance.canShoot = true;
@@ -229,6 +310,13 @@ public class PlayerManager : MonoBehaviour
 
     public IEnumerator Rage()
     {
+        faceAnimations.SetTrigger("StartRage");
+        rageGunStorage = currentGunIndex;
+        if(rageGunStorage != 0)
+        {
+            SwapGun(0);
+        }
+
         isRaged = true;
         rageOverlay.gameObject.SetActive(true);
         rageBar.fillRect.gameObject.GetComponent<Image>().color = Color.magenta;
@@ -239,7 +327,8 @@ public class PlayerManager : MonoBehaviour
         rageOverlay.gameObject.SetActive(false);
         rageBar.fillRect.gameObject.GetComponent<Image>().color = Color.blue;
 
+        SwapGun(rageGunStorage);
         AddRage(-1000);
-
+        faceAnimations.SetTrigger("EndRage");
     }
 }

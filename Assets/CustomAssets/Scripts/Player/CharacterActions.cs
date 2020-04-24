@@ -81,8 +81,6 @@ public class CharacterActions : MonoBehaviour
     public bool isGrounded { get; private set; } = true;
     private float startFPSPosHeight;
 
-    
-
     [HideInInspector] public Vector3 knockbackOffset = Vector3.zero;
     private Vector2 previousLateralMovement = Vector2.zero;
     #endregion
@@ -150,11 +148,11 @@ public class CharacterActions : MonoBehaviour
             #region Weapon Switching
             if (Input.GetAxis("Mouse ScrollWheel") > 0)
             {
-                PlayerManager.instance.SwapGun(true);
+                PlayerManager.instance.SwapGun(false);
             }
             else if (Input.GetAxis("Mouse ScrollWheel") < 0)
             {
-                PlayerManager.instance.SwapGun(false);
+                PlayerManager.instance.SwapGun(true);
             }
             else if (Input.GetButtonDown("Swap Weapon 1"))
             {
@@ -202,7 +200,14 @@ public class CharacterActions : MonoBehaviour
             #region Shooting
             if (canShoot)
             {
-                if (PlayerManager.instance.CurrentGun().automatic)
+                if (Input.GetButtonDown("Fire2"))
+                {
+                    canShoot = false;
+
+                    PlayerManager.instance.smooch.Shoot(fpsCamera.transform);
+                    StartCoroutine(PlayerManager.instance.SmoochCooldown());
+                }
+                else if (PlayerManager.instance.CurrentGun().automatic)
                 {
                     if (Input.GetButton("Fire1"))
                     {

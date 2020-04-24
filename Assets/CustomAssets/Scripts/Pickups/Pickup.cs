@@ -31,9 +31,11 @@ public class Pickup : MonoBehaviour
 
         currentTime = (currentTime + (Time.deltaTime * bobSpeed)) % (2 * Mathf.PI);
 
-        transform.LookAt(new Vector3(PlayerManager.instance.gameObject.transform.position.x, 
-                                     transform.position.y,
-                                     PlayerManager.instance.gameObject.transform.position.z));
+        transform.localEulerAngles = new Vector3 {
+            x = 0,
+            y = CharacterActions.instance.transform.localEulerAngles.y,
+            z = 0
+        };
 
     }
 

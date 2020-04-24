@@ -29,7 +29,7 @@ public class Smooch : Gun, TriggerListener
     override
     public void Shoot(Transform origin)
     {
-        PlayerManager.instance.playerAnimation.SetTrigger("Shoot");
+        PlayerManager.instance.smoochAnimations.SetTrigger("Shoot");
         PlayerManager.instance.GetComponent<AudioSource>().PlayOneShot(shootSound);
         targetsInRangeTemp = targetsInRange;
         for(int i = targetsInRange.Count-1; i >= 0; i--)
@@ -52,12 +52,12 @@ public class Smooch : Gun, TriggerListener
         {
             return;
         }
-        if (!PlayerManager.instance.isRaged)
+        if (!PlayerManager.instance.isRaged && !hitTarget.isStunned && !hitTarget.killed)
         {
             hitTarget.Stun();
             PlayerManager.instance.AddRage(hitTarget.rageFill);
         }
-        else
+        else if (PlayerManager.instance.isRaged)
         {
             hitTarget.Hit(damagePerBullet);
         }

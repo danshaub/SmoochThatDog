@@ -45,7 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animations: {fileID: 9100000, guid: 49d4b10616ae6114895c75a68c5e7b25, type: 2}
   gunName: Pistol
-  automatic: 0
+  automatic: 1
   unlimitedAmmo: 0
   spreadOverTime: 1
   maxAmmo: 200

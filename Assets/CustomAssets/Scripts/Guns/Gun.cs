@@ -96,7 +96,7 @@ public class Gun : MonoBehaviour
 
             PlayerManager.instance.GetComponent<AudioSource>().PlayOneShot(shootSound);
 
-            PlayerManager.instance.playerAnimation.SetTrigger("Shoot");
+            PlayerManager.instance.gunAnimations.SetTrigger("Shoot");
             for (int i = 0; i < bulletsPerShot; i++)
             {
                 CharacterActions.instance.recoilOffset.y = Mathf.Clamp(CharacterActions.instance.recoilOffset.y + verticalRecoilStrength, 0f, maxVerticalRecoil);
@@ -136,7 +136,7 @@ public class Gun : MonoBehaviour
                     }
                 }
 
-                Debug.DrawRay(CharacterActions.instance.fpsCamera.transform.position, raycastDirection * range, Color.black, 1f);
+                //Debug.DrawRay(CharacterActions.instance.fpsCamera.transform.position, raycastDirection * range, Color.black, 1f);
                 /*
                 Vector3 currentAngles = transform.localEulerAngles;
                 currentAngles.y = horizontalAngle;
