@@ -9,6 +9,7 @@ public class Target : MonoBehaviour
     public int rageFill;
     public bool respawn = false;
     public float respawnTime = 0f;
+    public float stunTime = 0f;
     public bool isStunned { get; protected set; }
     public bool killed { get; protected set; }
     private void Start()
@@ -30,7 +31,7 @@ public class Target : MonoBehaviour
 
         health -= damageHit;
 
-        if(health <= 0)
+        if (health <= 0)
         {
             killed = true;
             Kill();
@@ -44,7 +45,7 @@ public class Target : MonoBehaviour
 
     virtual public void Kill()
     {
-        if(PlayerManager.instance.currentGunIndex == 0)
+        if (PlayerManager.instance.currentGunIndex == 0)
         {
 
             ((Smooch)PlayerManager.instance.CurrentGun()).RemoveFromTargetList(gameObject);

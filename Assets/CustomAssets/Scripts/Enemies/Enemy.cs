@@ -1,30 +1,107 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : Target
 {
-    public GameObject enemyQuad;
+    #region AnimationVariables
+    public GameObject enemyGFX;
     public Animator enemyAnimations;
-    public float rotationSpeed;
-    public float walkSpeed;
-
     public float angleToPlayer { get; protected set; }
     private float angleInRadians = 0f;
     private Vector2 horizPositionDifference;
     private Vector2 rotatedPositionDifference;
-    private Vector2 forward = new Vector2(1f, 0f);
+    private Vector2 forward = new Vector2(0f, 1f);
     private int activeLayerIndex = 2;
     private int previousLayerIndex = 2;
+    #endregion
 
+    #region AI Variables
+    public float chaseLimitRadius = 10f;
+    public float agroRadius = 7.5f;
+    public float attackRaduis = 5f;
+    Transform target;
+    NavMeshAgent agent;
+
+    private bool isAware;
+
+    #endregion
+
+    private void Start()
+    {
+        agent = GetComponent<NavMeshAgent>();
+        target = PlayerManager.instance.transform;
+    }
     private void FixedUpdate()
     {
-        transform.localEulerAngles += new Vector3(0f, rotationSpeed * Time.deltaTime, 0f);
-        transform.position += transform.forward * walkSpeed * Time.deltaTime;
+        float distance = Vector3.Distance(target.position, transform.position);
+
+        if (distance <= attackRaduis)
+        {
+            agent.SetDestination(target.position);
+            AttackPlayer();
+        }
+        if (distance <= agroRadius)
+        {
+            isAware = true;
+            agent.SetDestination(target.position);
+        }
+        else if (distance <= chaseLimitRadius && isAware)
+        {
+            agent.SetDestination(target.position);
+        }
+        else
+        {
+            isAware = false;
+        }
+
+        if (distance <= agent.stoppingDistance)
+        {
+            FaceTarget();
+        }
+
+        enemyAnimations.SetFloat("WalkSpeed", agent.desiredVelocity.magnitude);
     }
+
+    void FaceTarget()
+    {
+        Vector3 direction = (target.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+    }
+
+    virtual
+    public void AttackPlayer()
+    {
+
+    }
+
+    #region Overrides
+
+    override
+    public void Stun()
+    {
+
+    }
+
+    override
+    public void Hit(int damageHit)
+    {
+
+    }
+
+    override
+    public void Kill()
+    {
+
+    }
+    #endregion
+
+    #region Sprite Renderer
     private void Update()
     {
-        enemyQuad.transform.eulerAngles = new Vector3
+        enemyGFX.transform.eulerAngles = new Vector3
         {
             x = 0,
             y = CharacterActions.instance.transform.eulerAngles.y,
@@ -89,4 +166,17 @@ public class Enemy : Target
             }
         }
     }
+
+    #endregion
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, chaseLimitRadius);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, agroRadius);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRaduis);
+
+    }
 }
+
