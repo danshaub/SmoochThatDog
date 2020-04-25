@@ -6,6 +6,8 @@ public class Enemy : Target
 {
     public GameObject enemyQuad;
     public Animator enemyAnimations;
+    public float rotationSpeed;
+    public float walkSpeed;
 
     public float angleToPlayer { get; protected set; }
     private float angleInRadians = 0f;
@@ -14,6 +16,12 @@ public class Enemy : Target
     private Vector2 forward = new Vector2(1f, 0f);
     private int activeLayerIndex = 2;
     private int previousLayerIndex = 2;
+
+    private void FixedUpdate()
+    {
+        transform.localEulerAngles += new Vector3(0f, rotationSpeed * Time.deltaTime, 0f);
+        transform.position += transform.forward * walkSpeed * Time.deltaTime;
+    }
     private void Update()
     {
         enemyQuad.transform.eulerAngles = new Vector3
@@ -35,7 +43,7 @@ public class Enemy : Target
 
         angleToPlayer = Vector2.SignedAngle(forward, rotatedPositionDifference);
 
-        if(angleToPlayer >= -150f && angleToPlayer < -90f)
+        if (angleToPlayer >= -150f && angleToPlayer < -90f)
         {
             activeLayerIndex = 0;
         }
@@ -60,9 +68,7 @@ public class Enemy : Target
             activeLayerIndex = 5;
         }
 
-        Debug.Log(activeLayerIndex);
-
-        if(previousLayerIndex != activeLayerIndex)
+        if (previousLayerIndex != activeLayerIndex)
         {
             previousLayerIndex = activeLayerIndex;
             UpdateLayer();
@@ -71,9 +77,9 @@ public class Enemy : Target
 
     public void UpdateLayer()
     {
-        for(int i = 0; i < enemyAnimations.layerCount; i++)
+        for (int i = 0; i < enemyAnimations.layerCount; i++)
         {
-            if(i == activeLayerIndex)
+            if (i == activeLayerIndex)
             {
                 enemyAnimations.SetLayerWeight(i, 1);
             }

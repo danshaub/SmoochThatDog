@@ -450,6 +450,8 @@ MonoBehaviour:
   respawnTime: 0
   enemyQuad: {fileID: 195679012}
   enemyAnimations: {fileID: 195679014}
+  rotationSpeed: 80
+  walkSpeed: 5
 --- !u!1 &195679012
 GameObject:
   m_ObjectHideFlags: 0
