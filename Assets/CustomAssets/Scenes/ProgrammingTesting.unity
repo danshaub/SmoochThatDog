@@ -451,6 +451,8 @@ MonoBehaviour:
   rageFill: 500
   respawn: 0
   respawnTime: 0
+  stunTime: 2
+  stunCooldown: 1
   enemyGFX: {fileID: 195679012}
   enemyAnimations: {fileID: 195679014}
   chaseLimitRadius: 15
@@ -2589,6 +2591,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1637268482128148363, guid: 585dc82b95d75b54595170162e3c049b,
+        type: 3}
+      propertyPath: BlockCount
+      value: 400
+      objectReference: {fileID: 0}
     - target: {fileID: 2274609659189873147, guid: 585dc82b95d75b54595170162e3c049b,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -2618,6 +2625,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2440849949598696264, guid: 585dc82b95d75b54595170162e3c049b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2440849949713028598, guid: 585dc82b95d75b54595170162e3c049b,
         type: 3}

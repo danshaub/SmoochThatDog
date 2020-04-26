@@ -89,7 +89,7 @@ public class CharacterActions : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        
+
     }
     // Start is called before the first frame update
     void Start()
@@ -115,7 +115,7 @@ public class CharacterActions : MonoBehaviour
     INPUT TO PLACE IN UPDATE OR TURN INTO EVENT */
     private void Update()
     {
-        
+
         if (!isPaused && !lockControl)
         {
             if (canPause && Input.GetButtonDown("Menu"))
@@ -129,7 +129,7 @@ public class CharacterActions : MonoBehaviour
             {
                 LayerMask mask = LayerMask.GetMask("Interactable");
                 RaycastHit hit;
-                if(Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, interactRange, mask))
+                if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, interactRange, mask))
                 {
                     hit.collider.gameObject.GetComponentInParent<InteractableObject>().Action();
                 }
@@ -288,7 +288,7 @@ public class CharacterActions : MonoBehaviour
             fpsCamera.transform.localEulerAngles = currentAngles;
         }
     }
-        
+
 
     // Update is called once per frame
     void FixedUpdate()
@@ -310,7 +310,7 @@ public class CharacterActions : MonoBehaviour
             if (isGrounded)
             {
                 groundedTimer += Time.deltaTime;
-                if(groundedTimer >= 0.1f)
+                if (groundedTimer >= 0.1f)
                 {
                     jumpNextFixedFrame = true;
                     isGrounded = false;
@@ -326,11 +326,11 @@ public class CharacterActions : MonoBehaviour
         speed = 0;
         Vector3 move = Vector3.zero;
 
-        if(!isPaused && !lockControl)
+        if (!isPaused && !lockControl)
         {
             #region Movement
             //Calculate top speed
-            
+
             float actualSpeed = crouched ? playerSpeed * crouchSpeedMultiplier : running ? playerSpeed * runningSpeedMultiplier : playerSpeed;
 
             if (jumpNextFixedFrame)
@@ -390,18 +390,18 @@ public class CharacterActions : MonoBehaviour
                 currentBobCycle += move.magnitude * 2;
                 currentBobCycle %= 2 * Mathf.PI;
 
-                if(Mathf.Abs(Mathf.PI - currentBobCycle) < 0.25 && playWalkSound)
+                if (Mathf.Abs(Mathf.PI - currentBobCycle) < 0.25 && playWalkSound)
                 {
                     PlayerManager.instance.GetComponent<AudioSource>().PlayOneShot(PlayerManager.instance.walkSound);
                     playWalkSound = false;
                 }
-                else if(Mathf.Abs(Mathf.PI - currentBobCycle) > 0.25)
+                else if (Mathf.Abs(Mathf.PI - currentBobCycle) > 0.25)
                 {
                     playWalkSound = true;
                 }
 
                 fpsPosition.localPosition = new Vector3
-                { 
+                {
                     x = fpsPosition.localPosition.x,
                     y = (bobIntensity * (Mathf.Cos(currentBobCycle)) + (startFPSPosHeight - bobIntensity)),
                     z = fpsPosition.localPosition.z
@@ -418,7 +418,7 @@ public class CharacterActions : MonoBehaviour
                 };
             }
 
-            
+
 
             recoilOffset = Vector2.Lerp(recoilOffset, Vector2.zero, PlayerManager.instance.CurrentGun().recoilResistance);
         }
@@ -435,7 +435,7 @@ public class CharacterActions : MonoBehaviour
 
         if ((flag & CollisionFlags.Below) != 0) verticalSpeed = 0;
 
-        if(!wasGrounded && isGrounded && !jumpNextFixedFrame)
+        if (!wasGrounded && isGrounded && !jumpNextFixedFrame)
         {
             PlayerManager.instance.GetComponent<AudioSource>().PlayOneShot(PlayerManager.instance.landingSound);
         }

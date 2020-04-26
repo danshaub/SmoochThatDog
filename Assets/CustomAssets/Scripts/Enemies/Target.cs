@@ -10,8 +10,11 @@ public class Target : MonoBehaviour
     public bool respawn = false;
     public float respawnTime = 0f;
     public float stunTime = 0f;
-    public bool isStunned { get; protected set; }
-    public bool killed { get; protected set; }
+    public float stunCooldown = 0f;
+    public bool isStunned { get; protected set; } = false;
+    public bool killed { get; protected set; } = false;
+    public bool canStun { get; protected set; } = true;
+    public bool canHit { get; protected set; } = true;
     private void Start()
     {
         health = maxHealth;

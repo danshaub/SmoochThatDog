@@ -30,6 +30,7 @@ public class Enemy : Target
 
     private void Start()
     {
+        health = maxHealth;
         agent = GetComponent<NavMeshAgent>();
         target = PlayerManager.instance.transform;
     }
@@ -37,29 +38,38 @@ public class Enemy : Target
     {
         float distance = Vector3.Distance(target.position, transform.position);
 
-        if (distance <= attackRaduis)
+        if (!(isStunned || killed))
         {
-            agent.SetDestination(target.position);
-            AttackPlayer();
-        }
-        if (distance <= agroRadius)
-        {
-            isAware = true;
-            agent.SetDestination(target.position);
-        }
-        else if (distance <= chaseLimitRadius && isAware)
-        {
-            agent.SetDestination(target.position);
+            if (distance <= attackRaduis)
+            {
+                agent.SetDestination(target.position);
+                AttackPlayer();
+            }
+            if (distance <= agroRadius)
+            {
+                isAware = true;
+                agent.SetDestination(target.position);
+            }
+            else if (distance <= chaseLimitRadius && isAware)
+            {
+                agent.SetDestination(target.position);
+            }
+            else
+            {
+                isAware = false;
+            }
+
+            if (distance <= agent.stoppingDistance)
+            {
+                FaceTarget();
+            }
         }
         else
         {
             isAware = false;
+            agent.SetDestination(transform.position);
         }
 
-        if (distance <= agent.stoppingDistance)
-        {
-            FaceTarget();
-        }
 
         enemyAnimations.SetFloat("WalkSpeed", agent.desiredVelocity.magnitude);
     }
@@ -82,19 +92,38 @@ public class Enemy : Target
     override
     public void Stun()
     {
-
-    }
-
-    override
-    public void Hit(int damageHit)
-    {
-
+        Debug.Log("In Stun()");
+        if (!canStun)
+        {
+            return;
+        }
+        isStunned = true;
+        canStun = false;
+        enemyAnimations.SetBool("Stunned", true);
+        StartCoroutine(StunnedCoroutine());
     }
 
     override
     public void Kill()
     {
+        canStun = false;
+        killed = true;
 
+        enemyAnimations.SetBool("Cured", true);
+    }
+
+    public IEnumerator StunnedCoroutine()
+    {
+        yield return new WaitForSeconds(stunTime);
+        isStunned = false;
+        enemyAnimations.SetBool("Stunned", false);
+        StartCoroutine(StunnedCooldownCoroutine());
+    }
+
+    public IEnumerator StunnedCooldownCoroutine()
+    {
+        yield return new WaitForSeconds(stunCooldown);
+        canStun = true;
     }
     #endregion
 

@@ -33,7 +33,7 @@ public class Gun : MonoBehaviour
     public float recoilResistance = 0.5f;
     public float groundedKnockback;
     public float airborneKnockback;
-    
+
     public GameObject hitParticlePrefab;
     public AudioClip shootSound;
     public AudioClip cooldownSound;
@@ -127,12 +127,12 @@ public class Gun : MonoBehaviour
                     }
                     else
                     {
-                        if(hitParticlePrefab != null)
+                        if (hitParticlePrefab != null)
                         {
                             GameObject particles = Instantiate(hitParticlePrefab, hit.point, Quaternion.LookRotation(hit.normal));
                             Destroy(particles, 1f);
                         }
-                        
+
                     }
                 }
 
@@ -150,7 +150,7 @@ public class Gun : MonoBehaviour
         }
     }
 
-    
+
     virtual
     public void Hit(RaycastHit hit)
     {

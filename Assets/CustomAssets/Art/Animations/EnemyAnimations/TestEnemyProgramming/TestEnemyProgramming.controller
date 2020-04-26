@@ -450,7 +450,7 @@ AnimatorController:
       m_Motion: {fileID: 7400000, guid: 40e1976bf6564304598444a888269a29, type: 2}
     - serializedVersion: 2
       m_State: {fileID: 7787944671565216686}
-      m_Motion: {fileID: 7400000, guid: 70cac67f40a9e5e4cad38933d696ff4e, type: 2}
+      m_Motion: {fileID: 7400000, guid: fc1eeaa6b5702d44dab43d00a1e9b259, type: 2}
     m_Behaviours: []
     m_BlendingMode: 0
     m_SyncedLayerIndex: 2

@@ -9,8 +9,6 @@ public class DemoEnemy : Target
     public Material stunned;
     public TMPro.TextMeshPro text;
 
-    private bool canStun = true;
-
     private void Update()
     {
         transform.localEulerAngles = new Vector3

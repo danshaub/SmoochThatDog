@@ -18,7 +18,7 @@ public class Smooch : Gun, TriggerListener
         tb.Initialize(this);
         hitBox.size = new Vector3(maxBulletSpread, 3, range);
         hitBox.center = new Vector3(0f, 0.5f, (range + 1f) / 2f);
-        
+
     }
 
     public void CallStart()
@@ -32,7 +32,7 @@ public class Smooch : Gun, TriggerListener
         PlayerManager.instance.smoochAnimations.SetTrigger("Shoot");
         PlayerManager.instance.GetComponent<AudioSource>().PlayOneShot(shootSound);
         targetsInRangeTemp = targetsInRange;
-        for(int i = targetsInRange.Count-1; i >= 0; i--)
+        for (int i = targetsInRange.Count - 1; i >= 0; i--)
         {
             Hit(targetsInRange[i]);
         }
@@ -52,7 +52,7 @@ public class Smooch : Gun, TriggerListener
         {
             return;
         }
-        if (!PlayerManager.instance.isRaged && !hitTarget.isStunned && !hitTarget.killed)
+        if (!PlayerManager.instance.isRaged && hitTarget.canStun && !hitTarget.killed)
         {
             hitTarget.Stun();
             PlayerManager.instance.AddRage(hitTarget.rageFill);
@@ -65,7 +65,7 @@ public class Smooch : Gun, TriggerListener
 
     public void OnTriggerEnter(Collider other)
     {
-        
+
     }
 
     public void OnTriggerExit(Collider other)
@@ -79,7 +79,7 @@ public class Smooch : Gun, TriggerListener
         {
             targetsInRange.Add(other.gameObject);
         }
-        
+
     }
 
     public void RemoveFromTargetList(GameObject go)
