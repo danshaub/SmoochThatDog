@@ -16,6 +16,11 @@ public class PlayerManager : MonoBehaviour
     public List<KeyPickup.Key> keys;
     public int currentGunIndex;
 
+    public int maxHealth = 1000;
+    public int currentHealth;
+    public int maxArmorDurability;
+    public int armorDurability;
+
     public AudioClip walkSound;
     public AudioClip jumpSound;
     public AudioClip landingSound;
@@ -34,6 +39,8 @@ public class PlayerManager : MonoBehaviour
     [Header("UI Elements")]
     public Text currentAmmoDisplay;
     public Text maxAmmoDisplay;
+    public Text healthDisplay;
+    public Text armorDisplay;
     public Slider rageBar;
     public Image rageOverlay;
     public List<Image> keySlots;
@@ -48,6 +55,7 @@ public class PlayerManager : MonoBehaviour
     private int numGuns = 0;
     private int rageGunStorage = 0;
 
+    #region Methods
     private void Awake()
     {
         instance = this;
@@ -58,6 +66,11 @@ public class PlayerManager : MonoBehaviour
 
     void Start()
     {
+        currentHealth = maxHealth;
+        armorDurability = 0;
+        maxArmorDurability = 1;
+        UpdateArmorText();
+        UpdateHealthText();
         CurrentGun().ResetAmmo();
         smooch.CallStart();
         UpdateAmmoText();
@@ -66,9 +79,20 @@ public class PlayerManager : MonoBehaviour
         UpdateRageBar();
     }
 
-    public Gun CurrentGun()
+    #region UI Updating
+    public void UpdateKeySlots()
     {
-        return guns[currentGunIndex];
+        foreach (Image img in keySlots)
+        {
+            img.sprite = null;
+            img.color = Color.clear;
+        }
+
+        for (int i = 0; i < keySlots.Count && i < keys.Count; i++)
+        {
+            keySlots[i].sprite = keys[i].image;
+            keySlots[i].color = Color.white;
+        }
     }
 
     public void UpdateAmmoText()
@@ -83,7 +107,7 @@ public class PlayerManager : MonoBehaviour
             currentAmmoDisplay.text = CurrentGun().ammoRemaining.ToString();
             maxAmmoDisplay.text = CurrentGun().maxAmmo.ToString();
         }
-        
+
     }
 
     public void UpdateAnimator()
@@ -91,6 +115,22 @@ public class PlayerManager : MonoBehaviour
         gunAnimations.runtimeAnimatorController = CurrentGun().animations;
     }
 
+    public void UpdateHealthText()
+    {
+        int healthPercentage = (int)Mathf.Round((currentHealth / (float)maxHealth) * 100);
+        healthDisplay.text = healthPercentage.ToString() + "%";
+        damageAnimations.SetInteger("Health", healthPercentage);
+    }
+
+    public void UpdateArmorText()
+    {
+        int armorPercentage = (int)Mathf.Round((armorDurability / (float)maxArmorDurability) * 100);
+        armorDisplay.text = armorPercentage.ToString() + "%";
+    }
+
+    #endregion
+
+    #region  Keys
     public bool HasKey(int keyID)
     {
         for (int i = keys.Count - 1; i >= 0; i--)
@@ -103,41 +143,37 @@ public class PlayerManager : MonoBehaviour
 
         return false;
     }
+
     public void AddKey(KeyPickup.Key key)
     {
         keys.Add(key);
         UpdateKeySlots();
     }
+
     public void RemoveKey(int keyID)
     {
-        for(int i = keys.Count - 1; i >= 0; i--)
+        for (int i = keys.Count - 1; i >= 0; i--)
         {
-            if(keys[i].keyID == keyID)
+            if (keys[i].keyID == keyID)
             {
                 keys.RemoveAt(i);
             }
         }
         UpdateKeySlots();
     }
+
     public void ClearKeys()
     {
         keys.Clear();
         UpdateKeySlots();
     }
 
-    public void UpdateKeySlots()
-    {
-        foreach(Image img in keySlots)
-        {
-            img.sprite = null;
-            img.color = Color.clear;
-        }
+    #endregion
 
-        for(int i = 0; i < keySlots.Count && i < keys.Count; i++)
-        {
-            keySlots[i].sprite = keys[i].image;
-            keySlots[i].color = Color.white;
-        }
+    #region Guns
+    public Gun CurrentGun()
+    {
+        return guns[currentGunIndex];
     }
 
     public void AddGun(Gun gun)
@@ -147,13 +183,13 @@ public class PlayerManager : MonoBehaviour
             if (gun.gunName.Equals(gunNames[i]))
             {
                 if (guns[i] == null)
-                { 
+                {
                     guns[i] = gun;
                     numGuns++;
                 }
 
                 guns[i].ResetAmmo();
-                if(currentGunIndex != i)
+                if (currentGunIndex != i)
                 {
 
                     if (isRaged)
@@ -172,12 +208,12 @@ public class PlayerManager : MonoBehaviour
 
     public void UpdateGunTexts()
     {
-        for(int i = 0; i < gunNames.Length; i++)
+        for (int i = 0; i < gunNames.Length; i++)
         {
-            if(guns[i] != null)
+            if (guns[i] != null)
             {
                 gunTexts[i].text = "[" + ((i + 1) % 10).ToString() + "] " + gunNames[i];
-                if(i == currentGunIndex)
+                if (i == currentGunIndex)
                 {
                     gunTextBackgrounds[i].color = activeGunHighlight;
                 }
@@ -196,7 +232,7 @@ public class PlayerManager : MonoBehaviour
 
     public void SwapGun(int gunIndex)
     {
-        if(gunIndex == currentGunIndex || gunIndex >= gunNames.Length || gunIndex < 0 || guns[gunIndex] == null)
+        if (gunIndex == currentGunIndex || gunIndex >= gunNames.Length || gunIndex < 0 || guns[gunIndex] == null)
         {
             return;
         }
@@ -213,7 +249,7 @@ public class PlayerManager : MonoBehaviour
 
     public void SwapGun(bool up)
     {
-        if(numGuns == 1)
+        if (numGuns == 1)
         {
             return;
         }
@@ -223,7 +259,7 @@ public class PlayerManager : MonoBehaviour
             {
                 currentGunIndex = (currentGunIndex + 1) % guns.Length;
             } while (guns[currentGunIndex] == null);
-            
+
         }
         else
         {
@@ -231,7 +267,7 @@ public class PlayerManager : MonoBehaviour
             {
                 currentGunIndex = (currentGunIndex - 1) < 0 ? guns.Length - 1 : currentGunIndex - 1;
             } while (guns[currentGunIndex] == null);
-            
+
         }
 
         gunAnimations.SetTrigger("PutAway");
@@ -260,6 +296,9 @@ public class PlayerManager : MonoBehaviour
         CharacterActions.instance.canShoot = true;
     }
 
+    #endregion
+
+    #region Smooch and Rage
     public IEnumerator SmoochCooldown()
     {
         if (smooch.cooldownSound != null && smooch.AmmoRemaining())
@@ -285,7 +324,7 @@ public class PlayerManager : MonoBehaviour
         {
             return;
         }
-        rageGauge = (int) Mathf.Clamp(rageGauge + rageToAdd, 0, 1000);
+        rageGauge = (int)Mathf.Clamp(rageGauge + rageToAdd, 0, 1000);
         UpdateRageBar();
     }
 
@@ -312,7 +351,7 @@ public class PlayerManager : MonoBehaviour
     {
         faceAnimations.SetTrigger("StartRage");
         rageGunStorage = currentGunIndex;
-        if(rageGunStorage != 0)
+        if (rageGunStorage != 0)
         {
             SwapGun(0);
         }
@@ -331,4 +370,52 @@ public class PlayerManager : MonoBehaviour
         AddRage(-1000);
         faceAnimations.SetTrigger("EndRage");
     }
+
+    #endregion
+
+    #region Health and Armor
+
+    public void HurtPlayer(int baseDamage)
+    {
+        if (armorDurability == 0)
+        {
+            currentHealth = Mathf.Clamp(currentHealth - baseDamage, 0, maxHealth);
+        }
+        else
+        {
+            currentHealth = Mathf.Clamp(currentHealth - (int)Mathf.Round(baseDamage / 3f), 0, maxHealth);
+            armorDurability = Mathf.Clamp(armorDurability - baseDamage, 0, maxArmorDurability);
+        }
+
+        UpdateArmorText();
+        UpdateHealthText();
+
+        if (currentHealth == 0)
+        {
+            KillPlayer();
+        }
+    }
+
+    public void AddHealth(int healthAdded)
+    {
+        currentHealth = Mathf.Clamp(currentHealth + healthAdded, 0, maxHealth);
+        UpdateHealthText();
+    }
+
+    public void AddArmor(int armorAdded, int newMaxArmor)
+    {
+        maxArmorDurability = newMaxArmor > maxArmorDurability ? newMaxArmor : maxArmorDurability;
+        armorDurability = Mathf.Clamp(armorDurability + armorAdded, 0, maxArmorDurability);
+        UpdateArmorText();
+
+    }
+
+    public void KillPlayer()
+    {
+        GameManager.instance.ReloadCurrentScene();
+    }
+
+    #endregion
+
+    #endregion
 }

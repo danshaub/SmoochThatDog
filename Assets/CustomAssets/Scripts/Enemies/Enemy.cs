@@ -6,8 +6,11 @@ using UnityEngine.AI;
 public class Enemy : Target
 {
     #region AnimationVariables
+    [Header("Animation Variables")]
     public GameObject enemyGFX;
     public Animator enemyAnimations;
+    public GameObject damageDoneTextPrefab;
+    public float damageTextVerticalOffset;
     public float angleToPlayer { get; protected set; }
     private float angleInRadians = 0f;
     private Vector2 horizPositionDifference;
@@ -15,17 +18,20 @@ public class Enemy : Target
     private Vector2 forward = new Vector2(0f, 1f);
     private int activeLayerIndex = 2;
     private int previousLayerIndex = 2;
+    private int damageDonePreviousFixedFrameFrame;
     #endregion
 
     #region AI Variables
+    [Header("AI Variables")]
     public float chaseLimitRadius = 10f;
     public float agroRadius = 7.5f;
     public float attackRaduis = 5f;
+    public float attackWithinTime = 1f;
+    public int attackDamage = 1;
     Transform target;
     NavMeshAgent agent;
-
     private bool isAware;
-
+    [HideInInspector] public bool attacking = false;
     #endregion
 
     private void Start()
@@ -36,6 +42,12 @@ public class Enemy : Target
     }
     private void FixedUpdate()
     {
+        if (damageDonePreviousFixedFrameFrame != 0)
+        {
+            GameObject go = Instantiate(damageDoneTextPrefab, enemyAnimations.gameObject.transform);
+            go.transform.localPosition = new Vector3(0f, damageTextVerticalOffset, 0f);
+            go.GetComponent<DamageText>().text.text = "-" + damageDonePreviousFixedFrameFrame.ToString();
+        }
         float distance = Vector3.Distance(target.position, transform.position);
 
         if (!(isStunned || killed))
@@ -43,7 +55,10 @@ public class Enemy : Target
             if (distance <= attackRaduis)
             {
                 agent.SetDestination(target.position);
-                AttackPlayer();
+                if (!attacking)
+                {
+                    StartCoroutine(AttackPlayer(Random.Range(0f, attackWithinTime)));
+                }
             }
             if (distance <= agroRadius)
             {
@@ -61,6 +76,7 @@ public class Enemy : Target
 
             if (distance <= agent.stoppingDistance)
             {
+
                 FaceTarget();
             }
         }
@@ -72,6 +88,7 @@ public class Enemy : Target
 
 
         enemyAnimations.SetFloat("WalkSpeed", agent.desiredVelocity.magnitude);
+        damageDonePreviousFixedFrameFrame = 0;
     }
 
     void FaceTarget()
@@ -82,9 +99,27 @@ public class Enemy : Target
     }
 
     virtual
-    public void AttackPlayer()
+    public IEnumerator AttackPlayer(float attackInSeconds)
     {
+        attacking = true;
+        yield return new WaitForSeconds(attackInSeconds);
+        enemyAnimations.SetTrigger("Attack");
 
+    }
+
+    //Called by Attack Player animation behavior script
+    virtual
+    public bool HurtPlayer()
+    {
+        if (Vector3.Distance(target.position, transform.position) <= attackRaduis)
+        {
+            PlayerManager.instance.HurtPlayer(attackDamage);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     #region Overrides
@@ -92,7 +127,6 @@ public class Enemy : Target
     override
     public void Stun()
     {
-        Debug.Log("In Stun()");
         if (!canStun)
         {
             return;
@@ -101,6 +135,25 @@ public class Enemy : Target
         canStun = false;
         enemyAnimations.SetBool("Stunned", true);
         StartCoroutine(StunnedCoroutine());
+    }
+
+    override
+    public void Hit(int damageHit)
+    {
+        if (killed)
+        {
+            return;
+        }
+
+        health -= damageHit;
+
+        damageDonePreviousFixedFrameFrame += damageHit;
+
+        if (health <= 0)
+        {
+            killed = true;
+            Kill();
+        }
     }
 
     override

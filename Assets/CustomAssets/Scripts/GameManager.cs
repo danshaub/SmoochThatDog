@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
@@ -28,5 +28,10 @@ public class GameManager : MonoBehaviour
     public void LoadSceneByIndex(int buildIndex)
     {
         SceneManager.LoadScene(buildIndex);
+    }
+
+    public void ReloadCurrentScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
