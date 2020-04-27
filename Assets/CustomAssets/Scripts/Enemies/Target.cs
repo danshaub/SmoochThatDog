@@ -9,6 +9,7 @@ public class Target : MonoBehaviour
     [HideInInspector] public int health;
     public int rageFill;
     public bool respawn = false;
+    public float delayBeforeRespawn = 0f;
     public float respawnTime = 0f;
     public float stunTime = 0f;
     public float stunCooldown = 0f;
@@ -64,7 +65,7 @@ public class Target : MonoBehaviour
         }
     }
 
-    IEnumerator Respawn()
+    virtual protected IEnumerator Respawn()
     {
         GetComponent<MeshRenderer>().enabled = false;
         GetComponent<Collider>().enabled = false;

@@ -81,6 +81,37 @@ public class Enemy : Target
         initialStoppingDistance = agent.stoppingDistance;
     }
 
+    protected IEnumerator DelayRespawn()
+    {
+        yield return new WaitForSeconds(delayBeforeRespawn);
+        StartCoroutine(Respawn());
+    }
+    override protected IEnumerator Respawn()
+    {
+        GetComponent<MeshRenderer>().enabled = false;
+        GetComponent<Collider>().enabled = false;
+
+        yield return new WaitForSeconds(respawnTime);
+        GetComponent<MeshRenderer>().enabled = true;
+        GetComponent<Collider>().enabled = true;
+
+        health = maxHealth;
+        transform.position = initialPosition;
+        transform.rotation = initialRotation;
+        agent.stoppingDistance = initialStoppingDistance;
+        nextPatrolPoint = 0;
+        isAware = false;
+        canSetPosition = true;
+        settingPosition = false;
+        attacking = false;
+        killed = false;
+        isStunned = false;
+        canStun = true;
+
+        enemyAnimations.SetBool("Cured", false);
+        StopAllCoroutines();
+    }
+
     private void Update()
     {
         RotateSprite();
@@ -309,6 +340,11 @@ public class Enemy : Target
         killed = true;
 
         enemyAnimations.SetBool("Cured", true);
+
+        if (respawn)
+        {
+            StartCoroutine(DelayRespawn());
+        }
     }
 
     public IEnumerator StunnedCoroutine()

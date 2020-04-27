@@ -16,6 +16,7 @@ public class TargetEditor : Editor
         {
             EditorGUI.indentLevel = 1;
             myTarget.respawnTime = EditorGUILayout.FloatField("Respawn Time", myTarget.respawnTime);
+            myTarget.delayBeforeRespawn = EditorGUILayout.FloatField("Delay Before Respawn", myTarget.delayBeforeRespawn);
             EditorGUI.indentLevel = 0;
         }
 
