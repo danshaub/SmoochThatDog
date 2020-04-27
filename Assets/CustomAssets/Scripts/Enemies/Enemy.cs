@@ -127,7 +127,20 @@ public class Enemy : Target
             agent.SetDestination(target.position);
             if (!attacking)
             {
-                StartCoroutine(AttackPlayer(Random.Range(0f, attackTime)));
+                float attackTime = 0;
+                switch (attackTimeType)
+                {
+                    case AttackTimeType.Constant:
+                        attackTime = this.attackTime;
+                        break;
+                    case AttackTimeType.RandomBetweenTwoConstants:
+                        attackTime = Random.Range(attackTimeMin, attackTimeMin);
+                        break;
+                    default:
+                        Debug.LogError("Unknown condition");
+                        break;
+                }
+                StartCoroutine(AttackPlayer(attackTime));
             }
         }
         //Chase player if close enough to gain agro
