@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
+    [Header("Target Variables")]
     public int maxHealth = 10;
-    public int health;
+    [HideInInspector] public int health;
     public int rageFill;
     public bool respawn = false;
     public float respawnTime = 0f;
