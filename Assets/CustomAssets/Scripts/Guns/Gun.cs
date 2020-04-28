@@ -87,7 +87,7 @@ public class Gun : MonoBehaviour
             }
             else
             {
-                CharacterActions.instance.knockbackOffset += ((-CharacterActions.instance.transform.forward.normalized - (.25f * CharacterActions.instance.fpsPosition.forward)).normalized * airborneKnockback);
+                CharacterActions.instance.knockbackOffset += ((-CharacterActions.instance.transform.forward.normalized - (.25f * CharacterActions.instance.fpsTransform.forward)).normalized * airborneKnockback);
             }
 
 
@@ -121,6 +121,7 @@ public class Gun : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(origin.position, raycastDirection, out hit, range))
                 {
+                    Debug.DrawLine(origin.position, hit.point, Color.yellow, 1f);
                     if (hit.transform.GetComponent<Target>() != null)
                     {
                         Hit(hit);

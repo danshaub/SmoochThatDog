@@ -12,7 +12,7 @@ public class CharacterActions : MonoBehaviour
     public Camera fpsCamera;
     //public Camera topDownCamera;
 
-    public Transform fpsPosition;
+    public Transform fpsTransform;
     //public Transform topDownPosition;
 
     [Header("Control Settings")]
@@ -100,7 +100,7 @@ public class CharacterActions : MonoBehaviour
         isPaused = false;
         isGrounded = true;
 
-        fpsCamera.transform.SetParent(fpsPosition, false);
+        fpsCamera.transform.SetParent(fpsTransform, false);
         fpsCamera.transform.localPosition = Vector3.zero;
         fpsCamera.transform.localRotation = Quaternion.identity;
         controller = GetComponent<CharacterController>();
@@ -108,7 +108,7 @@ public class CharacterActions : MonoBehaviour
         verticalAngle = 0f;
         horizontalAngle = transform.localEulerAngles.y;
         defaultControllerHeight = controller.height;
-        startFPSPosHeight = fpsPosition.localPosition.y;
+        startFPSPosHeight = fpsTransform.localPosition.y;
     }
 
     /*************************************
@@ -400,21 +400,21 @@ public class CharacterActions : MonoBehaviour
                     playWalkSound = true;
                 }
 
-                fpsPosition.localPosition = new Vector3
+                fpsTransform.localPosition = new Vector3
                 {
-                    x = fpsPosition.localPosition.x,
+                    x = fpsTransform.localPosition.x,
                     y = (bobIntensity * (Mathf.Cos(currentBobCycle)) + (startFPSPosHeight - bobIntensity)),
-                    z = fpsPosition.localPosition.z
+                    z = fpsTransform.localPosition.z
                 };
             }
             else
             {
                 currentBobCycle = 0f;
-                fpsPosition.localPosition = new Vector3
+                fpsTransform.localPosition = new Vector3
                 {
-                    x = fpsPosition.localPosition.x,
-                    y = Mathf.Lerp(fpsPosition.localPosition.y, startFPSPosHeight, 0.3f),
-                    z = fpsPosition.localPosition.z
+                    x = fpsTransform.localPosition.x,
+                    y = Mathf.Lerp(fpsTransform.localPosition.y, startFPSPosHeight, 0.3f),
+                    z = fpsTransform.localPosition.z
                 };
             }
 

@@ -13,11 +13,11 @@ public class Smooch : Gun, TriggerListener
     {
         enabled = true;
         targetsInRange.Clear();
-        hitBox = CharacterActions.instance.GetComponent<BoxCollider>();
+        hitBox = CharacterActions.instance.GetComponentInChildren<BoxCollider>();
         TriggerBridge tb = hitBox.gameObject.AddComponent<TriggerBridge>();
         tb.Initialize(this);
         hitBox.size = new Vector3(maxBulletSpread, 3, range);
-        hitBox.center = new Vector3(0f, 0.5f, (range + 1f) / 2f);
+        hitBox.center = new Vector3(0f, -.25f, (range + 1f) / 2f);
 
     }
 

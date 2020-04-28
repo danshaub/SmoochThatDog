@@ -94,20 +94,21 @@ public class EnemyEditor : TargetEditor
                 }
                 EditorGUI.indentLevel = 1;
 
-                enemy.timeAtPosition = EditorGUILayout.FloatField("Time At Position", enemy.timeAtPosition);
+
 
                 break;
 
             case Enemy.DefaultStateType.Wander:
                 enemy.wanderRaduisMax = EditorGUILayout.FloatField("Max Wander Radius", enemy.wanderRaduisMax);
                 enemy.wanderRaduisMin = EditorGUILayout.Slider("Min Wander Radius", enemy.wanderRaduisMin, 0f, enemy.wanderRaduisMax);
-                enemy.timeAtPosition = EditorGUILayout.FloatField("Time At Position", enemy.timeAtPosition);
+
                 break;
 
             default:
                 Debug.LogError("Unrecognized Option");
                 break;
         }
+        enemy.timeAtPosition = EditorGUILayout.FloatField("Time At Position", enemy.timeAtPosition);
         EditorGUI.indentLevel = 0;
     }
 }
