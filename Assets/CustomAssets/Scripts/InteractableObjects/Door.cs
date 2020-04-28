@@ -32,13 +32,13 @@ public class Door : MonoBehaviour, InteractableObject
     // Start is called before the first frame update
     void Start()
     {
-        EnsureLayer();
+        //EnsureLayer();
 
-        if(doors.Count != closedTransforms.Count || doors.Count != openTransforms.Count)
+        if (doors.Count != closedTransforms.Count || doors.Count != openTransforms.Count)
         {
             Debug.LogError("Unequal number of doors and transforms");
 
-            foreach(GameObject door in doors)
+            foreach (GameObject door in doors)
             {
                 door.SetActive(false);
             }
@@ -55,7 +55,7 @@ public class Door : MonoBehaviour, InteractableObject
 
             moveSpeeds.Add((openTransforms[i].position - closedTransforms[i].position) / (float)sequenceFrames);
             rotateSpeeds.Add((openTransforms[i].localEulerAngles - closedTransforms[i].localEulerAngles) / (float)sequenceFrames);
-            scaleSpeeds.Add((openTransforms[i].localScale - closedTransforms[i].localScale) / (float)sequenceFrames);            
+            scaleSpeeds.Add((openTransforms[i].localScale - closedTransforms[i].localScale) / (float)sequenceFrames);
         }
     }
 
@@ -86,7 +86,7 @@ public class Door : MonoBehaviour, InteractableObject
 
     public void EnsureLayer()
     {
-        foreach(Transform tran in GetComponentsInChildren<Transform>())
+        foreach (Transform tran in GetComponentsInChildren<Transform>())
         {
             tran.gameObject.layer = 10;
         }
@@ -133,7 +133,7 @@ public class Door : MonoBehaviour, InteractableObject
     {
         if (closeAutomatically)
         {
-            if(sequenceFrame != 0)
+            if (sequenceFrame != 0)
             {
                 return;
             }

@@ -123,6 +123,11 @@ public class CharacterActions : MonoBehaviour
                 //PauseMenu.Instance.Display();
             }
 
+            if (Input.GetButtonDown("ToggleMinimap"))
+            {
+                PlayerManager.instance.ToggleMinimap();
+            }
+
             #region Interact
 
             if (Input.GetButtonDown("Interact"))
@@ -310,7 +315,7 @@ public class CharacterActions : MonoBehaviour
             if (isGrounded)
             {
                 groundedTimer += Time.deltaTime;
-                if (groundedTimer >= 0.1f)
+                if (groundedTimer >= 0.25f)
                 {
                     jumpNextFixedFrame = true;
                     isGrounded = false;

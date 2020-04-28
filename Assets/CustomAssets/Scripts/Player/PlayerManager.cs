@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance;
+    public Camera minimapCamera;
     public Animator gunAnimations;
     public Animator smoochAnimations;
     public Animator faceAnimations;
@@ -24,16 +25,12 @@ public class PlayerManager : MonoBehaviour
     public AudioClip walkSound;
     public AudioClip jumpSound;
     public AudioClip landingSound;
-    public AudioClip weaponPickupSound;
-    public AudioClip ammoPickupSound;
     public AudioClip playerHurtSound;
     public AudioClip rageModeSound;
-    public AudioClip healthPickupSound;
-    public AudioClip armorPickupSound;
 
     public int rageGauge { get; private set; } = 0;
     public bool isRaged { get; private set; } = false;
-
+    public bool isAlive { get; private set; } = true;
     public float rageTime;
 
     [Header("UI Elements")]
@@ -50,10 +47,13 @@ public class PlayerManager : MonoBehaviour
     public Color activeGunHighlight;
     public Color inactiveGun;
     public Color emptyGunSlot;
+    public Image crosshair;
 
     [HideInInspector] public Gun[] guns;
     private int numGuns = 0;
     private int rageGunStorage = 0;
+
+    private int minimapState = 0;
 
     #region Methods
     private void Awake()
@@ -126,6 +126,48 @@ public class PlayerManager : MonoBehaviour
     {
         int armorPercentage = (int)Mathf.Round((armorDurability / (float)maxArmorDurability) * 100);
         armorDisplay.text = armorPercentage.ToString() + "%";
+    }
+
+    public void ToggleMinimap()
+    {
+        minimapState = (minimapState + 1) % 3;
+        UpdateMinimap();
+    }
+
+    public void ResetMinimap()
+    {
+        minimapState = 0;
+        UpdateMinimap();
+    }
+
+    public void UpdateMinimap()
+    {
+        LayerMask mask;
+        switch (minimapState)
+        {
+
+            case 0:
+                minimapCamera.depth = -2;
+                crosshair.enabled = true;
+                break;
+            case 1:
+                minimapCamera.depth = 0;
+                mask = LayerMask.GetMask("LevelWireframe", "MinimapElement");
+                minimapCamera.cullingMask = mask;
+                minimapCamera.clearFlags = CameraClearFlags.Nothing;
+                crosshair.enabled = false;
+                break;
+            case 2:
+                minimapCamera.depth = 0;
+                mask = LayerMask.GetMask("FloorWall", "MinimapElement");
+                minimapCamera.cullingMask = mask;
+                minimapCamera.clearFlags = CameraClearFlags.Color;
+                crosshair.enabled = false;
+                break;
+            default:
+                Debug.LogError("Unknown minimap state");
+                break;
+        }
     }
 
     #endregion
@@ -387,6 +429,7 @@ public class PlayerManager : MonoBehaviour
             armorDurability = Mathf.Clamp(armorDurability - baseDamage, 0, maxArmorDurability);
         }
 
+        GetComponent<AudioSource>().PlayOneShot(playerHurtSound);
         UpdateArmorText();
         UpdateHealthText();
 
@@ -412,7 +455,9 @@ public class PlayerManager : MonoBehaviour
 
     public void KillPlayer()
     {
-        GameManager.instance.ReloadCurrentScene();
+        CharacterActions.instance.lockControl = true;
+        isAlive = false;
+        //GameManager.instance.ReloadCurrentScene();
     }
 
     #endregion

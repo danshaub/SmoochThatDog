@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(Enemy))]
+//[CustomEditor(typeof(Enemy))]
 public class EnemyEditor : TargetEditor
 {
     bool showPatrolPositions = true;

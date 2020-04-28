@@ -93,25 +93,35 @@ public class Enemy : Target
     }
     override protected IEnumerator Respawn()
     {
-        GetComponent<MeshRenderer>().enabled = false;
-        GetComponent<Collider>().enabled = false;
-
-        yield return new WaitForSeconds(respawnTime);
-        GetComponent<MeshRenderer>().enabled = true;
-        GetComponent<Collider>().enabled = true;
+        foreach (SpriteRenderer sr in GetComponentsInChildren<SpriteRenderer>())
+        {
+            sr.enabled = false;
+        }
 
         health = maxHealth;
         transform.position = initialPosition;
         transform.rotation = initialRotation;
         agent.stoppingDistance = initialStoppingDistance;
+        agent.SetDestination(transform.position);
         nextPatrolPoint = 0;
         isAware = false;
         canSetPosition = true;
         settingPosition = false;
         attacking = false;
-        killed = false;
         isStunned = false;
         canStun = true;
+
+        yield return new WaitForSeconds(respawnTime);
+
+        foreach (SpriteRenderer sr in GetComponentsInChildren<SpriteRenderer>())
+        {
+            sr.enabled = true;
+        }
+        GetComponent<Collider>().enabled = true;
+
+
+        killed = false;
+
 
         enemyAnimations.SetBool("Cured", false);
         StopAllCoroutines();
@@ -157,144 +167,156 @@ public class Enemy : Target
         //Calculate distance to player
         float distance = Vector3.Distance(target.position, transform.position);
         bool hasLineOfSight = RaycastToPlayer();
-        //Attack if close enough to attack
-        if (distance <= attackRaduis && (isAware || hasLineOfSight))
+        if (PlayerManager.instance.isAlive)
         {
-            //Debug.Log("Attacking");
-            agent.SetDestination(target.position);
-            if (!attacking)
+            //Attack if close enough to attack
+            if (distance <= attackRaduis && (isAware || hasLineOfSight))
             {
-                float attackTime = 0;
-                switch (attackTimeType)
+                //Debug.Log("Attacking");
+                agent.SetDestination(target.position);
+                if (!attacking)
                 {
-                    case AttackTimeType.Constant:
-                        attackTime = this.attackTime;
-                        break;
-                    case AttackTimeType.RandomBetweenTwoConstants:
-                        attackTime = Random.Range(attackTimeMin, attackTimeMin);
-                        break;
-                    default:
-                        Debug.LogError("Unknown condition");
-                        break;
-                }
-                StartCoroutine(AttackPlayer(attackTime));
-            }
-        }
-        //Chase player if close enough to gain agro
-        else if (distance <= agroRadius && hasLineOfSight)
-        {
-            //Debug.Log("Agro");
-            isAware = true;
-            agent.SetDestination(target.position);
-        }
-        //Chase player if close enough to chase and is aware
-        else if (distance <= chaseLimitRadius && isAware && hasLineOfSight)
-        {
-            //Debug.Log("Chasing");
-            agent.SetDestination(target.position);
-        }
-        //If the enemy was aware the previous frame, it has now lost sight
-        else if (isAware)
-        {
-            //Debug.Log("Lost Sight");
-            lostSight = true;
-            isAware = false;
-        }
-        else if (lostSight)
-        {
-            //Debug.Log("Picking positions to look");
-            if (agent.remainingDistance < agent.stoppingDistance)
-            {
-                lookingForTarget = true;
-                lostSight = false;
-                lookingPlacesRemaining = 3;
-                lookingPlaces = new List<Vector3>();
-                for (int i = 0; i < lookingPlacesRemaining; i++)
-                {
-                    if (i == 0)
+                    float attackTime = 0;
+                    switch (attackTimeType)
                     {
-                        lookingPlaces.Add(transform.position + (new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized * Random.Range(2, 4)));
+                        case AttackTimeType.Constant:
+                            attackTime = this.attackTime;
+                            break;
+                        case AttackTimeType.RandomBetweenTwoConstants:
+                            attackTime = Random.Range(attackTimeMin, attackTimeMin);
+                            break;
+                        default:
+                            Debug.LogError("Unknown condition");
+                            break;
                     }
-                    else
-                    {
-                        lookingPlaces.Add(lookingPlaces[i - 1] + (new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized * Random.Range(2, 4)));
-                    }
+                    StartCoroutine(AttackPlayer(attackTime));
                 }
-                nextLookingPlaceSet = false;
             }
-        }
-        else if (lookingForTarget)
-        {
-            //Debug.Log("Looking for target");
-            if (agent.remainingDistance < agent.stoppingDistance)
+            //Chase player if close enough to gain agro
+            else if (distance <= agroRadius && hasLineOfSight)
             {
-                if (!nextLookingPlaceSet && lookingPlacesRemaining > 0)
+                //Debug.Log("Agro");
+                isAware = true;
+                agent.SetDestination(target.position);
+            }
+            //Chase player if close enough to chase and is aware
+            else if (distance <= chaseLimitRadius && isAware && hasLineOfSight)
+            {
+                //Debug.Log("Chasing");
+                agent.SetDestination(target.position);
+            }
+            //If the enemy was aware the previous frame, it has now lost sight
+            else if (isAware)
+            {
+                //Debug.Log("Lost Sight");
+                lostSight = true;
+                isAware = false;
+            }
+            else if (lostSight)
+            {
+                //Debug.Log("Picking positions to look");
+                if (agent.remainingDistance < agent.stoppingDistance)
                 {
-                    StartCoroutine(LookForTarget());
-                }
-                else if (lookingPlacesRemaining == 0)
-                {
-                    StartCoroutine(FinishLooking());
+                    lookingForTarget = true;
+                    lostSight = false;
+                    lookingPlacesRemaining = 3;
+                    lookingPlaces = new List<Vector3>();
+                    for (int i = 0; i < lookingPlacesRemaining; i++)
+                    {
+                        if (i == 0)
+                        {
+                            lookingPlaces.Add(transform.position + (new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized * Random.Range(2, 4)));
+                        }
+                        else
+                        {
+                            lookingPlaces.Add(lookingPlaces[i - 1] + (new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized * Random.Range(2, 4)));
+                        }
+                    }
+                    nextLookingPlaceSet = false;
                 }
             }
+            else if (lookingForTarget)
+            {
+                //Debug.Log("Looking for target");
+                if (agent.remainingDistance < agent.stoppingDistance)
+                {
+                    if (!nextLookingPlaceSet && lookingPlacesRemaining > 0)
+                    {
+                        StartCoroutine(LookForTarget());
+                    }
+                    else if (lookingPlacesRemaining == 0)
+                    {
+                        StartCoroutine(FinishLooking());
+                    }
+                }
+            }
+            //otherwise, return to default state
+            else
+            {
+                PerformDefaultState();
+            }
+
+            //Ensure facing target even if too close to move towards player
+            if (distance <= agent.stoppingDistance)
+            {
+                FaceTarget();
+
+            }
         }
-        //otherwise, return to default state
         else
         {
-            //Debug.Log("Default State");
-            agent.stoppingDistance = 0.5f;
-
-            switch (defaultState)
-            {
-                //Return to 
-                case Enemy.DefaultStateType.Stationary:
-
-                    if (agent.remainingDistance < agent.stoppingDistance)
-                    {
-                        agent.SetDestination(initialPosition);
-                        transform.rotation = Quaternion.Slerp(transform.rotation, initialRotation, Time.deltaTime * 5f);
-                    }
-                    break;
-                case Enemy.DefaultStateType.Partol:
-                    if (canSetPosition && agent.remainingDistance < agent.stoppingDistance)
-                    {
-                        if (!settingPosition)
-                        {
-                            //Debug.Log("Setting position");
-                            settingPosition = true;
-                            canSetPosition = false;
-                            StartCoroutine(NextPatrolPosition());
-                        }
-                    }
-                    break;
-
-                case Enemy.DefaultStateType.Wander:
-                    if (agent.remainingDistance < agent.stoppingDistance)
-                    {
-                        if (!settingPosition)
-                        {
-
-                            settingPosition = true;
-                            StartCoroutine(NextWanderPosition());
-                        }
-                    }
-                    break;
-
-                default:
-                    Debug.LogError("Unrecognized Option");
-                    break;
-            }
-        }
-
-        //Ensure facing target even if too close to move towards player
-        if (distance <= agent.stoppingDistance)
-        {
-            FaceTarget();
-
+            PerformDefaultState();
         }
     }
 
-    public IEnumerator LookForTarget()
+    protected void PerformDefaultState()
+    {
+        //Debug.Log("Default State");
+        agent.stoppingDistance = 0.5f;
+
+        switch (defaultState)
+        {
+            //Return to 
+            case Enemy.DefaultStateType.Stationary:
+
+                if (agent.remainingDistance < agent.stoppingDistance)
+                {
+                    agent.SetDestination(initialPosition);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, initialRotation, Time.deltaTime * 5f);
+                }
+                break;
+            case Enemy.DefaultStateType.Partol:
+                if (canSetPosition && agent.remainingDistance < agent.stoppingDistance)
+                {
+                    if (!settingPosition)
+                    {
+                        //Debug.Log("Setting position");
+                        settingPosition = true;
+                        canSetPosition = false;
+                        StartCoroutine(NextPatrolPosition());
+                    }
+                }
+                break;
+
+            case Enemy.DefaultStateType.Wander:
+                if (agent.remainingDistance < agent.stoppingDistance)
+                {
+                    if (!settingPosition)
+                    {
+
+                        settingPosition = true;
+                        StartCoroutine(NextWanderPosition());
+                    }
+                }
+                break;
+
+            default:
+                Debug.LogError("Unrecognized Option");
+                break;
+        }
+    }
+
+    protected IEnumerator LookForTarget()
     {
         //Debug.LogWarning("In set coroutine");
         nextLookingPlaceSet = true;
@@ -304,23 +326,26 @@ public class Enemy : Target
         StartCoroutine(DoneSettingLookingPlace());
 
     }
-    public IEnumerator DoneSettingLookingPlace()
+
+    protected IEnumerator DoneSettingLookingPlace()
     {
         yield return new WaitForSeconds(.5f);
         nextLookingPlaceSet = false;
     }
-    public IEnumerator FinishLooking()
+
+    protected IEnumerator FinishLooking()
     {
         yield return new WaitForSeconds(timeAtPosition);
         lookingForTarget = false;
     }
-    public IEnumerator PositionSetCooldown()
+
+    protected IEnumerator PositionSetCooldown()
     {
         yield return new WaitForSeconds(1);
         canSetPosition = true;
     }
 
-    public IEnumerator NextPatrolPosition()
+    protected IEnumerator NextPatrolPosition()
     {
         yield return new WaitForSeconds(timeAtPosition);
 
@@ -331,18 +356,17 @@ public class Enemy : Target
         StartCoroutine(PositionSetCooldown());
     }
 
-    public IEnumerator NextWanderPosition()
+    protected IEnumerator NextWanderPosition()
     {
         yield return new WaitForSeconds(timeAtPosition);
 
         Vector3 newPosition = new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f)).normalized * Random.Range(wanderRaduisMin, wanderRaduisMax);
-        Debug.Log(newPosition);
         agent.SetDestination(initialPosition + newPosition);
 
         settingPosition = false;
     }
 
-    public bool RaycastToPlayer()
+    protected bool RaycastToPlayer()
     {
         Vector3 origin = transform.position + new Vector3(0f, agent.height, 0f);
         Vector3 castDestination = CharacterActions.instance.fpsTransform.position;
@@ -365,6 +389,7 @@ public class Enemy : Target
             return false;
         }
     }
+
     protected void FaceTarget()
     {
         Vector3 direction = (target.position - transform.position).normalized;
@@ -425,6 +450,10 @@ public class Enemy : Target
             killed = true;
             Kill();
         }
+        else
+        {
+            isAware = true;
+        }
     }
 
     override public void Kill()
@@ -433,6 +462,8 @@ public class Enemy : Target
         killed = true;
 
         enemyAnimations.SetBool("Cured", true);
+
+        GetComponent<Collider>().enabled = false;
 
         if (respawn)
         {

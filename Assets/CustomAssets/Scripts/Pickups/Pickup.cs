@@ -31,7 +31,8 @@ public class Pickup : MonoBehaviour
 
         currentTime = (currentTime + (Time.deltaTime * bobSpeed)) % (2 * Mathf.PI);
 
-        transform.eulerAngles = new Vector3 {
+        transform.eulerAngles = new Vector3
+        {
             x = 0,
             y = CharacterActions.instance.transform.eulerAngles.y,
             z = 0
@@ -49,7 +50,7 @@ public class Pickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if(pickupSound != null)
+            if (pickupSound != null)
             {
                 PlayerManager.instance.GetComponent<AudioSource>().PlayOneShot(pickupSound);
             }
@@ -62,15 +63,21 @@ public class Pickup : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-        } 
+        }
     }
 
     public IEnumerator Respawn()
     {
-        GetComponent<MeshRenderer>().enabled = false;
+        foreach (SpriteRenderer sr in GetComponentsInChildren<SpriteRenderer>())
+        {
+            sr.enabled = false;
+        }
         GetComponent<BoxCollider>().enabled = false;
         yield return new WaitForSeconds(respawnTime);
-        GetComponent<MeshRenderer>().enabled = true;
+        foreach (SpriteRenderer sr in GetComponentsInChildren<SpriteRenderer>())
+        {
+            sr.enabled = true;
+        }
         GetComponent<BoxCollider>().enabled = true;
     }
 }
