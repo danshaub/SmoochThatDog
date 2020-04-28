@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
+    public AudioClip pickupSound;
     public bool respawns;
     public float respawnTime;
     public float bobSpeed;
@@ -30,9 +31,11 @@ public class Pickup : MonoBehaviour
 
         currentTime = (currentTime + (Time.deltaTime * bobSpeed)) % (2 * Mathf.PI);
 
-        transform.LookAt(new Vector3(PlayerManager.instance.gameObject.transform.position.x, 
-                                     transform.position.y,
-                                     PlayerManager.instance.gameObject.transform.position.z));
+        transform.eulerAngles = new Vector3 {
+            x = 0,
+            y = CharacterActions.instance.transform.eulerAngles.y,
+            z = 0
+        };
 
     }
 
@@ -46,6 +49,10 @@ public class Pickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            if(pickupSound != null)
+            {
+                PlayerManager.instance.GetComponent<AudioSource>().PlayOneShot(pickupSound);
+            }
             TakePickup();
             if (respawns)
             {

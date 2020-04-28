@@ -9,7 +9,6 @@ public class WeaponPickup : Pickup
     override
     public void TakePickup()
     {
-        PlayerManager.instance.GetComponent<AudioSource>().PlayOneShot(PlayerManager.instance.weaponPickupSound);
         PlayerManager.instance.AddGun(gun);
     }
 }

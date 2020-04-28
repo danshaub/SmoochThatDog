@@ -13,12 +13,12 @@ public class Smooch : Gun, TriggerListener
     {
         enabled = true;
         targetsInRange.Clear();
-        hitBox = CharacterActions.instance.GetComponent<BoxCollider>();
+        hitBox = CharacterActions.instance.GetComponentInChildren<BoxCollider>();
         TriggerBridge tb = hitBox.gameObject.AddComponent<TriggerBridge>();
         tb.Initialize(this);
         hitBox.size = new Vector3(maxBulletSpread, 3, range);
-        hitBox.center = new Vector3(0f, 0.5f, (range + 1f) / 2f);
-        
+        hitBox.center = new Vector3(0f, -.25f, (range + 1f) / 2f);
+
     }
 
     public void CallStart()
@@ -29,10 +29,10 @@ public class Smooch : Gun, TriggerListener
     override
     public void Shoot(Transform origin)
     {
-        PlayerManager.instance.playerAnimation.SetTrigger("Shoot");
+        PlayerManager.instance.smoochAnimations.SetTrigger("Shoot");
         PlayerManager.instance.GetComponent<AudioSource>().PlayOneShot(shootSound);
         targetsInRangeTemp = targetsInRange;
-        for(int i = targetsInRange.Count-1; i >= 0; i--)
+        for (int i = targetsInRange.Count - 1; i >= 0; i--)
         {
             Hit(targetsInRange[i]);
         }
@@ -52,12 +52,12 @@ public class Smooch : Gun, TriggerListener
         {
             return;
         }
-        if (!PlayerManager.instance.isRaged)
+        if (!PlayerManager.instance.isRaged && hitTarget.canStun && !hitTarget.killed)
         {
             hitTarget.Stun();
             PlayerManager.instance.AddRage(hitTarget.rageFill);
         }
-        else
+        else if (PlayerManager.instance.isRaged)
         {
             hitTarget.Hit(damagePerBullet);
         }
@@ -65,7 +65,7 @@ public class Smooch : Gun, TriggerListener
 
     public void OnTriggerEnter(Collider other)
     {
-        
+
     }
 
     public void OnTriggerExit(Collider other)
@@ -79,7 +79,7 @@ public class Smooch : Gun, TriggerListener
         {
             targetsInRange.Add(other.gameObject);
         }
-        
+
     }
 
     public void RemoveFromTargetList(GameObject go)

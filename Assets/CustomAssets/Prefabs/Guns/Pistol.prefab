@@ -45,15 +45,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animations: {fileID: 9100000, guid: 49d4b10616ae6114895c75a68c5e7b25, type: 2}
   gunName: Pistol
-  automatic: 0
-  unlimitedAmmo: 0
+  automatic: 1
+  unlimitedAmmo: 1
   spreadOverTime: 1
   maxAmmo: 200
   bulletsPerShot: 1
   damagePerBullet: 3
   spreadRate: 0.2
   maxBulletSpread: 20
-  fireRate: 20
+  fireRate: 8
   range: 100
   verticalRecoilStrength: 3
   maxVerticalRecoil: 10

@@ -15,9 +15,16 @@ public class Door : MonoBehaviour, InteractableObject
     public int sequenceFrames = 1;
     public bool closeAutomatically = false;
     public float closeTime = 1f;
+    [Header("Lock options: (Use lockID 0 for scripted unlock)")]
     public bool locked = false;
     public int lockID = 0;
+    public bool consumeKey = false;
     public bool interactable = true;
+
+    public AudioClip openSound;
+    public AudioClip closeSound;
+    public AudioClip lockedSound;
+    public AudioClip unlockSound;
 
     public bool open { get; private set; } = false;
     public int sequenceFrame { get; private set; } = 0;
@@ -98,22 +105,62 @@ public class Door : MonoBehaviour, InteractableObject
         }
         else if (!locked || (locked && PlayerManager.instance.HasKey(lockID)))
         {
+            if (locked)
+            {
+                Unlock();
+            }
             Open();
+        }
+        else if (locked)
+        {
+            GetComponent<AudioSource>().PlayOneShot(lockedSound);
         }
     }
 
     virtual public void Close()
     {
+        if (GetComponent<AudioSource>().isPlaying)
+        {
+            GetComponent<AudioSource>().Stop();
+
+        }
+        GetComponent<AudioSource>().clip = closeSound;
+        GetComponent<AudioSource>().Play();
         open = false;
     }
 
     virtual public void Open()
     {
-        open = true;
-
         if (closeAutomatically)
         {
-            Invoke("Close", closeTime);
+            if(sequenceFrame != 0)
+            {
+                return;
+            }
+            else
+            {
+                Invoke("Close", closeTime);
+            }
+        }
+        if (GetComponent<AudioSource>().isPlaying)
+        {
+            GetComponent<AudioSource>().Stop();
+
+        }
+        GetComponent<AudioSource>().clip = openSound;
+        GetComponent<AudioSource>().Play();
+        open = true;
+
+
+    }
+
+    public void Unlock()
+    {
+        GetComponent<AudioSource>().PlayOneShot(unlockSound);
+        locked = false;
+        if (consumeKey)
+        {
+            PlayerManager.instance.RemoveKey(lockID);
         }
     }
 }

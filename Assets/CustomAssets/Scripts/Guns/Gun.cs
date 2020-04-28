@@ -33,7 +33,7 @@ public class Gun : MonoBehaviour
     public float recoilResistance = 0.5f;
     public float groundedKnockback;
     public float airborneKnockback;
-    
+
     public GameObject hitParticlePrefab;
     public AudioClip shootSound;
     public AudioClip cooldownSound;
@@ -87,7 +87,7 @@ public class Gun : MonoBehaviour
             }
             else
             {
-                CharacterActions.instance.knockbackOffset += ((-CharacterActions.instance.transform.forward.normalized - (.25f * CharacterActions.instance.fpsPosition.forward)).normalized * airborneKnockback);
+                CharacterActions.instance.knockbackOffset += ((-CharacterActions.instance.transform.forward.normalized - (.25f * CharacterActions.instance.fpsTransform.forward)).normalized * airborneKnockback);
             }
 
 
@@ -96,7 +96,7 @@ public class Gun : MonoBehaviour
 
             PlayerManager.instance.GetComponent<AudioSource>().PlayOneShot(shootSound);
 
-            PlayerManager.instance.playerAnimation.SetTrigger("Shoot");
+            PlayerManager.instance.gunAnimations.SetTrigger("Shoot");
             for (int i = 0; i < bulletsPerShot; i++)
             {
                 CharacterActions.instance.recoilOffset.y = Mathf.Clamp(CharacterActions.instance.recoilOffset.y + verticalRecoilStrength, 0f, maxVerticalRecoil);
@@ -121,22 +121,23 @@ public class Gun : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(origin.position, raycastDirection, out hit, range))
                 {
+                    Debug.DrawLine(origin.position, hit.point, Color.yellow, 1f);
                     if (hit.transform.GetComponent<Target>() != null)
                     {
                         Hit(hit);
                     }
                     else
                     {
-                        if(hitParticlePrefab != null)
+                        if (hitParticlePrefab != null)
                         {
                             GameObject particles = Instantiate(hitParticlePrefab, hit.point, Quaternion.LookRotation(hit.normal));
                             Destroy(particles, 1f);
                         }
-                        
+
                     }
                 }
 
-                Debug.DrawRay(CharacterActions.instance.fpsCamera.transform.position, raycastDirection * range, Color.black, 1f);
+                //Debug.DrawRay(CharacterActions.instance.fpsCamera.transform.position, raycastDirection * range, Color.black, 1f);
                 /*
                 Vector3 currentAngles = transform.localEulerAngles;
                 currentAngles.y = horizontalAngle;
@@ -150,7 +151,7 @@ public class Gun : MonoBehaviour
         }
     }
 
-    
+
     virtual
     public void Hit(RaycastHit hit)
     {
