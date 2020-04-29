@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : MonoBehaviour, InteractableObject
+[RequireComponent(typeof(AudioSource))]
+public class Door : MonoBehaviour, IInteractableObject, ITriggerableObject
 {
     public List<GameObject> doors;
     public List<Transform> closedTransforms;
@@ -117,6 +118,10 @@ public class Door : MonoBehaviour, InteractableObject
         }
     }
 
+    virtual public void Trigger()
+    {
+        Open();
+    }
     virtual public void Close()
     {
         if (GetComponent<AudioSource>().isPlaying)

@@ -9,7 +9,8 @@ public class Pickup : MonoBehaviour
     public float respawnTime;
     public float bobSpeed;
     public float bobHeight;
-
+    public bool isTrigger;
+    public GameObject[] triggerables;
     private float currentTime;
     private float startYPos;
 
@@ -55,6 +56,10 @@ public class Pickup : MonoBehaviour
                 PlayerManager.instance.GetComponent<AudioSource>().PlayOneShot(pickupSound);
             }
             TakePickup();
+            foreach (GameObject triggerable in triggerables)
+            {
+                triggerable.GetComponent<ITriggerableObject>().Trigger();
+            }
             if (respawns)
             {
                 StartCoroutine(Respawn());

@@ -20,6 +20,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // private void Start()
+    // {
+    //     AudioListener[] listeners = transform.parent.GetComponentsInChildren<AudioListener>();
+
+    //     foreach (AudioListener listener in listeners)
+    //     {
+    //         Debug.LogWarning(listener.gameObject.name);
+    //     }
+    // }
+
     public void LoadSceneByName(string name)
     {
         SceneManager.LoadScene(name);

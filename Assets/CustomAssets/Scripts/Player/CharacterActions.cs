@@ -136,7 +136,7 @@ public class CharacterActions : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, interactRange, mask))
                 {
-                    hit.collider.gameObject.GetComponentInParent<InteractableObject>().Action();
+                    hit.collider.gameObject.GetComponentInParent<IInteractableObject>().Action();
                 }
 
             }
