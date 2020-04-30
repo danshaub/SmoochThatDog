@@ -67,6 +67,11 @@ public class Gun : MonoBehaviour
         ammoRemaining = (int)Mathf.Clamp(ammoRemaining + bullets, 0, maxAmmo);
     }
 
+    public void SetAmmo(int bullets)
+    {
+        ammoRemaining = (int)Mathf.Clamp(bullets, 0, maxAmmo);
+    }
+
     virtual
     public void Shoot(Transform origin)
     {
