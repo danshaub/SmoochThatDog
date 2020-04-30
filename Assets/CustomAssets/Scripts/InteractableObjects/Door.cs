@@ -26,6 +26,7 @@ public class Door : MonoBehaviour, IInteractableObject, ITriggerableObject
     public AudioClip closeSound;
     public AudioClip lockedSound;
     public AudioClip unlockSound;
+    private AudioSource source;
 
     public bool open { get; private set; } = false;
     public int sequenceFrame { get; private set; } = 0;
@@ -33,7 +34,9 @@ public class Door : MonoBehaviour, IInteractableObject, ITriggerableObject
     // Start is called before the first frame update
     void Start()
     {
-        //EnsureLayer();
+        EnsureLayer();
+
+        source = GetComponent<AudioSource>();
 
         if (doors.Count != closedTransforms.Count || doors.Count != openTransforms.Count)
         {
@@ -89,7 +92,10 @@ public class Door : MonoBehaviour, IInteractableObject, ITriggerableObject
     {
         foreach (Transform tran in GetComponentsInChildren<Transform>())
         {
-            tran.gameObject.layer = 10;
+            if (tran.gameObject.layer != 11)
+            {
+                tran.gameObject.layer = 10;
+            }
         }
     }
 
@@ -114,7 +120,7 @@ public class Door : MonoBehaviour, IInteractableObject, ITriggerableObject
         }
         else if (locked)
         {
-            GetComponent<AudioSource>().PlayOneShot(lockedSound);
+            source.PlayOneShot(lockedSound);
         }
     }
 
@@ -124,13 +130,15 @@ public class Door : MonoBehaviour, IInteractableObject, ITriggerableObject
     }
     virtual public void Close()
     {
-        if (GetComponent<AudioSource>().isPlaying)
+        if (source.isPlaying)
         {
-            GetComponent<AudioSource>().Stop();
+            source.Stop();
 
         }
-        GetComponent<AudioSource>().clip = closeSound;
-        GetComponent<AudioSource>().Play();
+
+        source.clip = closeSound;
+        source.time = 1f - (float)sequenceFrame / sequenceFrames;
+        source.Play();
         open = false;
     }
 
@@ -147,13 +155,14 @@ public class Door : MonoBehaviour, IInteractableObject, ITriggerableObject
                 Invoke("Close", closeTime);
             }
         }
-        if (GetComponent<AudioSource>().isPlaying)
+        if (source.isPlaying)
         {
-            GetComponent<AudioSource>().Stop();
+            source.Stop();
 
         }
-        GetComponent<AudioSource>().clip = openSound;
-        GetComponent<AudioSource>().Play();
+        source.clip = openSound;
+        source.time = ((float)sequenceFrame / sequenceFrames);
+        source.Play();
         open = true;
 
 
@@ -161,7 +170,7 @@ public class Door : MonoBehaviour, IInteractableObject, ITriggerableObject
 
     public void Unlock()
     {
-        GetComponent<AudioSource>().PlayOneShot(unlockSound);
+        source.PlayOneShot(unlockSound);
         locked = false;
         if (consumeKey)
         {
