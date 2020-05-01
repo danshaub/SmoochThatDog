@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/CustomAssets/Scenes/DesignTestingClone.unity
+    guid: 24660d95c1c185445a3286ac7ba3c506
+  - enabled: 1
     path: Assets/CustomAssets/Scenes/MainMenu.unity
     guid: bd7ce41349405144b954930e9cb2a6b1
   - enabled: 1

@@ -48,14 +48,14 @@ MonoBehaviour:
   automatic: 0
   unlimitedAmmo: 0
   spreadOverTime: 0
-  maxAmmo: 50
-  bulletsPerShot: 20
+  maxAmmo: 30
+  bulletsPerShot: 25
   damagePerBullet: 1
   spreadRate: 0
-  maxBulletSpread: 30
-  fireRate: 1
+  maxBulletSpread: 20
+  fireRate: 1.5
   range: 100
-  verticalRecoilStrength: 15
+  verticalRecoilStrength: 10
   maxVerticalRecoil: 20
   horizontalRecoilStrength: 5
   maxHorizontalRecoil: 10

@@ -49,7 +49,7 @@ public class PlayerManager : MonoBehaviour
     public Color emptyGunSlot;
     public Image crosshair;
 
-    [HideInInspector] public Gun[] guns;
+    public Gun[] guns;
     private int numGuns = 0;
     private int rageGunStorage = 0;
 
@@ -79,7 +79,80 @@ public class PlayerManager : MonoBehaviour
         UpdateRageBar();
     }
 
+    public LevelManager.CheckpointData.PlayerData MakeCheckpoint()
+    {
+        LevelManager.CheckpointData.PlayerData data = new LevelManager.CheckpointData.PlayerData();
+        data.worldPosition = transform.position;
+        data.worldRotation = transform.rotation;
+        data.health = currentHealth;
+        data.armor = armorDurability;
+        data.maxArmor = maxArmorDurability;
+
+
+        data.guns = new LevelManager.CheckpointData.GunData[guns.Length];
+
+        for (int i = 1; i < guns.Length; i++)
+        {
+            if (guns[i] != null)
+            {
+                data.guns[i].collected = true;
+                data.guns[i].ammoRemaining = guns[i].ammoRemaining;
+            }
+            else
+            {
+                data.guns[i].collected = false;
+            }
+        }
+
+        data.gunIndex = currentGunIndex;
+
+        return data;
+    }
+    public void LoadCheckpoint(LevelManager.CheckpointData.PlayerData data)
+    {
+
+        GetComponent<CharacterController>().enabled = false;
+        transform.position = data.worldPosition;
+        transform.rotation = data.worldRotation;
+        GetComponent<CharacterController>().enabled = true;
+        minimapCamera.enabled = false;
+        CharacterActions.instance.fpsCamera.enabled = false;
+        CharacterActions.instance.fpsCamera.transform.localEulerAngles = Vector3.zero;
+        CharacterActions.instance.fpsCamera.enabled = true;
+        minimapCamera.enabled = true;
+
+        currentHealth = data.health;
+        armorDurability = data.armor;
+        maxArmorDurability = data.maxArmor;
+
+        for (int i = 1; i < data.guns.Length; i++)
+        {
+            if (data.guns[i].collected)
+            {
+                guns[i].SetAmmo(data.guns[i].ammoRemaining);
+            }
+            else if (guns[i] != null)
+            {
+                guns[i] = null;
+            }
+        }
+
+        SwapGun(data.gunIndex);
+
+        ResetUI();
+    }
     #region UI Updating
+    public void ResetUI()
+    {
+        UpdateKeySlots();
+        UpdateAmmoText();
+        UpdateAnimator();
+        UpdateHealthText();
+        UpdateArmorText();
+        UpdateGunTexts();
+        ResetMinimap();
+    }
+
     public void UpdateKeySlots()
     {
         foreach (Image img in keySlots)
@@ -128,6 +201,30 @@ public class PlayerManager : MonoBehaviour
         armorDisplay.text = armorPercentage.ToString() + "%";
     }
 
+    public void UpdateGunTexts()
+    {
+        for (int i = 0; i < gunNames.Length; i++)
+        {
+            if (guns[i] != null)
+            {
+                gunTexts[i].text = "[" + ((i + 1) % 10).ToString() + "] " + gunNames[i];
+                if (i == currentGunIndex)
+                {
+                    gunTextBackgrounds[i].color = activeGunHighlight;
+                }
+                else
+                {
+                    gunTextBackgrounds[i].color = inactiveGun;
+                }
+            }
+            else
+            {
+                gunTextBackgrounds[i].color = emptyGunSlot;
+                gunTexts[i].text = "[" + ((i + 1) % 10).ToString() + "] " + undiscoveredGunText;
+            }
+        }
+    }
+
     public void ToggleMinimap()
     {
         minimapState = (minimapState + 1) % 3;
@@ -172,7 +269,7 @@ public class PlayerManager : MonoBehaviour
 
     #endregion
 
-    #region  Keys
+    #region Keys
     public bool HasKey(int keyID)
     {
         for (int i = keys.Count - 1; i >= 0; i--)
@@ -246,30 +343,6 @@ public class PlayerManager : MonoBehaviour
             }
         }
         UpdateGunTexts();
-    }
-
-    public void UpdateGunTexts()
-    {
-        for (int i = 0; i < gunNames.Length; i++)
-        {
-            if (guns[i] != null)
-            {
-                gunTexts[i].text = "[" + ((i + 1) % 10).ToString() + "] " + gunNames[i];
-                if (i == currentGunIndex)
-                {
-                    gunTextBackgrounds[i].color = activeGunHighlight;
-                }
-                else
-                {
-                    gunTextBackgrounds[i].color = inactiveGun;
-                }
-            }
-            else
-            {
-                gunTextBackgrounds[i].color = emptyGunSlot;
-                gunTexts[i].text = "[" + ((i + 1) % 10).ToString() + "] " + undiscoveredGunText;
-            }
-        }
     }
 
     public void SwapGun(int gunIndex)

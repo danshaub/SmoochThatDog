@@ -39,6 +39,9 @@ public class Enemy : Target
     private int previousLayerIndex = 2;
     private int damageDonePreviousFixedFrameFrame;
     private int previousHealth;
+
+    private GameObject[] damageDoneTexts;
+    private int nextDamageText = 0;
     #endregion
 
     #region AI Variables
@@ -84,6 +87,13 @@ public class Enemy : Target
         initialPosition = transform.position;
         initialRotation = transform.rotation;
         initialStoppingDistance = agent.stoppingDistance;
+
+        damageDoneTexts = new GameObject[3];
+        for (int i = 0; i < damageDoneTexts.Length; i++)
+        {
+            damageDoneTexts[i] = Instantiate(damageDoneTextPrefab, enemyAnimations.gameObject.transform);
+            damageDoneTexts[i].SetActive(false);
+        }
     }
 
     protected IEnumerator DelayRespawn()
@@ -511,23 +521,23 @@ public class Enemy : Target
 
         angleToPlayer = Vector2.SignedAngle(forward, rotatedPositionDifference);
 
-        if (angleToPlayer >= -150f && angleToPlayer < -90f)
+        if (angleToPlayer >= -180f && angleToPlayer < -120f)
         {
             activeLayerIndex = 0;
         }
-        else if (angleToPlayer >= -90f && angleToPlayer < -30f)
+        else if (angleToPlayer >= -120f && angleToPlayer < -60f)
         {
             activeLayerIndex = 1;
         }
-        else if (angleToPlayer >= -30f && angleToPlayer < 30f)
+        else if (angleToPlayer >= -60f && angleToPlayer < 0f)
         {
             activeLayerIndex = 2;
         }
-        else if (angleToPlayer >= 30f && angleToPlayer < 90f)
+        else if (angleToPlayer >= 0f && angleToPlayer < 60f)
         {
             activeLayerIndex = 3;
         }
-        else if (angleToPlayer >= 90f && angleToPlayer < 150f)
+        else if (angleToPlayer >= 60f && angleToPlayer < 120f)
         {
             activeLayerIndex = 4;
         }
@@ -557,18 +567,32 @@ public class Enemy : Target
 
     protected void MakeDamageText()
     {
-        GameObject go = Instantiate(damageDoneTextPrefab, enemyAnimations.gameObject.transform);
-        go.transform.localPosition = new Vector3(0f, damageTextVerticalOffset, 0f);
-        go.GetComponent<DamageText>().text.text = "-" + damageDonePreviousFixedFrameFrame.ToString();
+        DamageText dt = damageDoneTexts[nextDamageText].GetComponent<DamageText>();
+
+        if (damageDoneTexts[nextDamageText].activeInHierarchy == true)
+        {
+            dt.EndAscent();
+        }
+
+        damageDoneTexts[nextDamageText].transform.localPosition = new Vector3(0f, damageTextVerticalOffset, 0f);
+
+        string txt = "-" + damageDonePreviousFixedFrameFrame.ToString();
+
+        dt.text.text = txt;
 
         if (health == 0)
         {
-            go.GetComponent<DamageText>().text.color = finalHitTextColor;
+            dt.text.color = finalHitTextColor;
         }
         else
         {
-            go.GetComponent<DamageText>().text.color = damageTextColor;
+            dt.text.color = damageTextColor;
         }
+
+        damageDoneTexts[nextDamageText].SetActive(true);
+        dt.BeginAscent();
+
+        nextDamageText = (nextDamageText + 1) % damageDoneTexts.Length;
     }
 
     #endregion
