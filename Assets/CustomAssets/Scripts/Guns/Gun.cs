@@ -156,7 +156,6 @@ public class Gun : MonoBehaviour
         }
     }
 
-
     virtual
     public void Hit(RaycastHit hit)
     {

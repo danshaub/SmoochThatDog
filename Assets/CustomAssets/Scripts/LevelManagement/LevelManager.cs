@@ -18,19 +18,19 @@ public class LevelManager : MonoBehaviour
             public int armor;
             public int maxArmor;
             public GunData[] guns;
-            public int weaponIndex;
-
-        }
-        [System.Serializable]
-        public struct EnemyData
-        {
+            public int gunIndex;
 
         }
         [System.Serializable]
         public struct GunData
         {
-            public bool obtained;
-            public int ammo;
+            public bool collected;
+            public int ammoRemaining;
+        }
+        [System.Serializable]
+        public struct EnemyData
+        {
+
         }
         [System.Serializable]
         public struct PickupData
@@ -40,11 +40,33 @@ public class LevelManager : MonoBehaviour
 
         #endregion
 
-
+        public PlayerData player;
     }
+
+    public CheckpointData currentCheckpoint;
     //TODO: manage checkpoint system
     //TODO: keep track of statistics for player
     //TODO: keep track of enemies 
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            MakeCheckpoint();
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            LoadCheckpoint();
+        }
+    }
+    public void MakeCheckpoint()
+    {
+        currentCheckpoint.player = PlayerManager.instance.MakeCheckpoint();
+    }
+
+    public void LoadCheckpoint()
+    {
+        PlayerManager.instance.LoadCheckpoint(currentCheckpoint.player);
+    }
 
 }
