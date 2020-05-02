@@ -49,6 +49,8 @@ public class PlayerManager : MonoBehaviour
     public Color emptyGunSlot;
     public Image crosshair;
 
+    public GameObject deathText;
+
     public Gun[] guns;
     private int numGuns = 0;
     private int rageGunStorage = 0;
@@ -76,6 +78,7 @@ public class PlayerManager : MonoBehaviour
         UpdateAmmoText();
         gunAnimations.runtimeAnimatorController = CurrentGun().animations;
         damageAnimations.SetInteger("Health", 100);
+        faceAnimations.SetInteger("Health", 100);
         UpdateRageBar();
     }
 
@@ -193,6 +196,7 @@ public class PlayerManager : MonoBehaviour
         int healthPercentage = (int)Mathf.Round((currentHealth / (float)maxHealth) * 100);
         healthDisplay.text = healthPercentage.ToString() + "%";
         damageAnimations.SetInteger("Health", healthPercentage);
+        faceAnimations.SetInteger("Health", healthPercentage);
     }
 
     public void UpdateArmorText()
@@ -530,7 +534,14 @@ public class PlayerManager : MonoBehaviour
     {
         CharacterActions.instance.lockControl = true;
         isAlive = false;
-        //GameManager.instance.ReloadCurrentScene();
+        deathText.SetActive(true);
+        StartCoroutine(Death());
+    }
+
+    public IEnumerator Death()
+    {
+        yield return new WaitForSeconds(2f);
+        LevelLoader.instance.LoadLevel(1);
     }
 
     #endregion
