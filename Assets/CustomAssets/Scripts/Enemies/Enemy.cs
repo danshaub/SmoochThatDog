@@ -384,17 +384,9 @@ public class Enemy : Target
         bool didHit = Physics.Raycast(origin, (castDestination - origin).normalized, out hit, chaseLimitRadius * 1.5f);
         if (didHit)
         {
-            Debug.DrawLine(origin, hit.point, Color.cyan, Time.fixedDeltaTime);
-        }
-        else
-        {
-            Debug.DrawLine(origin, origin + (castDestination - origin).normalized * chaseLimitRadius, Color.cyan, Time.fixedDeltaTime);
-        }
-        try
-        {
             return hit.collider.CompareTag("Player");
         }
-        catch
+        else
         {
             return false;
         }

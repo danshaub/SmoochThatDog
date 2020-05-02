@@ -92,6 +92,42 @@ TextureImporter:
   - first:
       213: -6211178316599093105
     second: TestSpritesheetAttacks_29
+  - first:
+      213: 9110037733391453065
+    second: Controls Screen_0
+  - first:
+      213: 1411546716604863414
+    second: Controls Screen_1
+  - first:
+      213: -86735850285195529
+    second: Controls Screen_2
+  - first:
+      213: 4221364884771514324
+    second: Controls Screen_3
+  - first:
+      213: -8529476885084390558
+    second: Controls Screen_4
+  - first:
+      213: 7380984138146728789
+    second: Controls Screen_5
+  - first:
+      213: -808108960848844996
+    second: Controls Screen_6
+  - first:
+      213: -9065194718042601257
+    second: Controls Screen_7
+  - first:
+      213: 7552195424032359985
+    second: Controls Screen_8
+  - first:
+      213: -3307584955440098718
+    second: Controls Screen_9
+  - first:
+      213: -5496740228687373046
+    second: Controls Screen_10
+  - first:
+      213: -298504982840243903
+    second: Controls Screen_11
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -130,17 +166,17 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 28
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 120
+  spriteBorder: {x: 169, y: 30, z: 175, w: 62}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationDetail: -1
+  spriteTessellationDetail: 0
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -153,9 +189,9 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
-    crunchedCompression: 0
+    crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
@@ -165,9 +201,9 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
-    crunchedCompression: 0
+    crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
@@ -177,9 +213,9 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
-    crunchedCompression: 0
+    crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
@@ -188,636 +224,854 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TestSpritesheetAttacks_0
+      name: Controls Screen_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 176
-        width: 28
-        height: 33
+        x: 10
+        y: 270
+        width: 180
+        height: 120
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aaa29caf91e858980800000000000000
-      internalID: -8537261276378092886
+      spriteID: 98bc33d2d0b5d6e70800000000000000
+      internalID: 9110037733391453065
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TestSpritesheetAttacks_1
+      name: Controls Screen_1
       rect:
         serializedVersion: 2
-        x: 31
-        y: 176
-        width: 28
-        height: 33
+        x: 200
+        y: 270
+        width: 120
+        height: 120
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1854a29d59a696130800000000000000
-      internalID: 3560494172239185281
+      spriteID: 6b31a139242d69310800000000000000
+      internalID: 1411546716604863414
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TestSpritesheetAttacks_2
+      name: Controls Screen_2
       rect:
         serializedVersion: 2
-        x: 61
-        y: 176
-        width: 28
-        height: 33
+        x: 330
+        y: 270
+        width: 120
+        height: 120
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cce5740891bec9b70800000000000000
-      internalID: 8907252657790869196
+      spriteID: 7fe9576243adbcef0800000000000000
+      internalID: -86735850285195529
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TestSpritesheetAttacks_3
+      name: Controls Screen_3
       rect:
         serializedVersion: 2
-        x: 91
-        y: 176
-        width: 28
-        height: 33
+        x: 460
+        y: 270
+        width: 120
+        height: 120
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9f899c7c80fad00f0800000000000000
-      internalID: -1149069877663131399
+      spriteID: 4d72d183ffc459a30800000000000000
+      internalID: 4221364884771514324
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TestSpritesheetAttacks_4
+      name: Controls Screen_4
       rect:
         serializedVersion: 2
-        x: 121
-        y: 176
-        width: 28
-        height: 33
+        x: 590
+        y: 140
+        width: 170
+        height: 250
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9886945889c9efe20800000000000000
-      internalID: 3386316148714334345
+      spriteID: 26bb3a0d6f531a980800000000000000
+      internalID: -8529476885084390558
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TestSpritesheetAttacks_5
+      name: Controls Screen_5
       rect:
         serializedVersion: 2
-        x: 1
-        y: 141
-        width: 28
-        height: 33
+        x: 10
+        y: 140
+        width: 180
+        height: 120
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b175b2d11fd7b65d0800000000000000
-      internalID: -3068220246592891109
+      spriteID: 55b470fa7f58e6660800000000000000
+      internalID: 7380984138146728789
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TestSpritesheetAttacks_6
+      name: Controls Screen_6
       rect:
         serializedVersion: 2
-        x: 31
-        y: 141
-        width: 28
-        height: 33
+        x: 200
+        y: 140
+        width: 120
+        height: 120
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d629341f72f663df0800000000000000
-      internalID: -200850916029263251
+      spriteID: c376bc08e2509c4f0800000000000000
+      internalID: -808108960848844996
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TestSpritesheetAttacks_7
+      name: Controls Screen_7
       rect:
         serializedVersion: 2
-        x: 61
-        y: 141
-        width: 28
-        height: 33
+        x: 330
+        y: 140
+        width: 120
+        height: 120
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b39cc8e6a3628f9c0800000000000000
-      internalID: -3893319845457114821
+      spriteID: 7d8c253fe65f13280800000000000000
+      internalID: -9065194718042601257
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TestSpritesheetAttacks_8
+      name: Controls Screen_8
       rect:
         serializedVersion: 2
-        x: 91
-        y: 141
-        width: 28
-        height: 33
+        x: 460
+        y: 140
+        width: 120
+        height: 120
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 508612628cd584e30800000000000000
-      internalID: 4487940142889265157
+      spriteID: 13687c399b9cec860800000000000000
+      internalID: 7552195424032359985
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TestSpritesheetAttacks_9
+      name: Controls Screen_9
       rect:
         serializedVersion: 2
-        x: 121
-        y: 141
-        width: 28
-        height: 33
+        x: 10
+        y: 10
+        width: 180
+        height: 120
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f497375097709b7d0800000000000000
-      internalID: -2902280268499682993
+      spriteID: 2621192e1091912d0800000000000000
+      internalID: -3307584955440098718
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TestSpritesheetAttacks_10
+      name: Controls Screen_10
       rect:
         serializedVersion: 2
-        x: 1
-        y: 106
-        width: 28
-        height: 33
+        x: 200
+        y: 10
+        width: 120
+        height: 120
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98b0a84cb4bd2d030800000000000000
-      internalID: 3518115377396190089
+      spriteID: a0d5d7e82e7a7b3b0800000000000000
+      internalID: -5496740228687373046
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TestSpritesheetAttacks_11
+      name: Controls Screen_11
       rect:
         serializedVersion: 2
-        x: 31
-        y: 106
-        width: 28
-        height: 33
+        x: 330
+        y: 10
+        width: 120
+        height: 120
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2eb96b6ef0a505450800000000000000
-      internalID: 6075454921664535522
+      spriteID: 1498f16bc4f7bdbf0800000000000000
+      internalID: -298504982840243903
       vertices: []
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: TestSpritesheetAttacks_12
-      rect:
-        serializedVersion: 2
-        x: 61
-        y: 106
-        width: 28
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 387daa22d518205d0800000000000000
-      internalID: -3097771356663916669
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TestSpritesheetAttacks_13
-      rect:
-        serializedVersion: 2
-        x: 91
-        y: 106
-        width: 28
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5853e479a648d02d0800000000000000
-      internalID: -3310844557707561595
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TestSpritesheetAttacks_14
-      rect:
-        serializedVersion: 2
-        x: 121
-        y: 106
-        width: 28
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ff8362958eb810b70800000000000000
-      internalID: 8863519371686197503
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TestSpritesheetAttacks_15
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 71
-        width: 28
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f298c9d07b24e4b10800000000000000
-      internalID: 1967583441182296367
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TestSpritesheetAttacks_16
-      rect:
-        serializedVersion: 2
-        x: 31
-        y: 71
-        width: 28
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: db693ae0eb9362860800000000000000
-      internalID: 7504749317511681725
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TestSpritesheetAttacks_17
-      rect:
-        serializedVersion: 2
-        x: 61
-        y: 71
-        width: 28
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 52fff6303a0a54460800000000000000
-      internalID: 7225357799183613733
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TestSpritesheetAttacks_18
-      rect:
-        serializedVersion: 2
-        x: 91
-        y: 71
-        width: 28
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: accb8444efd22ed70800000000000000
-      internalID: 9070863169568160970
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TestSpritesheetAttacks_19
-      rect:
-        serializedVersion: 2
-        x: 121
-        y: 71
-        width: 28
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a3d0823dbe8485bb0800000000000000
-      internalID: -4947124012969358022
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TestSpritesheetAttacks_20
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 36
-        width: 28
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 23b8583b727ce7910800000000000000
-      internalID: 1837124671343266610
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TestSpritesheetAttacks_21
-      rect:
-        serializedVersion: 2
-        x: 31
-        y: 36
-        width: 28
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4eb66959b038690f0800000000000000
-      internalID: -1110556172322706460
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TestSpritesheetAttacks_22
-      rect:
-        serializedVersion: 2
-        x: 61
-        y: 36
-        width: 28
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3bc35729ba8cfcac0800000000000000
-      internalID: -3832624118646883149
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TestSpritesheetAttacks_23
-      rect:
-        serializedVersion: 2
-        x: 91
-        y: 36
-        width: 28
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a7c15fb128886f320800000000000000
-      internalID: 2591408727994473594
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TestSpritesheetAttacks_24
-      rect:
-        serializedVersion: 2
-        x: 121
-        y: 36
-        width: 28
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e5ead5102d7a77040800000000000000
-      internalID: 4645366061063843422
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TestSpritesheetAttacks_25
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 1
-        width: 28
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: da99705747afa9d20800000000000000
-      internalID: 3286214256206780845
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TestSpritesheetAttacks_26
-      rect:
-        serializedVersion: 2
-        x: 31
-        y: 1
-        width: 28
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 45aea1cd86534e990800000000000000
-      internalID: -7357697166730925484
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TestSpritesheetAttacks_27
-      rect:
-        serializedVersion: 2
-        x: 61
-        y: 1
-        width: 28
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 045ec7af426f0f4c0800000000000000
-      internalID: -4255631009183374016
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TestSpritesheetAttacks_28
-      rect:
-        serializedVersion: 2
-        x: 91
-        y: 1
-        width: 28
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 77cfca9abd31f2620800000000000000
-      internalID: 2751439731512114295
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: TestSpritesheetAttacks_29
-      rect:
-        serializedVersion: 2
-        x: 121
-        y: 1
-        width: 28
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f889082ba367dc9a0800000000000000
-      internalID: -6211178316599093105
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    outline: []
+    outline:
+    - - {x: -402, y: -220}
+      - {x: -435, y: -220}
+      - {x: -436, y: -222}
+      - {x: -436, y: -257}
+      - {x: -399, y: -257}
+      - {x: -399, y: -224}
+    - - {x: -395, y: -220}
+      - {x: -398, y: -223}
+      - {x: -398, y: -254}
+      - {x: -395, y: -257}
+      - {x: -363, y: -257}
+      - {x: -361, y: -256}
+      - {x: -361, y: -220}
+    - - {x: -233, y: -210}
+      - {x: 87, y: -257}
+      - {x: 128, y: -257}
+      - {x: 132, y: -223}
+      - {x: 265, y: -212}
+      - {x: 346, y: -229}
+      - {x: 358, y: -221}
+      - {x: 446, y: -194}
+      - {x: 457, y: -183}
+      - {x: 457, y: -80}
+      - {x: 445, y: -68}
+      - {x: 459, y: -31}
+      - {x: 474, y: -102}
+      - {x: 478, y: -109}
+      - {x: 488, y: -113}
+      - {x: 488, y: 117}
+      - {x: 483, y: 179}
+      - {x: 410, y: 202}
+      - {x: 131, y: 202}
+      - {x: 123, y: 183}
+      - {x: 123, y: 80}
+      - {x: 125, y: 78}
+      - {x: 117, y: 80}
+      - {x: 119, y: 181}
+      - {x: 108, y: 197}
+      - {x: 97, y: 202}
+      - {x: -344, y: 202}
+      - {x: -457, y: 140}
+      - {x: -457, y: -100}
+      - {x: -359, y: -257}
+      - {x: -333, y: -257}
+      - {x: -320, y: -244}
+      - {x: -324, y: -218}
+      - {x: -337, y: -218}
+      - {x: -238, y: -211}
+    - - {x: -323, y: -222}
+      - {x: -323, y: -257}
+      - {x: -286, y: -257}
+      - {x: -286, y: -220}
+      - {x: -321, y: -220}
+    - - {x: -242, y: -220}
+      - {x: -243, y: -221}
+      - {x: -244, y: -224}
+      - {x: -244, y: -257}
+      - {x: -217, y: -257}
+      - {x: -214, y: -252}
+      - {x: -211, y: -235}
+      - {x: -211, y: -220}
+    - - {x: -211, y: -220}
+      - {x: -211, y: -255}
+      - {x: -208, y: -257}
+      - {x: -177, y: -257}
+      - {x: -174, y: -255}
+      - {x: -174, y: -220}
+    - - {x: -136, y: -224}
+      - {x: -139, y: -220}
+      - {x: -172, y: -220}
+      - {x: -173, y: -222}
+      - {x: -173, y: -255}
+      - {x: -171, y: -257}
+      - {x: -136, y: -257}
+    - - {x: -136, y: -220}
+      - {x: -136, y: -257}
+      - {x: -115, y: -257}
+      - {x: -99, y: -243}
+      - {x: -99, y: -220}
+    - - {x: -57, y: -220}
+      - {x: -57, y: -257}
+      - {x: -28, y: -257}
+      - {x: -28, y: -220}
+    - - {x: -23, y: -220}
+      - {x: -23, y: -257}
+      - {x: 14, y: -257}
+      - {x: 14, y: -224}
+      - {x: 11, y: -220}
+    - - {x: 14, y: -220}
+      - {x: 14, y: -244}
+      - {x: 17, y: -257}
+      - {x: 45, y: -257}
+      - {x: 51, y: -227}
+      - {x: 51, y: -221}
+      - {x: 49, y: -220}
+    - - {x: 52, y: -222}
+      - {x: 52, y: -257}
+      - {x: 89, y: -257}
+      - {x: 89, y: -220}
+      - {x: 54, y: -220}
+    - - {x: 127, y: -220}
+      - {x: 127, y: -257}
+      - {x: 164, y: -257}
+      - {x: 164, y: -220}
+    - - {x: 201, y: -239}
+      - {x: 201, y: -220}
+      - {x: 168, y: -220}
+      - {x: 164, y: -225}
+      - {x: 164, y: -253}
+      - {x: 167, y: -256}
+      - {x: 170, y: -257}
+      - {x: 199, y: -257}
+      - {x: 201, y: -255}
+      - {x: 201, y: -250}
+      - {x: 199, y: -248}
+    - - {x: 204, y: -220}
+      - {x: 202, y: -222}
+      - {x: 202, y: -235}
+      - {x: 212, y: -257}
+      - {x: 228, y: -257}
+      - {x: 230, y: -255}
+      - {x: 239, y: -230}
+      - {x: 239, y: -220}
+    - - {x: 277, y: -220}
+      - {x: 277, y: -257}
+      - {x: 314, y: -257}
+      - {x: 314, y: -223}
+      - {x: 310, y: -220}
+    - - {x: 314, y: -220}
+      - {x: 314, y: -257}
+      - {x: 351, y: -257}
+      - {x: 351, y: -220}
+    - - {x: 372, y: -234}
+      - {x: 370, y: -236}
+      - {x: 370, y: -241}
+      - {x: 372, y: -243}
+      - {x: 370, y: -248}
+      - {x: 370, y: -229}
+      - {x: 382, y: -234}
+      - {x: 389, y: -234}
+      - {x: 389, y: -220}
+      - {x: 352, y: -220}
+      - {x: 352, y: -257}
+      - {x: 389, y: -257}
+      - {x: 389, y: -235}
+      - {x: 387, y: -234}
+    - - {x: 389, y: -220}
+      - {x: 389, y: -257}
+      - {x: 425, y: -257}
+      - {x: 426, y: -255}
+      - {x: 426, y: -220}
+    - - {x: -379, y: -230}
+      - {x: -376, y: -230}
+      - {x: -376, y: -247}
+      - {x: -379, y: -247}
+    - - {x: -117, y: -230}
+      - {x: -114, y: -230}
+      - {x: -114, y: -233}
+      - {x: -117, y: -233}
+    - - {x: 108, y: -230}
+      - {x: 111, y: -230}
+      - {x: 111, y: -233}
+      - {x: 108, y: -233}
+    - - {x: 146, y: -231}
+      - {x: 149, y: -231}
+      - {x: 149, y: -233}
+      - {x: 146, y: -233}
+    - - {x: 296, y: -230}
+      - {x: 299, y: -230}
+      - {x: 299, y: -233}
+      - {x: 296, y: -233}
+    - - {x: 333, y: -231}
+      - {x: 336, y: -231}
+      - {x: 336, y: -233}
+      - {x: 333, y: -233}
+    - - {x: -174, y: -192}
+      - {x: -177, y: -194}
+      - {x: -177, y: -214}
+      - {x: -176, y: -219}
+      - {x: -166, y: -219}
+      - {x: -163, y: -217}
+      - {x: -163, y: -197}
+      - {x: -164, y: -192}
+    - - {x: -445, y: -68}
+      - {x: -467, y: -70}
+      - {x: -516, y: -123}
+      - {x: -517, y: -125}
+      - {x: -517, y: -133}
+      - {x: -468, y: -192}
+      - {x: -273, y: -192}
+      - {x: -273, y: -71}
+      - {x: -274, y: -68}
+    - - {x: -705, y: -129}
+      - {x: -705, y: -111}
+      - {x: -741, y: -111}
+      - {x: -742, y: -115}
+      - {x: -742, y: -147}
+      - {x: -739, y: -148}
+      - {x: -706, y: -148}
+      - {x: -705, y: -146}
+      - {x: -705, y: -141}
+      - {x: -707, y: -139}
+    - - {x: -669, y: -111}
+      - {x: -704, y: -111}
+      - {x: -704, y: -146}
+      - {x: -702, y: -148}
+      - {x: -667, y: -148}
+      - {x: -667, y: -113}
+    - - {x: -664, y: -111}
+      - {x: -667, y: -114}
+      - {x: -667, y: -145}
+      - {x: -664, y: -148}
+      - {x: -632, y: -148}
+      - {x: -630, y: -147}
+      - {x: -630, y: -111}
+    - - {x: -629, y: -111}
+      - {x: -629, y: -144}
+      - {x: -626, y: -148}
+      - {x: -596, y: -148}
+      - {x: -592, y: -144}
+      - {x: -592, y: -111}
+    - - {x: -589, y: -111}
+      - {x: -592, y: -112}
+      - {x: -592, y: -148}
+      - {x: -555, y: -148}
+      - {x: -555, y: -111}
+    - - {x: -554, y: -111}
+      - {x: -554, y: -148}
+      - {x: -517, y: -148}
+      - {x: -517, y: -113}
+      - {x: -518, y: -111}
+    - - {x: 498, y: -125}
+      - {x: 500, y: -123}
+      - {x: 500, y: -115}
+      - {x: 496, y: -111}
+      - {x: 464, y: -111}
+      - {x: 463, y: -114}
+      - {x: 463, y: -132}
+      - {x: 469, y: -134}
+      - {x: 486, y: -134}
+      - {x: 465, y: -134}
+      - {x: 463, y: -136}
+      - {x: 463, y: -144}
+      - {x: 466, y: -148}
+      - {x: 498, y: -148}
+      - {x: 500, y: -144}
+      - {x: 500, y: -127}
+      - {x: 494, y: -125}
+    - - {x: 501, y: -111}
+      - {x: 501, y: -144}
+      - {x: 504, y: -148}
+      - {x: 535, y: -148}
+      - {x: 538, y: -145}
+      - {x: 538, y: -111}
+    - - {x: 571, y: -111}
+      - {x: 538, y: -111}
+      - {x: 538, y: -148}
+      - {x: 575, y: -148}
+      - {x: 575, y: -113}
+    - - {x: 576, y: -111}
+      - {x: 576, y: -148}
+      - {x: 609, y: -148}
+      - {x: 613, y: -139}
+      - {x: 613, y: -111}
+    - - {x: 643, y: -127}
+      - {x: 643, y: -132}
+      - {x: 645, y: -134}
+      - {x: 643, y: -139}
+      - {x: 643, y: -120}
+      - {x: 655, y: -125}
+      - {x: 662, y: -125}
+      - {x: 662, y: -111}
+      - {x: 625, y: -111}
+      - {x: 625, y: -148}
+      - {x: 661, y: -148}
+      - {x: 662, y: -144}
+      - {x: 662, y: -125}
+      - {x: 645, y: -125}
+    - - {x: 698, y: -111}
+      - {x: 663, y: -111}
+      - {x: 663, y: -147}
+      - {x: 667, y: -148}
+      - {x: 699, y: -148}
+      - {x: 700, y: -145}
+      - {x: 700, y: -112}
+    - - {x: 737, y: -111}
+      - {x: 700, y: -111}
+      - {x: 700, y: -148}
+      - {x: 737, y: -148}
+    - - {x: -648, y: -121}
+      - {x: -645, y: -121}
+      - {x: -645, y: -138}
+      - {x: -648, y: -138}
+    - - {x: -685, y: -121}
+      - {x: -682, y: -121}
+      - {x: -682, y: -124}
+      - {x: -685, y: -124}
+    - - {x: 557, y: -122}
+      - {x: 560, y: -122}
+      - {x: 560, y: -124}
+      - {x: 557, y: -124}
+    - - {x: 595, y: -121}
+      - {x: 598, y: -121}
+      - {x: 598, y: -124}
+      - {x: 595, y: -124}
+    - - {x: 165, y: -63}
+      - {x: 265, y: -63}
+      - {x: 278, y: -50}
+      - {x: 278, y: 50}
+      - {x: 265, y: 63}
+      - {x: 165, y: 63}
+      - {x: 162, y: 60}
+      - {x: 158, y: 67}
+      - {x: 235, y: 67}
+      - {x: 248, y: 80}
+      - {x: 247, y: 81}
+      - {x: 246, y: 80}
+      - {x: 261, y: 65}
+      - {x: 262, y: 65}
+      - {x: 282, y: 45}
+      - {x: 282, y: -30}
+      - {x: 315, y: -63}
+      - {x: 260, y: -63}
+      - {x: 255, y: -67}
+    - - {x: -232, y: -53}
+      - {x: -228, y: -53}
+      - {x: -228, y: -57}
+      - {x: -232, y: -57}
+    - - {x: -111, y: -51}
+      - {x: -112, y: 57}
+      - {x: -129, y: 66}
+      - {x: -25, y: 67}
+      - {x: -22, y: 70}
+      - {x: -18, y: 63}
+      - {x: -96, y: 65}
+      - {x: -108, y: 55}
+      - {x: -109, y: -51}
+      - {x: -105, y: -53}
+    - - {x: 18, y: -50}
+      - {x: 18, y: 50}
+      - {x: 15, y: 53}
+      - {x: 22, y: 50}
+      - {x: 22, y: -50}
+      - {x: 25, y: -53}
+    - - {x: 138, y: -53}
+      - {x: 142, y: -53}
+      - {x: 142, y: -57}
+      - {x: 138, y: -57}
+    - - {x: -705, y: 4}
+      - {x: -705, y: 18}
+      - {x: -742, y: 18}
+      - {x: -742, y: -1}
+      - {x: -739, y: -4}
+      - {x: -736, y: -5}
+      - {x: -719, y: -5}
+      - {x: -742, y: -5}
+      - {x: -742, y: -17}
+      - {x: -741, y: -19}
+      - {x: -706, y: -19}
+      - {x: -705, y: -15}
+      - {x: -705, y: 2}
+      - {x: -711, y: 4}
+    - - {x: -670, y: 18}
+      - {x: -704, y: 18}
+      - {x: -704, y: -19}
+      - {x: -683, y: -19}
+      - {x: -668, y: -10}
+      - {x: -667, y: -5}
+      - {x: -667, y: 17}
+    - - {x: -630, y: 17}
+      - {x: -636, y: 18}
+      - {x: -667, y: 18}
+      - {x: -667, y: -17}
+      - {x: -665, y: -19}
+      - {x: -630, y: -19}
+    - - {x: -625, y: 18}
+      - {x: -625, y: -19}
+      - {x: -596, y: -19}
+      - {x: -596, y: 17}
+      - {x: -598, y: 18}
+    - - {x: -592, y: 18}
+      - {x: -592, y: -18}
+      - {x: -590, y: -19}
+      - {x: -555, y: -19}
+      - {x: -555, y: 17}
+      - {x: -556, y: 18}
+    - - {x: -554, y: 18}
+      - {x: -554, y: -10}
+      - {x: -552, y: -19}
+      - {x: -525, y: -19}
+      - {x: -517, y: 2}
+      - {x: -517, y: 18}
+    - - {x: 577, y: 5}
+      - {x: 564, y: 5}
+      - {x: 581, y: 5}
+      - {x: 583, y: 7}
+      - {x: 583, y: 15}
+      - {x: 579, y: 19}
+      - {x: 550, y: 19}
+      - {x: 546, y: 16}
+      - {x: 546, y: 1}
+      - {x: 547, y: -2}
+      - {x: 552, y: -4}
+      - {x: 569, y: -4}
+      - {x: 548, y: -4}
+      - {x: 546, y: -6}
+      - {x: 546, y: -14}
+      - {x: 550, y: -18}
+      - {x: 579, y: -18}
+      - {x: 583, y: -13}
+      - {x: 583, y: 0}
+      - {x: 580, y: 4}
+    - - {x: 583, y: 19}
+      - {x: 583, y: -18}
+      - {x: 619, y: -18}
+      - {x: 620, y: -17}
+      - {x: 620, y: 15}
+      - {x: 616, y: 19}
+    - - {x: 621, y: 19}
+      - {x: 621, y: -16}
+      - {x: 622, y: -18}
+      - {x: 658, y: -18}
+      - {x: 658, y: 17}
+      - {x: 657, y: 19}
+    - - {x: 659, y: 19}
+      - {x: 658, y: 16}
+      - {x: 658, y: -14}
+      - {x: 662, y: -18}
+      - {x: 695, y: -18}
+      - {x: 695, y: 19}
+    - - {x: 733, y: 18}
+      - {x: 731, y: 19}
+      - {x: 696, y: 19}
+      - {x: 696, y: -18}
+      - {x: 731, y: -18}
+      - {x: 733, y: -16}
+    - - {x: 640, y: 9}
+      - {x: 643, y: 9}
+      - {x: 643, y: -8}
+      - {x: 640, y: -8}
+    - - {x: -518, y: 8}
+      - {x: -521, y: 4}
+      - {x: -521, y: -3}
+      - {x: -517, y: -6}
+      - {x: -460, y: -6}
+      - {x: -457, y: -3}
+      - {x: -457, y: 4}
+      - {x: -458, y: 8}
+    - - {x: -685, y: 8}
+      - {x: -682, y: 8}
+      - {x: -682, y: 5}
+      - {x: -685, y: 5}
+    - - {x: -648, y: 8}
+      - {x: -645, y: 8}
+      - {x: -645, y: 5}
+      - {x: -648, y: 5}
+    - - {x: 464, y: 96}
+      - {x: 459, y: 95}
+      - {x: 459, y: 86}
+      - {x: 494, y: 50}
+      - {x: 530, y: 14}
+      - {x: 540, y: 14}
+      - {x: 540, y: 28}
+      - {x: 469, y: 96}
+    - - {x: -232, y: 57}
+      - {x: -228, y: 57}
+      - {x: -228, y: 53}
+      - {x: -232, y: 53}
+    - - {x: 138, y: 57}
+      - {x: 142, y: 57}
+      - {x: 142, y: 53}
+      - {x: 138, y: 53}
+    - - {x: -454, y: 192}
+      - {x: -468, y: 190}
+      - {x: -517, y: 130}
+      - {x: -517, y: 72}
+      - {x: -472, y: 68}
+      - {x: -273, y: 68}
+      - {x: -273, y: 192}
+    - - {x: -152, y: 77}
+      - {x: -148, y: 77}
+      - {x: -148, y: 73}
+      - {x: -152, y: 73}
+    - - {x: -2, y: 77}
+      - {x: 2, y: 77}
+      - {x: 2, y: 73}
+      - {x: -2, y: 73}
+    - - {x: -742, y: 132}
+      - {x: -742, y: 95}
+      - {x: -707, y: 95}
+      - {x: -705, y: 96}
+      - {x: -705, y: 128}
+      - {x: -709, y: 132}
+    - - {x: -700, y: 132}
+      - {x: -700, y: 95}
+      - {x: -671, y: 95}
+      - {x: -671, y: 132}
+    - - {x: -630, y: 130}
+      - {x: -633, y: 132}
+      - {x: -667, y: 132}
+      - {x: -667, y: 95}
+      - {x: -630, y: 95}
+    - - {x: -625, y: 132}
+      - {x: -625, y: 95}
+      - {x: -596, y: 95}
+      - {x: -596, y: 131}
+      - {x: -598, y: 132}
+    - - {x: -592, y: 132}
+      - {x: -592, y: 95}
+      - {x: -555, y: 95}
+      - {x: -555, y: 128}
+      - {x: -557, y: 132}
+    - - {x: -517, y: 132}
+      - {x: -553, y: 132}
+      - {x: -554, y: 129}
+      - {x: -554, y: 97}
+      - {x: -552, y: 95}
+      - {x: -517, y: 95}
+    - - {x: 581, y: 135}
+      - {x: 568, y: 135}
+      - {x: 585, y: 135}
+      - {x: 587, y: 137}
+      - {x: 587, y: 145}
+      - {x: 583, y: 149}
+      - {x: 554, y: 149}
+      - {x: 550, y: 146}
+      - {x: 550, y: 131}
+      - {x: 551, y: 128}
+      - {x: 556, y: 126}
+      - {x: 573, y: 126}
+      - {x: 552, y: 126}
+      - {x: 550, y: 124}
+      - {x: 550, y: 116}
+      - {x: 554, y: 112}
+      - {x: 583, y: 112}
+      - {x: 587, y: 117}
+      - {x: 587, y: 130}
+      - {x: 584, y: 134}
+    - - {x: 624, y: 148}
+      - {x: 622, y: 149}
+      - {x: 587, y: 149}
+      - {x: 587, y: 112}
+      - {x: 622, y: 112}
+      - {x: 624, y: 114}
+    - - {x: 625, y: 149}
+      - {x: 625, y: 114}
+      - {x: 626, y: 112}
+      - {x: 662, y: 112}
+      - {x: 662, y: 147}
+      - {x: 661, y: 149}
+    - - {x: 662, y: 149}
+      - {x: 662, y: 114}
+      - {x: 663, y: 112}
+      - {x: 699, y: 112}
+      - {x: 699, y: 147}
+      - {x: 698, y: 149}
+    - - {x: 701, y: 149}
+      - {x: 700, y: 147}
+      - {x: 700, y: 134}
+      - {x: 710, y: 112}
+      - {x: 730, y: 112}
+      - {x: 737, y: 138}
+      - {x: 737, y: 149}
+    - - {x: -535, y: 121}
+      - {x: -532, y: 121}
+      - {x: -532, y: 119}
+      - {x: -535, y: 119}
+    - - {x: -498, y: 122}
+      - {x: -495, y: 122}
+      - {x: -495, y: 119}
+      - {x: -498, y: 119}
+    - - {x: 430, y: 224}
+      - {x: 334, y: 224}
+      - {x: 334, y: 192}
+      - {x: 336, y: 183}
+      - {x: 480, y: 120}
+      - {x: 542, y: 120}
+      - {x: 544, y: 122}
+      - {x: 544, y: 131}
+      - {x: 543, y: 134}
+    - - {x: 644, y: 139}
+      - {x: 647, y: 139}
+      - {x: 647, y: 122}
+      - {x: 644, y: 122}
+    - - {x: 681, y: 139}
+      - {x: 684, y: 139}
+      - {x: 684, y: 122}
+      - {x: 681, y: 122}
+    - - {x: -132, y: 187}
+      - {x: -128, y: 187}
+      - {x: -128, y: 183}
+      - {x: -132, y: 183}
+    - - {x: -22, y: 187}
+      - {x: -18, y: 187}
+      - {x: -18, y: 183}
+      - {x: -22, y: 183}
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000

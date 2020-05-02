@@ -35,7 +35,7 @@ public class LevelManager : MonoBehaviour
         [System.Serializable]
         public struct PickupData
         {
-
+            public bool pickedUp;
         }
 
         #endregion

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class DamageText : MonoBehaviour
 {
-    public TextMesh text;
+    public TMPro.TextMeshPro text;
     public float lifeTime = 0.5f;
     public float riseSpeed = 0.5f;
 
