@@ -5344,15 +5344,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.15
-  m_Text: "SKULL AND MCCORMICK RESEARCH CENTER\r\n--ALERT--\r\n\n\r\r-TEST DOGS HAVE
-    ESCAPED CONTAINMENT\r\n\r-DOGS ARE EXTREMELY DANGEROUS AND WILL ATTACK ON SIGHT\r\n\r\r-ALL
-    RESEARCHERS ARE TO EVACUATE IMMEDIATELY \r\n\r-IF A DOG APPROACHES YOU, APPLY
-    LOVING KISSES AND PETS \r\n\r-FIND ANTIDOTE BLASTERS IF POSSIBLE, THEY WILL CURE
-    DOGS OF THEIR RAGE\r\n-SMOOCHES CHARGED WITH RAGE WILL ALSO CURE DOGS\n\r\r-AMMUNITION
-    AND MEDICAL KITS ARE HIDDEN IN WALLS IN SECRET CHACHES THROUGHOUT THE FACILITY\r\n\r\r-NO
-    DOGS ARE TO BE HARMED FOR ACCOUNTING AND INSURANCE REASONS\r\n\r\r-WE THANK YOU
-    FOR COMPLIANCE AND WILLINGNESS TO PUT WORK FIRST\n\r\n\r\nSKULL AND MCCORMICK
-    \nRESEARCH CENTER, LLC"
+  m_Text: --INSERT level introduction--
 --- !u!1 &6880285220433136300
 GameObject:
   m_ObjectHideFlags: 0
@@ -5807,7 +5799,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 7672133724738305586}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
