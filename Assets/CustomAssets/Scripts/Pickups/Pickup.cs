@@ -17,7 +17,7 @@ public class Pickup : MonoBehaviour
     //public GameObject particles;
     private void Start()
     {
-        startYPos = transform.position.y;
+        startYPos = transform.localPosition.y;
         //particles.GetComponent<ParticleSystem>().Play();
     }
     // Update is called once per frame
@@ -25,9 +25,9 @@ public class Pickup : MonoBehaviour
     {
         transform.localPosition = new Vector3
         {
-            x = transform.position.x,
+            x = transform.localPosition.x,
             y = startYPos + Mathf.Cos(currentTime) * bobHeight,
-            z = transform.position.z
+            z = transform.localPosition.z
         };
 
         currentTime = (currentTime + (Time.deltaTime * bobSpeed)) % (2 * Mathf.PI);
