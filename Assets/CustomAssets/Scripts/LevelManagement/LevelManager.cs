@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
+    public static LevelManager instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
     [System.Serializable]
     public struct CheckpointData
     {
@@ -48,6 +54,14 @@ public class LevelManager : MonoBehaviour
     //TODO: keep track of statistics for player
     //TODO: keep track of enemies 
 
+    public GameObject[] rooms;
+    public int[] defaultRooms;
+    public GameObject[] enemyParents;
+
+    private void Start()
+    {
+        LoadRooms(defaultRooms);
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.J))
@@ -67,6 +81,31 @@ public class LevelManager : MonoBehaviour
     public void LoadCheckpoint()
     {
         PlayerManager.instance.LoadCheckpoint(currentCheckpoint.player);
+    }
+
+    public void LoadRooms(int[] loadedRooms)
+    {
+        for (int i = 0; i < rooms.Length; i++)
+        {
+            bool loadRoom = false;
+            for (int j = 0; j < loadedRooms.Length; j++)
+            {
+                if (i == loadedRooms[j])
+                {
+                    loadRoom = true;
+                    break;
+                }
+            }
+
+            if (loadRoom)
+            {
+                rooms[i].SetActive(true);
+            }
+            else
+            {
+                rooms[i].SetActive(false);
+            }
+        }
     }
 
 }
