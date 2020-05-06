@@ -48,14 +48,14 @@ public class EnemyEditor : TargetEditor
         }
         EditorGUI.indentLevel = 0;
 
-        enemy.defaultState = (Enemy.DefaultStateType)EditorGUILayout.EnumPopup("Default State", enemy.defaultState);
+        enemy.defaultStateType = (Enemy.DefaultStateType)EditorGUILayout.EnumPopup("Default State", enemy.defaultStateType);
 
         EditorGUI.indentLevel = 1;
-        switch (enemy.defaultState)
+        switch (enemy.defaultStateType)
         {
-            case Enemy.DefaultStateType.Stationary:
+            case Enemy.DefaultStateType.STATIONARY:
                 break;
-            case Enemy.DefaultStateType.Partol:
+            case Enemy.DefaultStateType.PATROL:
                 showPatrolPositions = EditorGUILayout.Foldout(showPatrolPositions, "Patrol Points");
                 EditorGUI.indentLevel = 2;
 
@@ -98,7 +98,7 @@ public class EnemyEditor : TargetEditor
 
                 break;
 
-            case Enemy.DefaultStateType.Wander:
+            case Enemy.DefaultStateType.WANDER:
                 enemy.wanderRaduisMax = EditorGUILayout.FloatField("Max Wander Radius", enemy.wanderRaduisMax);
                 enemy.wanderRaduisMin = EditorGUILayout.Slider("Min Wander Radius", enemy.wanderRaduisMin, 0f, enemy.wanderRaduisMax);
 

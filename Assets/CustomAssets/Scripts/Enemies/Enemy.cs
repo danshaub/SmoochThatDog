@@ -5,12 +5,48 @@ using UnityEngine.AI;
 
 public class Enemy : Target
 {
+    #region Enums
+    [System.Serializable]
+    public enum State
+    {
+        DEFAULT,
+        AGRO,
+        ATTACKING,
+        SEARCHING
+    }
+    [System.Serializable]
+    public enum SearchSubState
+    {
+        NOT_SEARCHING,
+        CHECK_LAST_POS,
+        PICK_SEARCH_POINTS,
+        MOVING_TO_POINT,
+        STOPPED_AT_POINT,
+        DONE
+    }
+    [System.Serializable]
+    public enum DefaultSubState
+    {
+        NOT_DEFAULT,
+        AT_POSITION,
+        WAITING,
+        MOVING_TO_NEXT
+    }
+    [System.Serializable]
+    public enum AttackSubState
+    {
+        NOT_ATTACKING,
+        WAITING,
+        ATTACKING,
+        DONE
+    }
+
     [System.Serializable]
     public enum DefaultStateType
     {
-        Stationary,
-        Partol,
-        Wander
+        STATIONARY,
+        PATROL,
+        WANDER
     }
 
     [System.Serializable]
@@ -19,6 +55,7 @@ public class Enemy : Target
         Constant,
         RandomBetweenTwoConstants
     }
+    #endregion
 
     #region AnimationVariables
     [Header("Animation Variables")]
@@ -28,6 +65,7 @@ public class Enemy : Target
     public float damageTextVerticalOffset;
     public Color damageTextColor;
     public Color finalHitTextColor;
+    public SpriteRenderer sprite;
 
     //Hidden Variables
     public float angleToPlayer { get; protected set; }
@@ -54,28 +92,36 @@ public class Enemy : Target
     public float attackTime = 1f;
     public float attackTimeMin = 1f;
     public float attackTimeMax = 2f;
-    public DefaultStateType defaultState;
+    public DefaultStateType defaultStateType;
     public List<Transform> patrolPoints;
     public float timeAtPosition;
     public float wanderRaduisMax;
     public float wanderRaduisMin;
 
-    //Hidden Variables
-    Transform target;
+    #region Internal Variables
+    //States
+    public State state;
+    public DefaultSubState defaultSubState;
+    public SearchSubState searchSubState;
+    public AttackSubState attackSubState;
+    //Location Flags
+    bool hasLineOfSight = false;
+    bool inChaseRadius = false;
+    bool inAgroRadius = false;
+    bool inAttackRadius = false;
+    Vector3 nextPosition = Vector3.zero;
+    Transform playerTransform;
     NavMeshAgent agent;
-    private bool isAware;
-    private bool lostSight;
-    private bool lookingForTarget;
-    private bool nextLookingPlaceSet;
-    private int lookingPlacesRemaining;
-    private List<Vector3> lookingPlaces;
+    bool destinationChanged;
+    Vector3 previousDestination;
+    private List<Vector3> pointsToSearch = new List<Vector3>();
     [HideInInspector] public bool attacking = false;
     Vector3 initialPosition;
     Quaternion initialRotation;
     int nextPatrolPoint = 0;
     float initialStoppingDistance;
-    bool settingPosition;
-    bool canSetPosition = true;
+
+    #endregion
     #endregion
 
     #region Methods
@@ -83,7 +129,8 @@ public class Enemy : Target
     {
         health = maxHealth;
         agent = GetComponent<NavMeshAgent>();
-        target = PlayerManager.instance.transform;
+        previousDestination = agent.destination;
+        playerTransform = PlayerManager.instance.transform;
         initialPosition = transform.position;
         initialRotation = transform.rotation;
         initialStoppingDistance = agent.stoppingDistance;
@@ -101,6 +148,7 @@ public class Enemy : Target
         yield return new WaitForSeconds(delayBeforeRespawn);
         StartCoroutine(Respawn());
     }
+
     override protected IEnumerator Respawn()
     {
         foreach (SpriteRenderer sr in GetComponentsInChildren<SpriteRenderer>())
@@ -114,11 +162,12 @@ public class Enemy : Target
         agent.stoppingDistance = initialStoppingDistance;
         agent.SetDestination(transform.position);
         nextPatrolPoint = 0;
-        isAware = false;
-        canSetPosition = true;
-        settingPosition = false;
-        attacking = false;
+        state = State.DEFAULT;
+        defaultSubState = DefaultSubState.NOT_DEFAULT;
+        attackSubState = AttackSubState.NOT_ATTACKING;
+        searchSubState = SearchSubState.NOT_SEARCHING;
         isStunned = false;
+        sprite.color = Color.white;
         canStun = true;
 
         yield return new WaitForSeconds(respawnTime);
@@ -146,6 +195,8 @@ public class Enemy : Target
     private void FixedUpdate()
     {
         previousHealth = health;
+        destinationChanged = previousDestination != agent.destination;
+
         if (damageDonePreviousFixedFrameFrame != 0)
         {
             MakeDamageText();
@@ -157,223 +208,419 @@ public class Enemy : Target
         }
         else
         {
-            isAware = false;
+            if (killed)
+            {
+                FaceTarget();
+            }
+            else
+            {
+                state = State.DEFAULT;
+            }
+
             agent.SetDestination(transform.position);
         }
 
         enemyAnimations.SetFloat("WalkSpeed", agent.desiredVelocity.magnitude);
         damageDonePreviousFixedFrameFrame = 0;
+        previousDestination = agent.destination;
     }
 
     #region AI Methods
     virtual protected void PerformAILogic()
     {
         //Reset stopping distance if enemy is aware of player
-        if (isAware)
+        if (state != State.DEFAULT)
         {
             agent.stoppingDistance = initialStoppingDistance;
         }
 
         //Calculate distance to player
-        float distance = Vector3.Distance(target.position, transform.position);
-        bool hasLineOfSight = RaycastToPlayer();
+        float distance = Vector3.Distance(playerTransform.position, transform.position);
+
+        //reset location flags
+        hasLineOfSight = false;
+        inChaseRadius = false;
+        inAgroRadius = false;
+        inAttackRadius = false;
+
+        //set location flags
+        if (distance <= chaseLimitRadius)
+        {
+            inChaseRadius = true;
+            hasLineOfSight = RaycastToPlayer();
+
+            if (distance <= agroRadius)
+            {
+                inAgroRadius = true;
+                if (distance <= attackRaduis)
+                {
+                    inAttackRadius = true;
+                }
+            }
+        }
+
         if (PlayerManager.instance.isAlive)
         {
-            //Attack if close enough to attack
-            if (distance <= attackRaduis && (isAware || hasLineOfSight))
+            //Implementation of highest level state machine
+            switch (state)
             {
-                //Debug.Log("Attacking");
-                agent.SetDestination(target.position);
-                if (!attacking)
-                {
-                    float attackTime = 0;
-                    switch (attackTimeType)
+                case State.DEFAULT:
+                    //Exit case: Player enters agro radius
+                    if (inAgroRadius)
                     {
-                        case AttackTimeType.Constant:
-                            attackTime = this.attackTime;
-                            break;
-                        case AttackTimeType.RandomBetweenTwoConstants:
-                            attackTime = Random.Range(attackTimeMin, attackTimeMin);
-                            break;
-                        default:
-                            Debug.LogError("Unknown condition");
-                            break;
+                        state = State.AGRO;
+                        defaultSubState = DefaultSubState.NOT_DEFAULT;
+                        PerformAgroState();
                     }
-                    StartCoroutine(AttackPlayer(attackTime));
-                }
-            }
-            //Chase player if close enough to gain agro
-            else if (distance <= agroRadius && hasLineOfSight)
-            {
-                //Debug.Log("Agro");
-                isAware = true;
-                agent.SetDestination(target.position);
-            }
-            //Chase player if close enough to chase and is aware
-            else if (distance <= chaseLimitRadius && isAware && hasLineOfSight)
-            {
-                //Debug.Log("Chasing");
-                agent.SetDestination(target.position);
-            }
-            //If the enemy was aware the previous frame, it has now lost sight
-            else if (isAware)
-            {
-                //Debug.Log("Lost Sight");
-                lostSight = true;
-                isAware = false;
-            }
-            else if (lostSight)
-            {
-                //Debug.Log("Picking positions to look");
-                if (agent.remainingDistance < agent.stoppingDistance)
-                {
-                    lookingForTarget = true;
-                    lostSight = false;
-                    lookingPlacesRemaining = 3;
-                    lookingPlaces = new List<Vector3>();
-                    for (int i = 0; i < lookingPlacesRemaining; i++)
+                    else
                     {
-                        if (i == 0)
-                        {
-                            lookingPlaces.Add(transform.position + (new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized * Random.Range(2, 4)));
-                        }
-                        else
-                        {
-                            lookingPlaces.Add(lookingPlaces[i - 1] + (new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized * Random.Range(2, 4)));
-                        }
+                        PerformDefaultState();
                     }
-                    nextLookingPlaceSet = false;
-                }
-            }
-            else if (lookingForTarget)
-            {
-                //Debug.Log("Looking for target");
-                if (agent.remainingDistance < agent.stoppingDistance)
-                {
-                    if (!nextLookingPlaceSet && lookingPlacesRemaining > 0)
-                    {
-                        StartCoroutine(LookForTarget());
-                    }
-                    else if (lookingPlacesRemaining == 0)
-                    {
-                        StartCoroutine(FinishLooking());
-                    }
-                }
-            }
-            //otherwise, return to default state
-            else
-            {
-                PerformDefaultState();
-            }
+                    break;
 
-            //Ensure facing target even if too close to move towards player
-            if (distance <= agent.stoppingDistance)
-            {
-                FaceTarget();
+                case State.AGRO:
+                    //Exit case: Player enters attack radius
+                    if (inAttackRadius)
+                    {
+                        state = State.ATTACKING;
+                        PerformAttackState();
+                    }
+                    //Exit case: Player breaks line of sight or leaves chase radius
+                    else if (!hasLineOfSight)
+                    {
+                        state = State.SEARCHING;
+                        PerformSearchingState();
+                    }
+                    else
+                    {
+                        PerformAgroState();
+                    }
+                    break;
 
+                case State.ATTACKING:
+                    //Exit Case: enemy finished attacking, return to agro
+                    if (attackSubState == AttackSubState.DONE)
+                    {
+                        state = State.AGRO;
+                        attackSubState = AttackSubState.NOT_ATTACKING;
+                        PerformAgroState();
+                    }
+                    else
+                    {
+                        PerformAttackState();
+                    }
+                    break;
+
+                case State.SEARCHING:
+                    //Exit case: Searching concludes without finding player
+                    if (searchSubState == SearchSubState.DONE)
+                    {
+                        state = State.DEFAULT;
+                        searchSubState = SearchSubState.NOT_SEARCHING;
+                        PerformDefaultState();
+                    }
+                    //Exit case: Enemy finds player
+                    else if (hasLineOfSight)
+                    {
+                        state = State.AGRO;
+                        searchSubState = SearchSubState.NOT_SEARCHING;
+                    }
+                    else
+                    {
+                        PerformSearchingState();
+                    }
+                    break;
+
+                default:
+                    Debug.LogError("Unrecognized State");
+                    break;
             }
         }
         else
         {
-            PerformDefaultState();
+            searchSubState = SearchSubState.NOT_SEARCHING;
+            attackSubState = AttackSubState.NOT_ATTACKING;
+            state = State.DEFAULT;
         }
     }
 
-    protected void PerformDefaultState()
+    #region Default State Logic
+    private void PerformDefaultState()
     {
-        //Debug.Log("Default State");
         agent.stoppingDistance = 0.5f;
 
-        switch (defaultState)
+        switch (defaultStateType)
         {
             //Return to 
-            case Enemy.DefaultStateType.Stationary:
-
-                if (agent.remainingDistance < agent.stoppingDistance)
-                {
-                    agent.SetDestination(initialPosition);
-                    transform.rotation = Quaternion.Slerp(transform.rotation, initialRotation, Time.deltaTime * 5f);
-                }
-                break;
-            case Enemy.DefaultStateType.Partol:
-                if (canSetPosition && agent.remainingDistance < agent.stoppingDistance)
-                {
-                    if (!settingPosition)
-                    {
-                        //Debug.Log("Setting position");
-                        settingPosition = true;
-                        canSetPosition = false;
-                        StartCoroutine(NextPatrolPosition());
-                    }
-                }
+            case Enemy.DefaultStateType.STATIONARY:
+                PerformDefaultStationary();
                 break;
 
-            case Enemy.DefaultStateType.Wander:
+            case Enemy.DefaultStateType.PATROL:
+                PerformDefaultPatrol();
+                break;
+
+            case Enemy.DefaultStateType.WANDER:
+                PerformDefaultWander();
+                break;
+
+            default:
+                Debug.LogError("Unrecognized Default State Type");
+                break;
+        }
+    }
+    private void PerformDefaultStationary()
+    {
+        switch (defaultSubState)
+        {
+            case DefaultSubState.NOT_DEFAULT:
+                //Upon entering sub state machine, move to initial position
+                agent.SetDestination(initialPosition);
+                defaultSubState = DefaultSubState.MOVING_TO_NEXT;
+                break;
+
+            case DefaultSubState.AT_POSITION:
+                //upon arriving at initial position, begin waiting there
                 if (agent.remainingDistance < agent.stoppingDistance)
                 {
-                    if (!settingPosition)
-                    {
+                    defaultSubState = DefaultSubState.WAITING;
+                }
+                break;
 
-                        settingPosition = true;
-                        StartCoroutine(NextWanderPosition());
-                    }
+            case DefaultSubState.WAITING:
+                //while waiting for player at initial position, face in initial direction
+                transform.rotation = Quaternion.Slerp(transform.rotation, initialRotation, Time.deltaTime * 5f);
+                break;
+
+            case DefaultSubState.MOVING_TO_NEXT:
+                //no logic necessary while moving back to initial position
+                break;
+
+            default:
+                Debug.LogError("Unrecognized Default Substate");
+                break;
+        }
+        // if (agent.remainingDistance < agent.stoppingDistance)
+        // {
+        //     agent.SetDestination(initialPosition);
+        //     transform.rotation = Quaternion.Slerp(transform.rotation, initialRotation, Time.deltaTime * 5f);
+        // }
+    }
+    private void PerformDefaultWander()
+    {
+        nextPosition = Vector3.zero;
+        switch (defaultSubState)
+        {
+            case DefaultSubState.NOT_DEFAULT:
+                //Upon entering sub state machine, move to new random position within wander radius
+                nextPosition = new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f)).normalized * Random.Range(wanderRaduisMin, wanderRaduisMax);
+                agent.SetDestination(initialPosition + nextPosition);
+                defaultSubState = DefaultSubState.MOVING_TO_NEXT;
+                break;
+
+            case DefaultSubState.AT_POSITION:
+                //When upon arriving at position, begin waiting to move to next position
+                nextPosition = new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f)).normalized * Random.Range(wanderRaduisMin, wanderRaduisMax);
+                StartCoroutine(SetDestinationAfter(initialPosition + nextPosition, timeAtPosition));
+                defaultSubState = DefaultSubState.WAITING;
+                break;
+
+            case DefaultSubState.WAITING:
+                //When the destination changes, change state to moving to next
+                if (destinationChanged)
+                {
+                    defaultSubState = DefaultSubState.MOVING_TO_NEXT;
+                }
+                break;
+
+            case DefaultSubState.MOVING_TO_NEXT:
+                //When the enemy arrives, set state to at Position
+                if (agent.remainingDistance < agent.stoppingDistance)
+                {
+                    defaultSubState = DefaultSubState.AT_POSITION;
                 }
                 break;
 
             default:
-                Debug.LogError("Unrecognized Option");
+                Debug.LogError("Unrecognized Default Substate");
+                break;
+        }
+    }
+    private void PerformDefaultPatrol()
+    {
+        nextPosition = Vector3.zero;
+        switch (defaultSubState)
+        {
+            case DefaultSubState.NOT_DEFAULT:
+                //Upon entering sub state machine, move to new random position within wander radius
+                agent.SetDestination(patrolPoints[nextPatrolPoint].position);
+                nextPatrolPoint = (nextPatrolPoint + 1) % patrolPoints.Count;
+                defaultSubState = DefaultSubState.MOVING_TO_NEXT;
+                break;
+
+            case DefaultSubState.AT_POSITION:
+                //When upon arriving at position, begin waiting to move to next position
+                StartCoroutine(SetDestinationAfter(patrolPoints[nextPatrolPoint].position, timeAtPosition));
+                nextPatrolPoint = (nextPatrolPoint + 1) % patrolPoints.Count;
+                defaultSubState = DefaultSubState.WAITING;
+                break;
+
+            case DefaultSubState.WAITING:
+                //When the destination changes, change state to moving to next
+                if (destinationChanged)
+                {
+                    defaultSubState = DefaultSubState.MOVING_TO_NEXT;
+                }
+                break;
+
+            case DefaultSubState.MOVING_TO_NEXT:
+                //When the enemy arrives, set state to at Position
+                if (agent.remainingDistance < agent.stoppingDistance)
+                {
+                    defaultSubState = DefaultSubState.AT_POSITION;
+                }
+                break;
+
+            default:
+                Debug.LogError("Unrecognized Default Substate");
+                break;
+        }
+    }
+    #endregion
+
+    protected void PerformAgroState()
+    {
+        agent.SetDestination(playerTransform.position);
+    }
+
+    #region Attack State Logic
+    protected void PerformAttackState()
+    {
+        switch (attackSubState)
+        {
+            case AttackSubState.NOT_ATTACKING:
+                float waitTime;
+
+                if (attackTimeType == AttackTimeType.Constant)
+                {
+                    waitTime = attackTime;
+                }
+                else
+                {
+                    waitTime = Random.Range(attackTimeMin, attackTimeMax);
+                }
+
+                StartCoroutine(WaitToAttack(waitTime));
+                attackSubState = AttackSubState.WAITING;
+                break;
+            case AttackSubState.WAITING:
+                agent.SetDestination(playerTransform.position);
+                // **EXITED BY COROUTINE "WaitToAttack"**
+                if (!inAttackRadius)
+                {
+                    StopCoroutine("WaitToAttack");
+                    attackSubState = AttackSubState.DONE;
+                }
+                agent.SetDestination(transform.position);
+                break;
+            case AttackSubState.ATTACKING:
+
+                // **EXITED BY FUNCTION CALL "HurtPlayer"
+                break;
+            case AttackSubState.DONE:
+                // Currently Inaccessible
                 break;
         }
     }
 
-    protected IEnumerator LookForTarget()
+    virtual protected IEnumerator WaitToAttack(float waitTime)
     {
-        //Debug.LogWarning("In set coroutine");
-        nextLookingPlaceSet = true;
-        yield return new WaitForSeconds(timeAtPosition);
-        //Debug.LogWarning("Exiting set coroutine");
-        agent.SetDestination(lookingPlaces[--lookingPlacesRemaining]);
-        StartCoroutine(DoneSettingLookingPlace());
-
+        yield return new WaitForSeconds(waitTime);
+        enemyAnimations.SetTrigger("Attack");
+        attackSubState = AttackSubState.ATTACKING;
     }
-
-    protected IEnumerator DoneSettingLookingPlace()
+    //Called by Attack Player animation behavior script
+    virtual public bool HurtPlayer()
     {
-        yield return new WaitForSeconds(.5f);
-        nextLookingPlaceSet = false;
+        attackSubState = AttackSubState.DONE;
+        if (isStunned || killed)
+        {
+            return false;
+        }
+        //If the player is in view of the enemy and close enough, hirt player
+        if (RaycastToPlayer() && Vector3.Distance(playerTransform.position, transform.position) <= attackRaduis)
+        {
+            PlayerManager.instance.HurtPlayer(attackDamage);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
-
-    protected IEnumerator FinishLooking()
+    #endregion
+    #region Search State Logic
+    protected void PerformSearchingState()
     {
-        yield return new WaitForSeconds(timeAtPosition);
-        lookingForTarget = false;
+        switch (searchSubState)
+        {
+            case SearchSubState.NOT_SEARCHING:
+                pointsToSearch.Clear();
+                agent.SetDestination(playerTransform.position);
+                searchSubState = SearchSubState.CHECK_LAST_POS;
+                break;
+
+            case SearchSubState.CHECK_LAST_POS:
+                //Exit Case: enemy arrives at last known position of player
+                if (agent.remainingDistance < agent.stoppingDistance)
+                {
+                    searchSubState = SearchSubState.PICK_SEARCH_POINTS;
+                }
+                break;
+
+            case SearchSubState.PICK_SEARCH_POINTS:
+                //pick three new search points around the enemy's location
+                for (int i = 0; i < 3; i++)
+                {
+                    pointsToSearch.Add(transform.position + (new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f)).normalized * 2.5f));
+                }
+                searchSubState = SearchSubState.STOPPED_AT_POINT;
+                break;
+
+            case SearchSubState.MOVING_TO_POINT:
+                if (agent.remainingDistance < agent.stoppingDistance)
+                {
+                    searchSubState = SearchSubState.STOPPED_AT_POINT;
+                }
+                break;
+
+            case SearchSubState.STOPPED_AT_POINT:
+                if (pointsToSearch.Count > 0)
+                {
+                    StartCoroutine(SetDestinationAfter(pointsToSearch[0], timeAtPosition));
+
+                    if (destinationChanged)
+                    {
+                        pointsToSearch.RemoveAt(0);
+                        searchSubState = SearchSubState.MOVING_TO_POINT;
+                    }
+                }
+                else
+                {
+                    searchSubState = SearchSubState.DONE;
+                }
+                break;
+
+            case SearchSubState.DONE:
+                //Currently Inaccessible
+                break;
+        }
     }
-
-    protected IEnumerator PositionSetCooldown()
+    #endregion
+    protected IEnumerator SetDestinationAfter(Vector3 position, float seconds)
     {
-        yield return new WaitForSeconds(1);
-        canSetPosition = true;
-    }
-
-    protected IEnumerator NextPatrolPosition()
-    {
-        yield return new WaitForSeconds(timeAtPosition);
-
-        agent.SetDestination(patrolPoints[nextPatrolPoint].position);
-        nextPatrolPoint = (nextPatrolPoint + 1) % patrolPoints.Count;
-
-        settingPosition = false;
-        StartCoroutine(PositionSetCooldown());
-    }
-
-    protected IEnumerator NextWanderPosition()
-    {
-        yield return new WaitForSeconds(timeAtPosition);
-
-        Vector3 newPosition = new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f)).normalized * Random.Range(wanderRaduisMin, wanderRaduisMax);
-        agent.SetDestination(initialPosition + newPosition);
-
-        settingPosition = false;
+        yield return new WaitForSeconds(seconds);
+        agent.SetDestination(position);
     }
 
     protected bool RaycastToPlayer()
@@ -394,36 +641,13 @@ public class Enemy : Target
 
     protected void FaceTarget()
     {
-        Vector3 direction = (target.position - transform.position).normalized;
+        Vector3 direction = (playerTransform.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 7.5f);
     }
-
-    virtual protected IEnumerator AttackPlayer(float attackInSeconds)
-    {
-        attacking = true;
-        yield return new WaitForSeconds(attackInSeconds);
-        enemyAnimations.SetTrigger("Attack");
-    }
-
-    //Called by Attack Player animation behavior script
-    virtual public bool HurtPlayer()
-    {
-        if (Vector3.Distance(target.position, transform.position) <= attackRaduis)
-        {
-            PlayerManager.instance.HurtPlayer(attackDamage);
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
     #endregion
 
     #region Health Methods
-
     override public void Stun()
     {
         if (!canStun)
@@ -431,6 +655,8 @@ public class Enemy : Target
             return;
         }
         isStunned = true;
+        sprite.color = Color.blue;
+
         canStun = false;
         enemyAnimations.SetBool("Stunned", true);
         StartCoroutine(StunnedCoroutine());
@@ -449,12 +675,12 @@ public class Enemy : Target
 
         if (health <= 0)
         {
-            killed = true;
+
             Kill();
         }
-        else
+        else if (RaycastToPlayer())
         {
-            isAware = true;
+            state = State.AGRO;
         }
     }
 
@@ -462,6 +688,7 @@ public class Enemy : Target
     {
         canStun = false;
         killed = true;
+        new Color(0.7f, 1f, 0.7f);
 
         enemyAnimations.SetBool("Cured", true);
 
@@ -477,6 +704,7 @@ public class Enemy : Target
     {
         yield return new WaitForSeconds(stunTime);
         isStunned = false;
+        sprite.color = new Color(1f, 1f, 1f, .5f);
         enemyAnimations.SetBool("Stunned", false);
         StartCoroutine(StunnedCooldownCoroutine());
     }
@@ -485,6 +713,7 @@ public class Enemy : Target
     {
         yield return new WaitForSeconds(stunCooldown);
         canStun = true;
+        sprite.color = Color.white;
     }
     #endregion
 
@@ -598,9 +827,9 @@ public class Enemy : Target
         Gizmos.DrawWireSphere(transform.position, attackRaduis);
 
         Gizmos.color = Color.magenta;
-        switch (defaultState)
+        switch (defaultStateType)
         {
-            case Enemy.DefaultStateType.Stationary:
+            case Enemy.DefaultStateType.STATIONARY:
                 if (Application.isPlaying)
                 {
                     Gizmos.DrawSphere(initialPosition, 0.2f);
@@ -611,7 +840,7 @@ public class Enemy : Target
                 }
 
                 break;
-            case Enemy.DefaultStateType.Partol:
+            case Enemy.DefaultStateType.PATROL:
                 Vector3 cubeSize = new Vector3(0.2f, 0.2f, 0.2f);
                 for (int i = 0; i < patrolPoints.Count; i++)
                 {
@@ -629,7 +858,7 @@ public class Enemy : Target
 
                 break;
 
-            case Enemy.DefaultStateType.Wander:
+            case Enemy.DefaultStateType.WANDER:
                 if (Application.isPlaying)
                 {
                     Gizmos.DrawWireSphere(initialPosition, wanderRaduisMax);

@@ -52,9 +52,9 @@ MonoBehaviour:
   bulletsPerShot: 1
   damagePerBullet: 1000
   spreadRate: 0
-  maxBulletSpread: 2
+  maxBulletSpread: 3
   fireRate: 2.5
-  range: 3
+  range: 2.5
   verticalRecoilStrength: 0
   maxVerticalRecoil: 0
   horizontalRecoilStrength: 0

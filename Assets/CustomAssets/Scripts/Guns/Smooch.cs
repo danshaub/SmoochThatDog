@@ -7,7 +7,8 @@ public class Smooch : Gun, TriggerListener
     private BoxCollider hitBox;
     [HideInInspector] public List<GameObject> targetsInRange;
     private List<GameObject> targetsInRangeTemp;
-
+    private GameObject[] smoochParticles = new GameObject[2];
+    int nextsmoochParticle = 0;
 
     private void Start()
     {
@@ -19,6 +20,13 @@ public class Smooch : Gun, TriggerListener
         hitBox.size = new Vector3(maxBulletSpread, 3, range);
         hitBox.center = new Vector3(0f, -.25f, (range + 1f) / 2f);
 
+        for (int i = 0; i < smoochParticles.Length; i++)
+        {
+            smoochParticles[i] = Instantiate(hitParticlePrefab, Vector3.zero, Quaternion.identity);
+            var scale = smoochParticles[i].GetComponent<ParticleSystem>().shape.scale;
+            scale = hitBox.size;
+            smoochParticles[i].SetActive(false);
+        }
     }
 
     public void CallStart()
@@ -31,12 +39,19 @@ public class Smooch : Gun, TriggerListener
     {
         PlayerManager.instance.smoochAnimations.SetTrigger("Shoot");
         PlayerManager.instance.GetComponent<AudioSource>().PlayOneShot(shootSound);
+        //Destroy(Instantiate(hitParticlePrefab, hitBox.transform.position + hitBox.transform.forward * hitBox.center.magnitude, hitBox.transform.rotation), 1f);
+        smoochParticles[nextsmoochParticle].transform.position = hitBox.transform.position + hitBox.transform.forward * hitBox.center.magnitude;
+        smoochParticles[nextsmoochParticle].transform.rotation = hitBox.transform.rotation;
+        smoochParticles[nextsmoochParticle].SetActive(true);
+        smoochParticles[nextsmoochParticle].GetComponent<ParticleSystem>().Play();
         targetsInRangeTemp = targetsInRange;
         for (int i = targetsInRange.Count - 1; i >= 0; i--)
         {
             Hit(targetsInRange[i]);
         }
         targetsInRangeTemp.Clear();
+
+        nextsmoochParticle = (nextsmoochParticle + 1) % smoochParticles.Length;
     }
 
 

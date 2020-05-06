@@ -284,6 +284,7 @@ MonoBehaviour:
   damageTextVerticalOffset: 0.75
   damageTextColor: {r: 1, g: 0, b: 0, a: 1}
   finalHitTextColor: {r: 0, g: 1, b: 0, a: 1}
+  sprite: {fileID: 6665290434581743462}
   chaseLimitRadius: 20
   agroRadius: 15
   attackRaduis: 2
@@ -292,11 +293,15 @@ MonoBehaviour:
   attackTime: 1
   attackTimeMin: 1
   attackTimeMax: 2
-  defaultState: 0
+  defaultStateType: 0
   patrolPoints: []
   timeAtPosition: 2
   wanderRaduisMax: 10
   wanderRaduisMin: 0
+  state: 0
+  defaultSubState: 0
+  searchSubState: 0
+  attackSubState: 0
   attacking: 0
 --- !u!136 &6665290434601955976
 CapsuleCollider:
