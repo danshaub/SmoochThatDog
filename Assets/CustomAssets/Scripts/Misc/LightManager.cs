@@ -65,7 +65,15 @@ public class LightManager : MonoBehaviour
             {
                 foreach (GameObject light in lightLevels[i].lights)
                 {
-                    light.SetActive(true);
+                    try
+                    {
+                        light.SetActive(true);
+                    }
+                    catch
+                    {
+
+                    }
+
                 }
             }
             //Otherwise turn them off
@@ -73,7 +81,14 @@ public class LightManager : MonoBehaviour
             {
                 foreach (GameObject light in lightLevels[i].lights)
                 {
-                    light.SetActive(false);
+                    try
+                    {
+                        light.SetActive(false);
+                    }
+                    catch
+                    {
+
+                    }
                 }
             }
         }

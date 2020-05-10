@@ -6,7 +6,7 @@ public class Target : MonoBehaviour
 {
     [Header("Target Variables")]
     public int maxHealth = 10;
-    [HideInInspector] public int health;
+    public int health;
     public int rageFill;
     public bool respawn = false;
     public float delayBeforeRespawn = 0f;

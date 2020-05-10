@@ -118,11 +118,6 @@ public class CharacterActions : MonoBehaviour
 
         if (!isPaused && !lockControl)
         {
-            if (canPause && Input.GetButtonDown("Menu"))
-            {
-                //PauseMenu.Instance.Display();
-            }
-
             if (Input.GetButtonDown("ToggleMinimap"))
             {
                 PlayerManager.instance.ToggleMinimap();
@@ -291,6 +286,11 @@ public class CharacterActions : MonoBehaviour
             currentAngles.x = Mathf.Clamp(verticalAngle - recoilOffset.y, -90f, 90f);
             currentAngles.y = recoilOffset.x;
             fpsCamera.transform.localEulerAngles = currentAngles;
+        }
+        else if (lockControl)
+        {
+            verticalAngle = fpsCamera.transform.localEulerAngles.x;
+            horizontalAngle = transform.localEulerAngles.y;
         }
     }
 

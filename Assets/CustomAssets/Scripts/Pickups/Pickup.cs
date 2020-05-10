@@ -41,6 +41,20 @@ public class Pickup : MonoBehaviour
 
     }
 
+    public LevelManager.CheckpointData.PickupData MakeCheckpoint()
+    {
+        LevelManager.CheckpointData.PickupData data;
+
+        data.active = gameObject.activeInHierarchy;
+
+        return data;
+    }
+
+    public void LoadCheckpoint(LevelManager.CheckpointData.PickupData data)
+    {
+        gameObject.SetActive(data.active);
+    }
+
     virtual
     public void TakePickup()
     {
