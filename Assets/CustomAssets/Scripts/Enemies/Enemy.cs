@@ -123,7 +123,14 @@ public class Enemy : Target
 
     #endregion
     #endregion
+    #region Sounds
 
+    public AudioSource audioSource;
+    public AudioClip ambientHostile;
+    public AudioClip ambientCured;
+    public AudioClip attackSound;
+
+    #endregion
     #region Methods
     private void Start()
     {

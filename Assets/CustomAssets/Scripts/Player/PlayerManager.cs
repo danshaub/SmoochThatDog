@@ -17,6 +17,12 @@ public class PlayerManager : MonoBehaviour
     public List<KeyPickup.Key> keys;
     public int currentGunIndex;
 
+    [Range(0f, 1f)]
+    public float maxVignetteOpacity;
+    [Range(0f, 1f)]
+    public float vignetteOpacityPerHit;
+    [Range(0f, 1f)]
+    public float vignetteDecreaseRate;
     public int maxHealth = 1000;
     public int currentHealth;
     public int maxArmorDurability;
@@ -48,6 +54,7 @@ public class PlayerManager : MonoBehaviour
     public Color inactiveGun;
     public Color emptyGunSlot;
     public Image crosshair;
+    public Graphic hurtVignette;
 
     public GameObject deathText;
 
@@ -513,6 +520,7 @@ public class PlayerManager : MonoBehaviour
 
     public void HurtPlayer(int baseDamage)
     {
+        hurtVignette.color = Color.Lerp(hurtVignette.color, new Color(1, 1, 1, maxVignetteOpacity), vignetteOpacityPerHit);
         if (armorDurability == 0)
         {
             currentHealth = Mathf.Clamp(currentHealth - baseDamage, 0, maxHealth);
@@ -531,6 +539,11 @@ public class PlayerManager : MonoBehaviour
         {
             KillPlayer();
         }
+    }
+
+    private void Update()
+    {
+        hurtVignette.color = Color.Lerp(hurtVignette.color, new Color(1, 1, 1, 0f), vignetteDecreaseRate * Time.deltaTime);
     }
 
     public void AddHealth(int healthAdded)
