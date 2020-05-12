@@ -1,0 +1,501 @@
+fileFormatVersion: 2
+guid: b728689554e3a004a91310ec4e42ec6d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8537261276378092886
+    second: TestSpritesheetAttacks_0
+  - first:
+      213: 3560494172239185281
+    second: TestSpritesheetAttacks_1
+  - first:
+      213: 8907252657790869196
+    second: TestSpritesheetAttacks_2
+  - first:
+      213: -1149069877663131399
+    second: TestSpritesheetAttacks_3
+  - first:
+      213: 3386316148714334345
+    second: TestSpritesheetAttacks_4
+  - first:
+      213: -3068220246592891109
+    second: TestSpritesheetAttacks_5
+  - first:
+      213: -200850916029263251
+    second: TestSpritesheetAttacks_6
+  - first:
+      213: -3893319845457114821
+    second: TestSpritesheetAttacks_7
+  - first:
+      213: 4487940142889265157
+    second: TestSpritesheetAttacks_8
+  - first:
+      213: -2902280268499682993
+    second: TestSpritesheetAttacks_9
+  - first:
+      213: 3518115377396190089
+    second: TestSpritesheetAttacks_10
+  - first:
+      213: 6075454921664535522
+    second: TestSpritesheetAttacks_11
+  - first:
+      213: -3097771356663916669
+    second: TestSpritesheetAttacks_12
+  - first:
+      213: -3310844557707561595
+    second: TestSpritesheetAttacks_13
+  - first:
+      213: 8863519371686197503
+    second: TestSpritesheetAttacks_14
+  - first:
+      213: 1967583441182296367
+    second: TestSpritesheetAttacks_15
+  - first:
+      213: 7504749317511681725
+    second: TestSpritesheetAttacks_16
+  - first:
+      213: 7225357799183613733
+    second: TestSpritesheetAttacks_17
+  - first:
+      213: 9070863169568160970
+    second: TestSpritesheetAttacks_18
+  - first:
+      213: -4947124012969358022
+    second: TestSpritesheetAttacks_19
+  - first:
+      213: 1837124671343266610
+    second: TestSpritesheetAttacks_20
+  - first:
+      213: -1110556172322706460
+    second: TestSpritesheetAttacks_21
+  - first:
+      213: -3832624118646883149
+    second: TestSpritesheetAttacks_22
+  - first:
+      213: 2591408727994473594
+    second: TestSpritesheetAttacks_23
+  - first:
+      213: 4645366061063843422
+    second: TestSpritesheetAttacks_24
+  - first:
+      213: 3286214256206780845
+    second: TestSpritesheetAttacks_25
+  - first:
+      213: -7357697166730925484
+    second: TestSpritesheetAttacks_26
+  - first:
+      213: -4255631009183374016
+    second: TestSpritesheetAttacks_27
+  - first:
+      213: 2751439731512114295
+    second: TestSpritesheetAttacks_28
+  - first:
+      213: -6211178316599093105
+    second: TestSpritesheetAttacks_29
+  - first:
+      213: 9110037733391453065
+    second: Controls Screen_0
+  - first:
+      213: 1411546716604863414
+    second: Controls Screen_1
+  - first:
+      213: -86735850285195529
+    second: Controls Screen_2
+  - first:
+      213: 4221364884771514324
+    second: Controls Screen_3
+  - first:
+      213: -8529476885084390558
+    second: Controls Screen_4
+  - first:
+      213: 7380984138146728789
+    second: Controls Screen_5
+  - first:
+      213: -808108960848844996
+    second: Controls Screen_6
+  - first:
+      213: -9065194718042601257
+    second: Controls Screen_7
+  - first:
+      213: 7552195424032359985
+    second: Controls Screen_8
+  - first:
+      213: -3307584955440098718
+    second: Controls Screen_9
+  - first:
+      213: -5496740228687373046
+    second: Controls Screen_10
+  - first:
+      213: -298504982840243903
+    second: Controls Screen_11
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 20
+  spriteBorder: {x: 169, y: 30, z: 175, w: 62}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: 1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 1
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Controls Screen_0
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 270
+        width: 180
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98bc33d2d0b5d6e70800000000000000
+      internalID: 9110037733391453065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Controls Screen_1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 270
+        width: 120
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b31a139242d69310800000000000000
+      internalID: 1411546716604863414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Controls Screen_2
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 270
+        width: 120
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fe9576243adbcef0800000000000000
+      internalID: -86735850285195529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Controls Screen_3
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 270
+        width: 120
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d72d183ffc459a30800000000000000
+      internalID: 4221364884771514324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Controls Screen_4
+      rect:
+        serializedVersion: 2
+        x: 590
+        y: 140
+        width: 170
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26bb3a0d6f531a980800000000000000
+      internalID: -8529476885084390558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Controls Screen_5
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 140
+        width: 180
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55b470fa7f58e6660800000000000000
+      internalID: 7380984138146728789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Controls Screen_6
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 140
+        width: 120
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c376bc08e2509c4f0800000000000000
+      internalID: -808108960848844996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Controls Screen_7
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 140
+        width: 120
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d8c253fe65f13280800000000000000
+      internalID: -9065194718042601257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Controls Screen_8
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 140
+        width: 120
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13687c399b9cec860800000000000000
+      internalID: 7552195424032359985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Controls Screen_9
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 10
+        width: 180
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2621192e1091912d0800000000000000
+      internalID: -3307584955440098718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Controls Screen_10
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 10
+        width: 120
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0d5d7e82e7a7b3b0800000000000000
+      internalID: -5496740228687373046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Controls Screen_11
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 10
+        width: 120
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1498f16bc4f7bdbf0800000000000000
+      internalID: -298504982840243903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline:
+    - - {x: -12, y: 12}
+      - {x: -12, y: -12}
+      - {x: 12, y: -12}
+      - {x: 12, y: 12}
+    physicsShape:
+    - - {x: -12, y: 12}
+      - {x: -12, y: -12}
+      - {x: 12, y: -12}
+      - {x: 12, y: 12}
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

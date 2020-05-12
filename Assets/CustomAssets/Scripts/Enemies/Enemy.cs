@@ -21,6 +21,7 @@ public class Enemy : Target
         CHECK_LAST_POS,
         PICK_SEARCH_POINTS,
         MOVING_TO_POINT,
+        ARRIVED_AT_POINT,
         STOPPED_AT_POINT,
         DONE
     }
@@ -115,7 +116,6 @@ public class Enemy : Target
     bool destinationChanged;
     Vector3 previousDestination;
     private List<Vector3> pointsToSearch = new List<Vector3>();
-    [HideInInspector] public bool attacking = false;
     Vector3 initialPosition;
     Quaternion initialRotation;
     int nextPatrolPoint = 0;
@@ -123,7 +123,15 @@ public class Enemy : Target
 
     #endregion
     #endregion
+    #region Sounds
 
+    public AudioSource audioSource;
+    public AudioClip ambientHostile;
+    public AudioClip ambientCured;
+    public AudioClip walkSounds;
+    protected bool playAmbientSounds;
+
+    #endregion
     #region Methods
     private void Start()
     {
@@ -141,8 +149,45 @@ public class Enemy : Target
             damageDoneTexts[i] = Instantiate(damageDoneTextPrefab, enemyAnimations.gameObject.transform);
             damageDoneTexts[i].SetActive(false);
         }
+
+        audioSource.clip = walkSounds;
     }
 
+    public LevelManager.CheckpointData.EnemyData MakeCheckpoint()
+    {
+        LevelManager.CheckpointData.EnemyData data;
+
+        data.worldPosition = transform.position;
+        data.worldRotation = transform.rotation;
+        data.health = health;
+        data.cured = killed;
+        data.parent = transform.parent;
+
+        return data;
+    }
+    public void LoadCheckpoint(LevelManager.CheckpointData.EnemyData data)
+    {
+        transform.position = data.worldPosition;
+        transform.rotation = data.worldRotation;
+        transform.parent = data.parent;
+
+        if (!data.cured)
+        {
+            killed = false;
+            GetComponent<Collider>().enabled = true;
+            enemyAnimations.SetBool("Cured", false);
+            health = data.health;
+            state = State.DEFAULT;
+            attackSubState = AttackSubState.NOT_ATTACKING;
+            searchSubState = SearchSubState.NOT_SEARCHING;
+            defaultSubState = DefaultSubState.NOT_DEFAULT;
+            audioSource.clip = walkSounds;
+        }
+        else
+        {
+            killed = true;
+        }
+    }
     protected IEnumerator DelayRespawn()
     {
         yield return new WaitForSeconds(delayBeforeRespawn);
@@ -169,6 +214,7 @@ public class Enemy : Target
         isStunned = false;
         sprite.color = Color.white;
         canStun = true;
+        audioSource.clip = walkSounds;
 
         yield return new WaitForSeconds(respawnTime);
 
@@ -205,12 +251,35 @@ public class Enemy : Target
         if (!(isStunned || killed))
         {
             PerformAILogic();
+
+            if (!playAmbientSounds)
+            {
+                playAmbientSounds = true;
+                Invoke("PlaySoundRepeating", Random.Range(0.5f, 2f));
+            }
+
+            if (agent.desiredVelocity.magnitude > .01f)
+            {
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.Play();
+                }
+            }
+            else
+            {
+                audioSource.Stop();
+            }
         }
         else
         {
             if (killed)
             {
                 FaceTarget();
+
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.Play();
+                }
             }
             else
             {
@@ -221,8 +290,20 @@ public class Enemy : Target
         }
 
         enemyAnimations.SetFloat("WalkSpeed", agent.desiredVelocity.magnitude);
+
         damageDonePreviousFixedFrameFrame = 0;
         previousDestination = agent.destination;
+    }
+
+    public void PlaySoundRepeating()
+    {
+        if (!playAmbientSounds)
+        {
+            return;
+        }
+
+        audioSource.PlayOneShot(ambientHostile);
+        Invoke("PlaySoundRepeating", Random.Range(0.5f, 2f));
     }
 
     #region AI Methods
@@ -249,7 +330,7 @@ public class Enemy : Target
             inChaseRadius = true;
             hasLineOfSight = RaycastToPlayer();
 
-            if (distance <= agroRadius)
+            if (distance <= agroRadius && hasLineOfSight)
             {
                 inAgroRadius = true;
                 if (distance <= attackRaduis)
@@ -393,7 +474,10 @@ public class Enemy : Target
                 break;
 
             case DefaultSubState.MOVING_TO_NEXT:
-                //no logic necessary while moving back to initial position
+                if (agent.destination != initialPosition)
+                {
+                    agent.SetDestination(initialPosition);
+                }
                 break;
 
             default:
@@ -584,30 +668,34 @@ public class Enemy : Target
                 {
                     pointsToSearch.Add(transform.position + (new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f)).normalized * 2.5f));
                 }
-                searchSubState = SearchSubState.STOPPED_AT_POINT;
+                searchSubState = SearchSubState.ARRIVED_AT_POINT;
                 break;
 
             case SearchSubState.MOVING_TO_POINT:
                 if (agent.remainingDistance < agent.stoppingDistance)
                 {
+                    searchSubState = SearchSubState.ARRIVED_AT_POINT;
+                }
+                break;
+
+            case SearchSubState.ARRIVED_AT_POINT:
+                if (pointsToSearch.Count > 0)
+                {
+                    StartCoroutine(SetDestinationAfter(pointsToSearch[0], timeAtPosition));
+                    pointsToSearch.RemoveAt(0);
                     searchSubState = SearchSubState.STOPPED_AT_POINT;
+                }
+                else
+                {
+                    StopCoroutine("SetDestinationAfter");
+                    searchSubState = SearchSubState.DONE;
                 }
                 break;
 
             case SearchSubState.STOPPED_AT_POINT:
-                if (pointsToSearch.Count > 0)
+                if (destinationChanged)
                 {
-                    StartCoroutine(SetDestinationAfter(pointsToSearch[0], timeAtPosition));
-
-                    if (destinationChanged)
-                    {
-                        pointsToSearch.RemoveAt(0);
-                        searchSubState = SearchSubState.MOVING_TO_POINT;
-                    }
-                }
-                else
-                {
-                    searchSubState = SearchSubState.DONE;
+                    searchSubState = SearchSubState.MOVING_TO_POINT;
                 }
                 break;
 
@@ -688,6 +776,7 @@ public class Enemy : Target
     {
         canStun = false;
         killed = true;
+        playAmbientSounds = false;
         new Color(0.7f, 1f, 0.7f);
 
         enemyAnimations.SetBool("Cured", true);
@@ -698,6 +787,8 @@ public class Enemy : Target
         {
             StartCoroutine(DelayRespawn());
         }
+
+        audioSource.clip = ambientCured;
     }
 
     public IEnumerator StunnedCoroutine()

@@ -63,7 +63,30 @@ public class Door : MonoBehaviour, IInteractableObject, ITriggerableObject
         }
     }
 
-    // Update is called once per frame
+    public LevelManager.CheckpointData.DoorData MakeCheckpoint()
+    {
+        LevelManager.CheckpointData.DoorData data;
+
+        data.open = open;
+        data.locked = locked;
+
+        return data;
+    }
+
+    public void LoadCheckpoint(LevelManager.CheckpointData.DoorData data)
+    {
+        open = data.open;
+        locked = data.locked;
+
+        if (data.open)
+        {
+            OpenInstant();
+        }
+        else
+        {
+            CloseInstant();
+        }
+    }
     void FixedUpdate()
     {
         if (open && sequenceFrame != sequenceFrames)
@@ -175,6 +198,30 @@ public class Door : MonoBehaviour, IInteractableObject, ITriggerableObject
         if (consumeKey)
         {
             PlayerManager.instance.RemoveKey(lockID);
+        }
+    }
+
+    public void OpenInstant()
+    {
+        open = true;
+        sequenceFrame = sequenceFrames;
+        for (int i = 0; i < doors.Count; i++)
+        {
+            doors[i].transform.position = openTransforms[i].position;
+            doors[i].transform.localEulerAngles = openTransforms[i].localEulerAngles;
+            doors[i].transform.localScale = openTransforms[i].localScale;
+        }
+    }
+
+    public void CloseInstant()
+    {
+        open = false;
+        sequenceFrame = 0;
+        for (int i = 0; i < doors.Count; i++)
+        {
+            doors[i].transform.position = closedTransforms[i].position;
+            doors[i].transform.localEulerAngles = closedTransforms[i].localEulerAngles;
+            doors[i].transform.localScale = closedTransforms[i].localScale;
         }
     }
 }

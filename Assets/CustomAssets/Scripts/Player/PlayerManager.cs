@@ -17,6 +17,12 @@ public class PlayerManager : MonoBehaviour
     public List<KeyPickup.Key> keys;
     public int currentGunIndex;
 
+    [Range(0f, 1f)]
+    public float maxVignetteOpacity;
+    [Range(0f, 1f)]
+    public float vignetteOpacityPerHit;
+    [Range(0f, 1f)]
+    public float vignetteDecreaseRate;
     public int maxHealth = 1000;
     public int currentHealth;
     public int maxArmorDurability;
@@ -28,7 +34,7 @@ public class PlayerManager : MonoBehaviour
     public AudioClip playerHurtSound;
     public AudioClip rageModeSound;
 
-    public int rageGauge { get; private set; } = 0;
+    public int rageAmount { get; private set; } = 0;
     public bool isRaged { get; private set; } = false;
     public bool isAlive { get; private set; } = true;
     public float rageTime;
@@ -48,6 +54,7 @@ public class PlayerManager : MonoBehaviour
     public Color inactiveGun;
     public Color emptyGunSlot;
     public Image crosshair;
+    public Graphic hurtVignette;
 
     public GameObject deathText;
 
@@ -86,11 +93,11 @@ public class PlayerManager : MonoBehaviour
     {
         LevelManager.CheckpointData.PlayerData data = new LevelManager.CheckpointData.PlayerData();
         data.worldPosition = transform.position;
-        data.worldRotation = transform.rotation;
+        data.localRotation = transform.localEulerAngles;
         data.health = currentHealth;
         data.armor = armorDurability;
         data.maxArmor = maxArmorDurability;
-
+        data.rageAmount = rageAmount;
 
         data.guns = new LevelManager.CheckpointData.GunData[guns.Length];
 
@@ -107,17 +114,20 @@ public class PlayerManager : MonoBehaviour
             }
         }
 
+        data.keys = new List<KeyPickup.Key>(keys);
+
         data.gunIndex = currentGunIndex;
 
         return data;
     }
     public void LoadCheckpoint(LevelManager.CheckpointData.PlayerData data)
     {
-
+        deathText.SetActive(false);
         GetComponent<CharacterController>().enabled = false;
+        StartCoroutine(LockControlTemporarily());
         transform.position = data.worldPosition;
-        transform.rotation = data.worldRotation;
-        GetComponent<CharacterController>().enabled = true;
+        transform.localEulerAngles = data.localRotation;
+
         minimapCamera.enabled = false;
         CharacterActions.instance.fpsCamera.enabled = false;
         CharacterActions.instance.fpsCamera.transform.localEulerAngles = Vector3.zero;
@@ -127,6 +137,7 @@ public class PlayerManager : MonoBehaviour
         currentHealth = data.health;
         armorDurability = data.armor;
         maxArmorDurability = data.maxArmor;
+        rageAmount = data.rageAmount;
 
         for (int i = 1; i < data.guns.Length; i++)
         {
@@ -140,9 +151,21 @@ public class PlayerManager : MonoBehaviour
             }
         }
 
+        ClearKeys();
+        keys = new List<KeyPickup.Key>(data.keys);
+
         SwapGun(data.gunIndex);
 
+        GetComponent<CharacterController>().enabled = true;
+
         ResetUI();
+    }
+
+    public IEnumerator LockControlTemporarily()
+    {
+        CharacterActions.instance.lockControl = true;
+        yield return new WaitForSeconds(0.1f);
+        CharacterActions.instance.lockControl = false;
     }
     #region UI Updating
     public void ResetUI()
@@ -153,6 +176,7 @@ public class PlayerManager : MonoBehaviour
         UpdateHealthText();
         UpdateArmorText();
         UpdateGunTexts();
+        UpdateRageBar();
         ResetMinimap();
     }
 
@@ -443,19 +467,19 @@ public class PlayerManager : MonoBehaviour
         {
             return;
         }
-        rageGauge = (int)Mathf.Clamp(rageGauge + rageToAdd, 0, 1000);
+        rageAmount = (int)Mathf.Clamp(rageAmount + rageToAdd, 0, 1000);
         UpdateRageBar();
     }
 
     public bool RageFull()
     {
-        return (!isRaged && rageGauge == 1000);
+        return (!isRaged && rageAmount == 1000);
     }
 
     public void UpdateRageBar()
     {
 
-        rageBar.value = rageGauge;
+        rageBar.value = rageAmount;
         if (RageFull())
         {
             rageBar.fillRect.gameObject.GetComponent<Image>().color = Color.red;
@@ -496,6 +520,7 @@ public class PlayerManager : MonoBehaviour
 
     public void HurtPlayer(int baseDamage)
     {
+        hurtVignette.color = Color.Lerp(hurtVignette.color, new Color(1, 1, 1, maxVignetteOpacity), vignetteOpacityPerHit);
         if (armorDurability == 0)
         {
             currentHealth = Mathf.Clamp(currentHealth - baseDamage, 0, maxHealth);
@@ -514,6 +539,11 @@ public class PlayerManager : MonoBehaviour
         {
             KillPlayer();
         }
+    }
+
+    private void Update()
+    {
+        hurtVignette.color = Color.Lerp(hurtVignette.color, new Color(1, 1, 1, 0f), vignetteDecreaseRate * Time.deltaTime);
     }
 
     public void AddHealth(int healthAdded)
@@ -541,7 +571,7 @@ public class PlayerManager : MonoBehaviour
     public IEnumerator Death()
     {
         yield return new WaitForSeconds(2f);
-        LevelLoader.instance.LoadLevel(1);
+        LevelManager.instance.LoadCheckpoint();
     }
 
     #endregion

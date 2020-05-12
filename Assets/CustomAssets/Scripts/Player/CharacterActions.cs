@@ -118,11 +118,6 @@ public class CharacterActions : MonoBehaviour
 
         if (!isPaused && !lockControl)
         {
-            if (canPause && Input.GetButtonDown("Menu"))
-            {
-                //PauseMenu.Instance.Display();
-            }
-
             if (Input.GetButtonDown("ToggleMinimap"))
             {
                 PlayerManager.instance.ToggleMinimap();
@@ -292,6 +287,13 @@ public class CharacterActions : MonoBehaviour
             currentAngles.y = recoilOffset.x;
             fpsCamera.transform.localEulerAngles = currentAngles;
         }
+        else if (lockControl)
+        {
+            verticalAngle = fpsCamera.transform.localEulerAngles.x;
+            horizontalAngle = transform.localEulerAngles.y;
+
+            fpsCamera.fieldOfView = fieldOfView;
+        }
     }
 
 
@@ -373,21 +375,7 @@ public class CharacterActions : MonoBehaviour
             #endregion
 
             #region Camera Control
-            //Set FOV
-            if (crouched)
-            {
-                fpsCamera.fieldOfView = Mathf.Lerp(fpsCamera.fieldOfView, fieldOfView - (fieldOfViewModifier / 2), 0.3f);
-            }
-            else if (running)
-            {
-                fpsCamera.fieldOfView = Mathf.Lerp(fpsCamera.fieldOfView, fieldOfView + fieldOfViewModifier, 0.3f);
-            }
-            else
-            {
-                fpsCamera.fieldOfView = Mathf.Lerp(fpsCamera.fieldOfView, fieldOfView, 0.3f);
-            }
 
-            fpsCamera.fieldOfView = Mathf.Clamp(fpsCamera.fieldOfView, 30f, 120f);
 
             //Head Bobbing
             if (bobHead)
@@ -427,6 +415,8 @@ public class CharacterActions : MonoBehaviour
 
             recoilOffset = Vector2.Lerp(recoilOffset, Vector2.zero, PlayerManager.instance.CurrentGun().recoilResistance);
         }
+
+
 
         #endregion
 
