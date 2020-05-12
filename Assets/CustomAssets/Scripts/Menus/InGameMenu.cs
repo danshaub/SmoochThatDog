@@ -9,7 +9,8 @@ public class InGameMenu : MonoBehaviour
         UNPAUSED,
         PAUSED,
         CONTROL_MENU,
-        LEVEL_INTRO
+        LEVEL_INTRO,
+        OPTIONS_MENU
     }
 
     public EventSystem eventSystem;
@@ -25,6 +26,9 @@ public class InGameMenu : MonoBehaviour
     public GameObject introPanel;
     public GameObject introContinueButton;
 
+    [Header("Options Menu")]
+    public GameObject optionsPanel;
+    public GameObject optionsBackButton;
     [HideInInspector] public bool paused;
 
     [HideInInspector] public State state = State.UNPAUSED;
@@ -74,6 +78,11 @@ public class InGameMenu : MonoBehaviour
         SetState(State.LEVEL_INTRO);
     }
 
+    public void OpenOptions()
+    {
+        SetState(State.OPTIONS_MENU);
+    }
+
     public void Quit()
     {
         SetState(State.UNPAUSED);
@@ -93,6 +102,7 @@ public class InGameMenu : MonoBehaviour
                 pausePanel.SetActive(false);
                 controlsPanel.SetActive(false);
                 introPanel.SetActive(false);
+                optionsPanel.SetActive(false);
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
                 break;
@@ -104,6 +114,7 @@ public class InGameMenu : MonoBehaviour
                 pausePanel.SetActive(true);
                 controlsPanel.SetActive(false);
                 introPanel.SetActive(false);
+                optionsPanel.SetActive(false);
                 eventSystem.SetSelectedGameObject(resumeButton);
                 break;
 
@@ -114,6 +125,7 @@ public class InGameMenu : MonoBehaviour
                 pausePanel.SetActive(false);
                 controlsPanel.SetActive(true);
                 introPanel.SetActive(false);
+                optionsPanel.SetActive(false);
                 eventSystem.SetSelectedGameObject(controlsBackButton);
                 break;
 
@@ -124,8 +136,22 @@ public class InGameMenu : MonoBehaviour
                 pausePanel.SetActive(false);
                 controlsPanel.SetActive(false);
                 introPanel.SetActive(true);
+                optionsPanel.SetActive(false);
                 eventSystem.SetSelectedGameObject(introContinueButton);
                 break;
+
+            case State.OPTIONS_MENU:
+                paused = true;
+                Time.timeScale = 0;
+                CharacterActions.instance.lockControl = true;
+                pausePanel.SetActive(false);
+                controlsPanel.SetActive(false);
+                introPanel.SetActive(false);
+                optionsPanel.SetActive(true);
+                optionsPanel.GetComponent<OptionsMenu>().SetValues();
+                eventSystem.SetSelectedGameObject(optionsBackButton);
+                break;
+
             default:
                 Debug.LogError("Unknown Menu State");
                 break;
