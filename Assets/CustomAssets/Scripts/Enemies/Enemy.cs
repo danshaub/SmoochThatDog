@@ -833,29 +833,37 @@ public class Enemy : Target
 
         angleToPlayer = Vector2.SignedAngle(forward, rotatedPositionDifference);
 
-        if (angleToPlayer >= -180f && angleToPlayer < -120f)
+        if (angleToPlayer >= -157.5f && angleToPlayer < -112.5f)
         {
             activeLayerIndex = 0;
         }
-        else if (angleToPlayer >= -120f && angleToPlayer < -60f)
+        else if (angleToPlayer >= -112.5f && angleToPlayer < -67.5f)
         {
             activeLayerIndex = 1;
         }
-        else if (angleToPlayer >= -60f && angleToPlayer < 0f)
+        else if (angleToPlayer >= -67.5f && angleToPlayer < -22.5f)
         {
             activeLayerIndex = 2;
         }
-        else if (angleToPlayer >= 0f && angleToPlayer < 60f)
+        else if (angleToPlayer >= -22.5f && angleToPlayer < 22.5f)
         {
             activeLayerIndex = 3;
         }
-        else if (angleToPlayer >= 60f && angleToPlayer < 120f)
+        else if (angleToPlayer >= 22.5f && angleToPlayer < 67.5f)
         {
             activeLayerIndex = 4;
         }
-        else
+        else if (angleToPlayer >= 67.5f && angleToPlayer < 112.5f)
         {
             activeLayerIndex = 5;
+        }
+        else if (angleToPlayer >= 112.5f && angleToPlayer < 157.5f)
+        {
+            activeLayerIndex = 6;
+        }
+        else
+        {
+            activeLayerIndex = 7;
         }
 
         if (previousLayerIndex != activeLayerIndex)

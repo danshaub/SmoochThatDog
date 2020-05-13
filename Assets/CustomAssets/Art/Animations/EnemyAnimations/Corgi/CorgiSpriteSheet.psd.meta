@@ -218,6 +218,48 @@ TextureImporter:
   - first:
       213: 240009237913953729
     second: CorgiSpriteSheet_23
+  - first:
+      213: -5980816369517921308
+    second: CorgiSpriteSheet_24
+  - first:
+      213: 3749129604668053649
+    second: CorgiSpriteSheet_25
+  - first:
+      213: -627650315962031703
+    second: CorgiSpriteSheet_26
+  - first:
+      213: -2011161150134850646
+    second: CorgiSpriteSheet_27
+  - first:
+      213: 7465893641296382204
+    second: CorgiSpriteSheet_28
+  - first:
+      213: 1743122126854258401
+    second: CorgiSpriteSheet_29
+  - first:
+      213: 8855232310115098769
+    second: CorgiSpriteSheet_24
+  - first:
+      213: -2621426102909091250
+    second: CorgiSpriteSheet_25
+  - first:
+      213: 3055030910756180031
+    second: CorgiSpriteSheet_26
+  - first:
+      213: 566643793197531416
+    second: CorgiSpriteSheet_27
+  - first:
+      213: -62213468322313318
+    second: CorgiSpriteSheet_28
+  - first:
+      213: 8932110700108428283
+    second: CorgiSpriteSheet_29
+  - first:
+      213: -8099501841795355658
+    second: CorgiSpriteSheet_30
+  - first:
+      213: 3865073112398781257
+    second: CorgiSpriteSheet_31
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -314,95 +356,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CorgiSpriteSheet_0
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 264
-        width: 66
-        height: 46
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a9d5508d26e7f5a10800000000000000
-      internalID: 1900376530769763738
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CorgiSpriteSheet_1
-      rect:
-        serializedVersion: 2
-        x: 69
-        y: 264
-        width: 64
-        height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: aa3ed0abc2db966d0800000000000000
-      internalID: -2996656077240671318
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CorgiSpriteSheet_2
-      rect:
-        serializedVersion: 2
-        x: 137
-        y: 264
-        width: 63
-        height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1fea09ad46ca0a3e0800000000000000
-      internalID: -2044444681662583055
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CorgiSpriteSheet_3
-      rect:
-        serializedVersion: 2
-        x: 203
-        y: 264
-        width: 66
-        height: 46
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7b42707df503c62f0800000000000000
-      internalID: -978353830858644297
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: CorgiSpriteSheet_4
       rect:
         serializedVersion: 2
         x: 1
-        y: 211
+        y: 323
         width: 66
         height: 46
       alignment: 0
@@ -423,7 +381,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 73
-        y: 211
+        y: 323
         width: 64
         height: 50
       alignment: 0
@@ -444,7 +402,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 139
-        y: 211
+        y: 323
         width: 63
         height: 50
       alignment: 0
@@ -465,7 +423,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 204
-        y: 210
+        y: 322
         width: 66
         height: 46
       alignment: 0
@@ -486,7 +444,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1
-        y: 159
+        y: 271
         width: 66
         height: 46
       alignment: 0
@@ -507,7 +465,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 73
-        y: 158
+        y: 270
         width: 64
         height: 50
       alignment: 0
@@ -528,7 +486,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 139
-        y: 158
+        y: 270
         width: 63
         height: 50
       alignment: 0
@@ -549,7 +507,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 206
-        y: 160
+        y: 272
         width: 66
         height: 46
       alignment: 0
@@ -570,7 +528,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1
-        y: 107
+        y: 219
         width: 66
         height: 46
       alignment: 0
@@ -591,7 +549,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 73
-        y: 107
+        y: 219
         width: 64
         height: 50
       alignment: 0
@@ -612,7 +570,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 139
-        y: 107
+        y: 219
         width: 63
         height: 50
       alignment: 0
@@ -633,7 +591,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 206
-        y: 108
+        y: 220
         width: 66
         height: 46
       alignment: 0
@@ -654,7 +612,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1
-        y: 55
+        y: 167
         width: 66
         height: 46
       alignment: 0
@@ -675,7 +633,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 73
-        y: 55
+        y: 167
         width: 64
         height: 50
       alignment: 0
@@ -696,7 +654,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 139
-        y: 55
+        y: 167
         width: 63
         height: 50
       alignment: 0
@@ -717,7 +675,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 206
-        y: 55
+        y: 167
         width: 66
         height: 46
       alignment: 0
@@ -738,7 +696,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1
-        y: 3
+        y: 115
         width: 66
         height: 46
       alignment: 0
@@ -759,7 +717,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 73
-        y: 4
+        y: 116
         width: 64
         height: 50
       alignment: 0
@@ -780,7 +738,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 139
-        y: 4
+        y: 116
         width: 63
         height: 50
       alignment: 0
@@ -801,7 +759,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 203
-        y: 3
+        y: 115
         width: 66
         height: 46
       alignment: 0
@@ -813,6 +771,258 @@ TextureImporter:
       bones: []
       spriteID: 1c56ca8512fa45300800000000000000
       internalID: 240009237913953729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 376
+        width: 66
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0cee3fcb18dd3770800000000000000
+      internalID: 8592261278045498379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 376
+        width: 64
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21c2a2e96d38eb000800000000000000
+      internalID: 53625203374828562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 376
+        width: 63
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4870d86aab1c38e50800000000000000
+      internalID: 6810500068916660100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 376
+        width: 66
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28d2e3f1d6cbf3ec0800000000000000
+      internalID: -3584939601501999742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_24
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 60
+        width: 38
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 190e8f77eda14ea70800000000000000
+      internalID: 8855232310115098769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_25
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 60
+        width: 34
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e42ca2b29d2de9bd0800000000000000
+      internalID: -2621426102909091250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_26
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 60
+        width: 38
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f30d5755d66a56a20800000000000000
+      internalID: 3055030910756180031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_27
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 60
+        width: 38
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81108b7178f1dd700800000000000000
+      internalID: 566643793197531416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_28
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 1
+        width: 38
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9b47602e29f22ff0800000000000000
+      internalID: -62213468322313318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_29
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 1
+        width: 34
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf3bd6e7b5b35fb70800000000000000
+      internalID: 8932110700108428283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_30
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 1
+        width: 38
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fb6a26ecf9c89f80800000000000000
+      internalID: -8099501841795355658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_31
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 1
+        width: 38
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94b5177848f73a530800000000000000
+      internalID: 3865073112398781257
       vertices: []
       indices: 
       edges: []
