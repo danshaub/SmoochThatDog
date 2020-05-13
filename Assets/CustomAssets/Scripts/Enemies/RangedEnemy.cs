@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class RangedEnemy : Enemy
 {
-    public enum AgroSubState
-    {
-        CHASING,
-        SHOOTING,
-        NOT_AGRO
-    }
+    public float timeShooting;
+    public float timeChasing;
 
-    public AgroSubState agroSubState;
+    public float timeShootingVariance;
+    public float timeChasingVariance;
+    public bool shooting = true;
     public GameObject projectilePrefab;
 
     public float projectileSpeed;
@@ -29,6 +27,8 @@ public class RangedEnemy : Enemy
             projectiles[i].GetComponent<Projectile>().damage = projectileDamage;
             projectiles[i].SetActive(false);
         }
+
+        StartCoroutine(ToggleShooting());
     }
 
     override protected void PerformAILogic()
@@ -85,7 +85,7 @@ public class RangedEnemy : Enemy
 
                 case State.AGRO:
                     //Exit case: Player enters attack radius
-                    if (inAttackRadius)
+                    if (inAttackRadius || shooting)
                     {
                         state = State.ATTACKING;
                         PerformAttackState();
@@ -152,22 +152,31 @@ public class RangedEnemy : Enemy
 
     override protected void PerformAgroState()
     {
-        switch (agroSubState)
+        if (shooting)
         {
-            case AgroSubState.NOT_AGRO:
-
-                break;
-            case AgroSubState.CHASING:
-
-                break;
-
-            case AgroSubState.SHOOTING:
-
-                break;
-            default:
-                Debug.LogError("Unrecognized Agro State");
-                break;
+            FaceTarget();
+            agent.SetDestination(playerTransform.position + (transform.position - playerTransform.position).normalized * agroRadius);
         }
+        else
+        {
+            agent.SetDestination(playerTransform.position);
+        }
+    }
+
+    protected IEnumerator ToggleShooting()
+    {
+        if (shooting)
+        {
+            yield return new WaitForSeconds(Mathf.Clamp(Random.Range(timeShooting - timeShootingVariance, timeShooting + timeShootingVariance), 0f, 200f));
+        }
+        else
+        {
+            yield return new WaitForSeconds(Mathf.Clamp(Random.Range(timeChasing - timeChasingVariance, timeChasing + timeChasingVariance), 0f, 200f));
+        }
+
+        shooting = !shooting;
+
+        StartCoroutine(ToggleShooting());
     }
 
     override protected void PerformAttackState()
@@ -190,14 +199,15 @@ public class RangedEnemy : Enemy
                 attackSubState = AttackSubState.WAITING;
                 break;
             case AttackSubState.WAITING:
-                agent.SetDestination(playerTransform.position);
-                // **EXITED BY COROUTINE "WaitToAttack"**
-                if (!inAttackRadius)
+                if (shooting)
                 {
-                    StopCoroutine("WaitToAttack");
-                    attackSubState = AttackSubState.DONE;
+                    FaceTarget();
+                    agent.SetDestination(playerTransform.position + (transform.position - playerTransform.position).normalized * agroRadius);
                 }
-                agent.SetDestination(transform.position);
+                else
+                {
+                    agent.SetDestination(playerTransform.position);
+                }
                 break;
             case AttackSubState.ATTACKING:
 
@@ -219,7 +229,7 @@ public class RangedEnemy : Enemy
         //If the player is in view of the enemy and close enough, hurt player
         if (RaycastToPlayer())
         {
-            if (Vector3.Distance(playerTransform.position, transform.position) <= attackRaduis && false)
+            if (Vector3.Distance(playerTransform.position, transform.position) <= attackRaduis)
             {
                 PlayerManager.instance.HurtPlayer(attackDamage);
                 return true;
@@ -227,8 +237,10 @@ public class RangedEnemy : Enemy
             else
             {
                 projectiles[nextProjectile].SetActive(true);
-                projectiles[nextProjectile].transform.position = transform.position + new Vector3(0f, 0.75f, 0f);
-                projectiles[nextProjectile].transform.rotation = transform.rotation;
+                projectiles[nextProjectile].transform.position = transform.position + transform.forward * .2f + new Vector3(0f, 0.75f, 0f);
+                projectiles[nextProjectile].transform.LookAt(playerTransform);
+
+                nextProjectile = (nextProjectile + 1) % projectiles.Length;
                 return true;
             }
         }
