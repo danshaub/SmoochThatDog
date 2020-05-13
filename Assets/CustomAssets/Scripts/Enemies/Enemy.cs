@@ -58,6 +58,8 @@ public class Enemy : Target
     }
     #endregion
 
+    #region Variables
+
     #region AnimationVariables
     [Header("Animation Variables")]
     public GameObject enemyGFX;
@@ -70,17 +72,17 @@ public class Enemy : Target
 
     //Hidden Variables
     public float angleToPlayer { get; protected set; }
-    private float angleInRadians = 0f;
-    private Vector2 horizPositionDifference;
-    private Vector2 rotatedPositionDifference;
-    private Vector2 forward = new Vector2(0f, 1f);
-    private int activeLayerIndex = 2;
-    private int previousLayerIndex = 2;
-    private int damageDonePreviousFixedFrameFrame;
-    private int previousHealth;
+    protected float angleInRadians = 0f;
+    protected Vector2 horizPositionDifference;
+    protected Vector2 rotatedPositionDifference;
+    protected Vector2 forward = new Vector2(0f, 1f);
+    protected int activeLayerIndex = 2;
+    protected int previousLayerIndex = 2;
+    protected int damageDonePreviousFixedFrameFrame;
+    protected int previousHealth;
 
-    private GameObject[] damageDoneTexts;
-    private int nextDamageText = 0;
+    protected GameObject[] damageDoneTexts;
+    protected int nextDamageText = 0;
     #endregion
 
     #region AI Variables
@@ -106,23 +108,24 @@ public class Enemy : Target
     public SearchSubState searchSubState;
     public AttackSubState attackSubState;
     //Location Flags
-    bool hasLineOfSight = false;
-    bool inChaseRadius = false;
-    bool inAgroRadius = false;
-    bool inAttackRadius = false;
-    Vector3 nextPosition = Vector3.zero;
-    Transform playerTransform;
-    NavMeshAgent agent;
-    bool destinationChanged;
-    Vector3 previousDestination;
-    private List<Vector3> pointsToSearch = new List<Vector3>();
-    Vector3 initialPosition;
-    Quaternion initialRotation;
-    int nextPatrolPoint = 0;
-    float initialStoppingDistance;
+    protected bool hasLineOfSight = false;
+    protected bool inChaseRadius = false;
+    protected bool inAgroRadius = false;
+    protected bool inAttackRadius = false;
+    protected Vector3 nextPosition = Vector3.zero;
+    protected Transform playerTransform;
+    protected NavMeshAgent agent;
+    protected bool destinationChanged;
+    protected Vector3 previousDestination;
+    protected List<Vector3> pointsToSearch = new List<Vector3>();
+    protected Vector3 initialPosition;
+    protected Quaternion initialRotation;
+    protected int nextPatrolPoint = 0;
+    protected float initialStoppingDistance;
 
     #endregion
     #endregion
+
     #region Sounds
 
     public AudioSource audioSource;
@@ -132,8 +135,11 @@ public class Enemy : Target
     protected bool playAmbientSounds;
 
     #endregion
+
+    #endregion
+
     #region Methods
-    private void Start()
+    protected virtual void Start()
     {
         health = maxHealth;
         agent = GetComponent<NavMeshAgent>();
@@ -232,13 +238,13 @@ public class Enemy : Target
         StopAllCoroutines();
     }
 
-    private void Update()
+    virtual protected void Update()
     {
         RotateSprite();
         UpdateLayer();
     }
 
-    private void FixedUpdate()
+    virtual protected void FixedUpdate()
     {
         previousHealth = health;
         destinationChanged = previousDestination != agent.destination;
@@ -274,7 +280,7 @@ public class Enemy : Target
         {
             if (killed)
             {
-                FaceTarget();
+                //FaceTarget();
 
                 if (!audioSource.isPlaying)
                 {
@@ -295,7 +301,7 @@ public class Enemy : Target
         previousDestination = agent.destination;
     }
 
-    public void PlaySoundRepeating()
+    virtual public void PlaySoundRepeating()
     {
         if (!playAmbientSounds)
         {
@@ -426,7 +432,7 @@ public class Enemy : Target
     }
 
     #region Default State Logic
-    private void PerformDefaultState()
+    virtual protected void PerformDefaultState()
     {
         agent.stoppingDistance = 0.5f;
 
@@ -450,7 +456,7 @@ public class Enemy : Target
                 break;
         }
     }
-    private void PerformDefaultStationary()
+    virtual protected void PerformDefaultStationary()
     {
         switch (defaultSubState)
         {
@@ -490,7 +496,7 @@ public class Enemy : Target
         //     transform.rotation = Quaternion.Slerp(transform.rotation, initialRotation, Time.deltaTime * 5f);
         // }
     }
-    private void PerformDefaultWander()
+    virtual protected void PerformDefaultWander()
     {
         nextPosition = Vector3.zero;
         switch (defaultSubState)
@@ -530,7 +536,7 @@ public class Enemy : Target
                 break;
         }
     }
-    private void PerformDefaultPatrol()
+    virtual protected void PerformDefaultPatrol()
     {
         nextPosition = Vector3.zero;
         switch (defaultSubState)
@@ -572,13 +578,13 @@ public class Enemy : Target
     }
     #endregion
 
-    protected void PerformAgroState()
+    virtual protected void PerformAgroState()
     {
         agent.SetDestination(playerTransform.position);
     }
 
     #region Attack State Logic
-    protected void PerformAttackState()
+    virtual protected void PerformAttackState()
     {
         switch (attackSubState)
         {
@@ -644,7 +650,7 @@ public class Enemy : Target
     }
     #endregion
     #region Search State Logic
-    protected void PerformSearchingState()
+    virtual protected void PerformSearchingState()
     {
         switch (searchSubState)
         {
@@ -705,13 +711,13 @@ public class Enemy : Target
         }
     }
     #endregion
-    protected IEnumerator SetDestinationAfter(Vector3 position, float seconds)
+    virtual protected IEnumerator SetDestinationAfter(Vector3 position, float seconds)
     {
         yield return new WaitForSeconds(seconds);
         agent.SetDestination(position);
     }
 
-    protected bool RaycastToPlayer()
+    virtual protected bool RaycastToPlayer()
     {
         Vector3 origin = transform.position + new Vector3(0f, agent.height, 0f);
         Vector3 castDestination = CharacterActions.instance.fpsTransform.position;
@@ -727,12 +733,13 @@ public class Enemy : Target
         }
     }
 
-    protected void FaceTarget()
+    virtual protected void FaceTarget()
     {
         Vector3 direction = (playerTransform.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 7.5f);
     }
+
     #endregion
 
     #region Health Methods
