@@ -23,8 +23,8 @@ TagManager:
   - MinimapElement
   - FloorWall
   - PostProcessing
-  - 
-  - 
+  - Projectile
+  - Enemy
   - 
   - 
   - 
