@@ -13,6 +13,9 @@ public class RangedEnemy : Enemy
 
     public AgroSubState agroSubState;
     public GameObject projectilePrefab;
+
+    public float projectileSpeed;
+    public int projectileDamage;
     protected GameObject[] projectiles;
     protected int nextProjectile = 0;
     protected override void Start()
@@ -22,6 +25,8 @@ public class RangedEnemy : Enemy
         for (int i = 0; i < projectiles.Length; i++)
         {
             projectiles[i] = Instantiate(projectilePrefab);
+            projectiles[i].GetComponent<Projectile>().speed = projectileSpeed;
+            projectiles[i].GetComponent<Projectile>().damage = projectileDamage;
             projectiles[i].SetActive(false);
         }
     }
@@ -162,6 +167,74 @@ public class RangedEnemy : Enemy
             default:
                 Debug.LogError("Unrecognized Agro State");
                 break;
+        }
+    }
+
+    override protected void PerformAttackState()
+    {
+        switch (attackSubState)
+        {
+            case AttackSubState.NOT_ATTACKING:
+                float waitTime;
+
+                if (attackTimeType == AttackTimeType.Constant)
+                {
+                    waitTime = attackTime;
+                }
+                else
+                {
+                    waitTime = Random.Range(attackTimeMin, attackTimeMax);
+                }
+
+                StartCoroutine(WaitToAttack(waitTime));
+                attackSubState = AttackSubState.WAITING;
+                break;
+            case AttackSubState.WAITING:
+                agent.SetDestination(playerTransform.position);
+                // **EXITED BY COROUTINE "WaitToAttack"**
+                if (!inAttackRadius)
+                {
+                    StopCoroutine("WaitToAttack");
+                    attackSubState = AttackSubState.DONE;
+                }
+                agent.SetDestination(transform.position);
+                break;
+            case AttackSubState.ATTACKING:
+
+                // **EXITED BY FUNCTION CALL "HurtPlayer"
+                break;
+            case AttackSubState.DONE:
+                // Currently Inaccessible
+                break;
+        }
+    }
+
+    override public bool HurtPlayer()
+    {
+        attackSubState = AttackSubState.DONE;
+        if (isStunned || killed)
+        {
+            return false;
+        }
+        //If the player is in view of the enemy and close enough, hurt player
+        if (RaycastToPlayer())
+        {
+            if (Vector3.Distance(playerTransform.position, transform.position) <= attackRaduis && false)
+            {
+                PlayerManager.instance.HurtPlayer(attackDamage);
+                return true;
+            }
+            else
+            {
+                projectiles[nextProjectile].SetActive(true);
+                projectiles[nextProjectile].transform.position = transform.position + new Vector3(0f, 0.75f, 0f);
+                projectiles[nextProjectile].transform.rotation = transform.rotation;
+                return true;
+            }
+        }
+        else
+        {
+            return false;
         }
     }
 }

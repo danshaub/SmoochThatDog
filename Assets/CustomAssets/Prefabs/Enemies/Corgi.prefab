@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 6665290434581743467}
   - component: {fileID: 6665290434581743462}
   - component: {fileID: 6665290434581743464}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: EnemySprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 6665290434601955979}
   - component: {fileID: 6665290434601955976}
   - component: {fileID: 1108076025402587906}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Corgi
   m_TagString: Enemy
   m_Icon: {fileID: 0}
