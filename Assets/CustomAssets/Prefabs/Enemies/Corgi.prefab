@@ -236,7 +236,7 @@ NavMeshAgent:
   m_AngularSpeed: 500
   m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 1.25
   m_BaseOffset: 0
@@ -270,43 +270,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d698f8a7f73f5847b101e65b8354eb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
+  maxHealth: 10
   health: 0
-  rageFill: 100
-  respawn: 1
-  delayBeforeRespawn: 5
-  respawnTime: 5
-  stunTime: 3
+  rageFill: 0
+  respawn: 0
+  delayBeforeRespawn: 0
+  respawnTime: 0
+  stunTime: 2
   stunCooldown: 3
   enemyGFX: {fileID: 6665290434581743466}
-  enemyAnimations: {fileID: 6665290434581743464}
   damageDoneTextPrefab: {fileID: 8136406870430508381, guid: 6611e0ab4d1d05943b52952a872a0405,
     type: 3}
   damageTextVerticalOffset: 0.75
   damageTextColor: {r: 1, g: 0, b: 0, a: 1}
   finalHitTextColor: {r: 0, g: 1, b: 0, a: 1}
-  sprite: {fileID: 6665290434581743462}
-  chaseLimitRadius: 20
-  agroRadius: 15
+  enemyAnimations: {fileID: 0}
+  sprite: {fileID: 0}
+  chaseLimitRadius: 10
+  agroRadius: 7.5
   attackRaduis: 2
-  attackDamage: 50
+  attackDamage: 1
   attackTimeType: 0
   attackTime: 1
   attackTimeMin: 1
   attackTimeMax: 2
+  timeAtPosition: 0
   defaultStateType: 0
   patrolPoints: []
-  timeAtPosition: 2
   wanderRaduisMax: 10
   wanderRaduisMin: 0
   state: 0
   defaultSubState: 0
   searchSubState: 0
   attackSubState: 0
-  audioSource: {fileID: 1108076025402587906}
+  targeted: 0
   ambientHostile: {fileID: 8300000, guid: c949e18192cd32d4c8abd234dd604ed2, type: 3}
   ambientCured: {fileID: 8300000, guid: 93cf9a7695ce62743b869e176f5c3d67, type: 3}
   walkSounds: {fileID: 8300000, guid: 8233ef340944e154aa88d18185a12165, type: 3}
+  audioSource: {fileID: 0}
 --- !u!136 &6665290434601955976
 CapsuleCollider:
   m_ObjectHideFlags: 0

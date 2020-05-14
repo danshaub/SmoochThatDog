@@ -302,31 +302,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   health: 0
-  rageFill: 25
+  rageFill: 0
   respawn: 0
   delayBeforeRespawn: 0
   respawnTime: 0
-  stunTime: 0
-  stunCooldown: 0
+  stunTime: 2
+  stunCooldown: 3
   enemyGFX: {fileID: 3197659838900641614}
-  enemyAnimations: {fileID: 3197659838900641612}
   damageDoneTextPrefab: {fileID: 8136406870430508381, guid: 6611e0ab4d1d05943b52952a872a0405,
     type: 3}
   damageTextVerticalOffset: 0.75
-  damageTextColor: {r: 1, g: 0, b: 0, a: 0}
-  finalHitTextColor: {r: 0, g: 1, b: 0, a: 0}
-  sprite: {fileID: 3197659838900641602}
+  damageTextColor: {r: 1, g: 0, b: 0, a: 1}
+  finalHitTextColor: {r: 0, g: 1, b: 0, a: 1}
+  enemyAnimations: {fileID: 0}
+  sprite: {fileID: 0}
   chaseLimitRadius: 10
-  agroRadius: 9
+  agroRadius: 7.5
   attackRaduis: 2
   attackDamage: 1
   attackTimeType: 0
   attackTime: 1
   attackTimeMin: 1
   attackTimeMax: 2
-  defaultStateType: 2
+  timeAtPosition: 0
+  defaultStateType: 0
   patrolPoints: []
-  timeAtPosition: 0.5
   wanderRaduisMax: 10
   wanderRaduisMin: 0
   state: 0
@@ -334,20 +334,19 @@ MonoBehaviour:
   searchSubState: 0
   attackSubState: 0
   targeted: 0
-  audioSource: {fileID: 9187112060168053542}
   ambientHostile: {fileID: 8300000, guid: c949e18192cd32d4c8abd234dd604ed2, type: 3}
   ambientCured: {fileID: 8300000, guid: 93cf9a7695ce62743b869e176f5c3d67, type: 3}
   walkSounds: {fileID: 8300000, guid: 8233ef340944e154aa88d18185a12165, type: 3}
-  timeShooting: 60
-  timeChasing: 0
-  timeShootingVariance: 0
-  timeChasingVariance: 0
-  shooting: 1
+  audioSource: {fileID: 0}
+  timeShooting: 10
+  timeChasing: 5
+  timeShootingVariance: 2
+  timeChasingVariance: 2
   projectilePrefab: {fileID: 2569487309409024417, guid: b7bdb86ab6465334fab870e20b974b62,
     type: 3}
-  projectileSpeed: 20
-  projectileDamage: 10
-  healSearchRadius: 20
+  projectileSpeed: 10
+  projectileDamage: 0
+  healSearchRadius: 25
   healingSubState: 0
   target: {fileID: 0}
 --- !u!1 &6744350432678379663

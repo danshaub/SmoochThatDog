@@ -387,43 +387,43 @@ MonoBehaviour:
   respawn: 0
   delayBeforeRespawn: 0
   respawnTime: 0
-  stunTime: 5
-  stunCooldown: 1
+  stunTime: 2
+  stunCooldown: 3
   enemyGFX: {fileID: 7535182192138857239}
-  enemyAnimations: {fileID: 7535182192138857237}
   damageDoneTextPrefab: {fileID: 8136406870430508381, guid: 6611e0ab4d1d05943b52952a872a0405,
     type: 3}
   damageTextVerticalOffset: 0.75
   damageTextColor: {r: 1, g: 0, b: 0, a: 1}
   finalHitTextColor: {r: 0, g: 1, b: 0, a: 1}
-  sprite: {fileID: 7535182192138857243}
-  chaseLimitRadius: 20
-  agroRadius: 10
+  enemyAnimations: {fileID: 0}
+  sprite: {fileID: 0}
+  chaseLimitRadius: 10
+  agroRadius: 7.5
   attackRaduis: 2
-  attackDamage: 25
+  attackDamage: 1
   attackTimeType: 0
   attackTime: 1
   attackTimeMin: 1
   attackTimeMax: 2
+  timeAtPosition: 0
   defaultStateType: 0
   patrolPoints: []
-  timeAtPosition: 0
-  wanderRaduisMax: 0
+  wanderRaduisMax: 10
   wanderRaduisMin: 0
   state: 0
   defaultSubState: 0
   searchSubState: 0
   attackSubState: 0
-  audioSource: {fileID: 4291133676516513663}
+  targeted: 0
   ambientHostile: {fileID: 8300000, guid: c949e18192cd32d4c8abd234dd604ed2, type: 3}
   ambientCured: {fileID: 8300000, guid: 93cf9a7695ce62743b869e176f5c3d67, type: 3}
-  walkSounds: {fileID: 8300000, guid: 4e29a724426be3e4493e2e4d0107a34c, type: 3}
+  walkSounds: {fileID: 8300000, guid: 8233ef340944e154aa88d18185a12165, type: 3}
+  audioSource: {fileID: 0}
   timeShooting: 10
   timeChasing: 5
-  timeShootingVariance: 0
-  timeChasingVariance: 0
-  shooting: 1
+  timeShootingVariance: 2
+  timeChasingVariance: 2
   projectilePrefab: {fileID: 440871730252885444, guid: 22bf46ed6c837484482d4fb8351dd9b9,
     type: 3}
   projectileSpeed: 10
-  projectileDamage: 50
+  projectileDamage: 0

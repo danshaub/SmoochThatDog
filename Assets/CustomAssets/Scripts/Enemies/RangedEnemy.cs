@@ -4,18 +4,24 @@ using UnityEngine;
 
 public class RangedEnemy : Enemy
 {
-    public float timeShooting;
-    public float timeChasing;
+    [Header("Shooting/Chasing toggle")]
+    [Header("Ranged Enemy Variables")]
+    public float timeShooting = 10f;
+    public float timeChasing = 5f;
 
-    public float timeShootingVariance;
-    public float timeChasingVariance;
-    public bool shooting = true;
+    public float timeShootingVariance = 2f;
+    public float timeChasingVariance = 2f;
+    
+    [Header("Projectiles")]
     public GameObject projectilePrefab;
 
-    public float projectileSpeed;
+    public float projectileSpeed = 10;
     public int projectileDamage;
+
+
     protected GameObject[] projectiles;
     protected int nextProjectile = 0;
+    protected bool shooting = true;
     protected override void Start()
     {
         base.Start();
@@ -186,7 +192,7 @@ public class RangedEnemy : Enemy
             case AttackSubState.NOT_ATTACKING:
                 float waitTime;
 
-                if (attackTimeType == AttackTimeType.Constant)
+                if (attackTimeType == AttackTimeType.CONSTANT)
                 {
                     waitTime = attackTime;
                 }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(AudioSource))]
 public class Enemy : Target
 {
     #region Enums
@@ -54,8 +56,8 @@ public class Enemy : Target
     [System.Serializable]
     public enum AttackTimeType
     {
-        Constant,
-        RandomBetweenTwoConstants
+        CONSTANT,
+        RANDOM_BETWEEN_CONSTANTS
     }
     #endregion
 
@@ -66,14 +68,16 @@ public class Enemy : Target
     #region AnimationVariables
     [Header("Animation Variables")]
     public GameObject enemyGFX;
-    public Animator enemyAnimations;
+    
     public GameObject damageDoneTextPrefab;
-    public float damageTextVerticalOffset;
-    public Color damageTextColor;
-    public Color finalHitTextColor;
-    public SpriteRenderer sprite;
+    [HideInInspector] public float damageTextVerticalOffset = 0.75f;
+    public Color damageTextColor = Color.red;
+    public Color finalHitTextColor = Color.green;
+
 
     //Hidden Variables
+    [HideInInspector] public Animator enemyAnimations;
+    [HideInInspector] public SpriteRenderer sprite;
     public float angleToPlayer { get; protected set; }
     protected float angleInRadians = 0f;
     protected Vector2 horizPositionDifference;
@@ -89,27 +93,36 @@ public class Enemy : Target
     #endregion
 
     #region AI Variables
+    [Header("Range (Ensure that Chase > Agro > Attack)")]
     [Header("AI Variables")]
+    [Range(0f, 50f)]
     public float chaseLimitRadius = 10f;
+    [Range(0f, 50f)]
     public float agroRadius = 7.5f;
-    public float attackRaduis = 5f;
+    [Range(0f, 5f)]
+    public float attackRaduis = 2f;
+    [Header("Attacking")]
     public int attackDamage = 1;
     public AttackTimeType attackTimeType;
     public float attackTime = 1f;
     public float attackTimeMin = 1f;
     public float attackTimeMax = 2f;
+    [Header("Movement")]
+    [Range(0f, 60f)]
+    public float timeAtPosition;
     public DefaultStateType defaultStateType;
     public List<Transform> patrolPoints;
-    public float timeAtPosition;
-    public float wanderRaduisMax;
-    public float wanderRaduisMin;
+    [Range(0f, 50f)]
+    public float wanderRaduisMax = 10f;
+    [Range(0f, 50f)]
+    public float wanderRaduisMin = 0f;
 
     #region Internal Variables
     //States
-    public State state;
-    public DefaultSubState defaultSubState;
-    public SearchSubState searchSubState;
-    public AttackSubState attackSubState;
+    [HideInInspector] public State state;
+    [HideInInspector] public DefaultSubState defaultSubState;
+    [HideInInspector] public SearchSubState searchSubState;
+    [HideInInspector] public AttackSubState attackSubState;
     //Location Flags
     protected bool hasLineOfSight = false;
     protected bool inChaseRadius = false;
@@ -133,10 +146,12 @@ public class Enemy : Target
 
     #region Sounds
 
-    public AudioSource audioSource;
+    [Header("Sounds")]
     public AudioClip ambientHostile;
     public AudioClip ambientCured;
     public AudioClip walkSounds;
+
+    [HideInInspector] public AudioSource audioSource;
     protected bool playAmbientSounds;
 
     #endregion
@@ -154,6 +169,9 @@ public class Enemy : Target
 
     protected virtual void Start()
     {
+        enemyAnimations = enemyGFX.GetComponent<Animator>();
+        sprite = enemyGFX.GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
         health = maxHealth;
         agent = GetComponent<NavMeshAgent>();
         previousDestination = agent.destination;
@@ -610,7 +628,7 @@ public class Enemy : Target
             case AttackSubState.NOT_ATTACKING:
                 float waitTime;
 
-                if (attackTimeType == AttackTimeType.Constant)
+                if (attackTimeType == AttackTimeType.CONSTANT)
                 {
                     waitTime = attackTime;
                 }
@@ -822,7 +840,6 @@ public class Enemy : Target
 
     virtual public void Revive()
     {
-        Debug.Log("REVIVED");
         curedEnemies.Remove(this);
         targeted = false;
 

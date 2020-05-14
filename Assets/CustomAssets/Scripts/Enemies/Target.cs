@@ -6,13 +6,13 @@ public class Target : MonoBehaviour
 {
     [Header("Target Variables")]
     public int maxHealth = 10;
-    public int health;
+    [HideInInspector] public int health;
     public int rageFill;
     public bool respawn = false;
     public float delayBeforeRespawn = 0f;
     public float respawnTime = 0f;
-    public float stunTime = 0f;
-    public float stunCooldown = 0f;
+    public float stunTime = 2f;
+    public float stunCooldown = 3f;
     public bool isStunned { get; protected set; } = false;
     public bool killed { get; protected set; } = false;
     public bool canStun { get; protected set; } = true;

@@ -35,10 +35,10 @@ public class EnemyEditor : TargetEditor
 
         switch (enemy.attackTimeType)
         {
-            case Enemy.AttackTimeType.Constant:
+            case Enemy.AttackTimeType.CONSTANT:
                 enemy.attackTime = EditorGUILayout.FloatField("Attack Time", enemy.attackTime);
                 break;
-            case Enemy.AttackTimeType.RandomBetweenTwoConstants:
+            case Enemy.AttackTimeType.RANDOM_BETWEEN_CONSTANTS:
                 enemy.attackTimeMin = EditorGUILayout.FloatField("Min Attack Time", enemy.attackTimeMin);
                 enemy.attackTimeMax = EditorGUILayout.FloatField("Max Attack Time", enemy.attackTimeMax);
                 break;

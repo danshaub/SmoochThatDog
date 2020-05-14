@@ -12,10 +12,12 @@ public class HealerEnemy : RangedEnemy
         DONE
     }
 
-    public float healSearchRadius;
+    [Header("Healer Enemy Variables")]
+    [Range(0f, 100f)]
+    public float healSearchRadius = 25f;
 
-    public HealingSubState healingSubState;
-    public Enemy target;
+    [HideInInspector] public HealingSubState healingSubState;
+    [HideInInspector] public Enemy target;
     override protected void PerformAILogic()
     {
         //Reset stopping distance if enemy is aware of player
