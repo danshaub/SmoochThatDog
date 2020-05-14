@@ -72,7 +72,10 @@ public class Pickup : MonoBehaviour
             TakePickup();
             foreach (GameObject triggerable in triggerables)
             {
-                triggerable.GetComponent<ITriggerableObject>().Trigger();
+                foreach (ITriggerableObject triggerable1 in triggerable.GetComponents<ITriggerableObject>())
+                {
+                    triggerable1.Trigger();
+                }
             }
             if (respawns)
             {

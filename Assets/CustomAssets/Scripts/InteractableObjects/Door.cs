@@ -21,6 +21,7 @@ public class Door : MonoBehaviour, IInteractableObject, ITriggerableObject
     public int lockID = 0;
     public bool consumeKey = false;
     public bool interactable = true;
+    public bool openOnTrigger = true;
 
     public AudioClip openSound;
     public AudioClip closeSound;
@@ -70,6 +71,13 @@ public class Door : MonoBehaviour, IInteractableObject, ITriggerableObject
         data.open = open;
         data.locked = locked;
 
+        data.materials = new Material[doors.Count][];
+
+        for (int d = 0; d < doors.Count; d++)
+        {
+            data.materials[d] = doors[d].GetComponent<Renderer>().materials;
+        }
+
         return data;
     }
 
@@ -78,6 +86,8 @@ public class Door : MonoBehaviour, IInteractableObject, ITriggerableObject
         open = data.open;
         locked = data.locked;
 
+
+
         if (data.open)
         {
             OpenInstant();
@@ -85,6 +95,11 @@ public class Door : MonoBehaviour, IInteractableObject, ITriggerableObject
         else
         {
             CloseInstant();
+        }
+
+        for (int d = 0; d < doors.Count; d++)
+        {
+            doors[d].GetComponent<Renderer>().materials = data.materials[d];
         }
     }
     void FixedUpdate()
@@ -149,7 +164,10 @@ public class Door : MonoBehaviour, IInteractableObject, ITriggerableObject
 
     virtual public void Trigger()
     {
-        Open();
+        if (openOnTrigger)
+        {
+            Open();
+        }
     }
     virtual public void Close()
     {
@@ -199,6 +217,11 @@ public class Door : MonoBehaviour, IInteractableObject, ITriggerableObject
         {
             PlayerManager.instance.RemoveKey(lockID);
         }
+    }
+
+    public void Lock()
+    {
+        locked = true;
     }
 
     public void OpenInstant()

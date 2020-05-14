@@ -1,0 +1,883 @@
+fileFormatVersion: 2
+guid: bc5969abe50e67247a7a55262213b393
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8662450401819002589
+    second: CorgiSpriteSheet_laser_0
+  - first:
+      213: 30759653146892875
+    second: CorgiSpriteSheet_laser_1
+  - first:
+      213: 452694112029542472
+    second: CorgiSpriteSheet_laser_2
+  - first:
+      213: 8233766431793489849
+    second: CorgiSpriteSheet_laser_3
+  - first:
+      213: -1224977643775563812
+    second: CorgiSpriteSheet_laser_4
+  - first:
+      213: 4278241404428757748
+    second: CorgiSpriteSheet_laser_5
+  - first:
+      213: 3470155622946815609
+    second: CorgiSpriteSheet_laser_6
+  - first:
+      213: 5146114203764446531
+    second: CorgiSpriteSheet_laser_7
+  - first:
+      213: -9105685522126277083
+    second: CorgiSpriteSheet_laser_8
+  - first:
+      213: -5066961470457902865
+    second: CorgiSpriteSheet_laser_9
+  - first:
+      213: 8231090096029561995
+    second: CorgiSpriteSheet_laser_10
+  - first:
+      213: 4870475131209758759
+    second: CorgiSpriteSheet_laser_11
+  - first:
+      213: -4393866783344165514
+    second: CorgiSpriteSheet_laser_12
+  - first:
+      213: -4896471701393363387
+    second: CorgiSpriteSheet_laser_13
+  - first:
+      213: 4518581265239719205
+    second: CorgiSpriteSheet_laser_14
+  - first:
+      213: 7816674266401168922
+    second: CorgiSpriteSheet_laser_15
+  - first:
+      213: -4742497096868426148
+    second: CorgiSpriteSheet_laser_16
+  - first:
+      213: -460773610054039893
+    second: CorgiSpriteSheet_laser_17
+  - first:
+      213: -4347243971171223829
+    second: CorgiSpriteSheet_laser_18
+  - first:
+      213: -4727389237638864127
+    second: CorgiSpriteSheet_laser_19
+  - first:
+      213: -3124944474767596377
+    second: CorgiSpriteSheet_laser_20
+  - first:
+      213: 2174359042514872744
+    second: CorgiSpriteSheet_laser_21
+  - first:
+      213: 8417494448343520038
+    second: CorgiSpriteSheet_laser_22
+  - first:
+      213: 6712745945413213700
+    second: CorgiSpriteSheet_laser_23
+  - first:
+      213: -3360782287796566201
+    second: CorgiSpriteSheet_laser_24
+  - first:
+      213: 2763381778919954056
+    second: CorgiSpriteSheet_laser_25
+  - first:
+      213: -6694777159949530532
+    second: CorgiSpriteSheet_laser_26
+  - first:
+      213: -5887208554619088703
+    second: CorgiSpriteSheet_laser_27
+  - first:
+      213: 2960416570236171098
+    second: CorgiSpriteSheet_laser_28
+  - first:
+      213: 6713583568524347491
+    second: CorgiSpriteSheet_laser_29
+  - first:
+      213: 2359518247644643684
+    second: CorgiSpriteSheet_laser_30
+  - first:
+      213: 3760617451715628338
+    second: CorgiSpriteSheet_laser_31
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 88
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_laser_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 752
+        width: 132
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3297323514bc8c780800000000000000
+      internalID: -8662450401819002589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_laser_1
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 752
+        width: 128
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4a1c37ddb74d6000800000000000000
+      internalID: 30759653146892875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_laser_2
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 752
+        width: 126
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8488e6b75ea484600800000000000000
+      internalID: 452694112029542472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_laser_3
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 752
+        width: 132
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b7269202f6344270800000000000000
+      internalID: 8233766431793489849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_laser_4
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 646
+        width: 132
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd766fcb251000fe0800000000000000
+      internalID: -1224977643775563812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_laser_5
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 646
+        width: 128
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fa2856e3ed5f5b30800000000000000
+      internalID: 4278241404428757748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_laser_6
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 646
+        width: 126
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97eb1154728782030800000000000000
+      internalID: 3470155622946815609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_laser_7
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 644
+        width: 132
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 345d8f06a9baa6740800000000000000
+      internalID: 5146114203764446531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_laser_8
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 542
+        width: 132
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 526fe39f24b12a180800000000000000
+      internalID: -9105685522126277083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_laser_9
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 540
+        width: 128
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe804c673698ea9b0800000000000000
+      internalID: -5066961470457902865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_laser_10
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 540
+        width: 126
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b84f31805d4ba3270800000000000000
+      internalID: 8231090096029561995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_laser_11
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 544
+        width: 132
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 728b123b357679340800000000000000
+      internalID: 4870475131209758759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_laser_12
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 438
+        width: 132
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67df164b079d503c0800000000000000
+      internalID: -4393866783344165514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_laser_13
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 438
+        width: 128
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54e22b12eec3c0cb0800000000000000
+      internalID: -4896471701393363387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_laser_14
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 438
+        width: 126
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52d395368b935be30800000000000000
+      internalID: 4518581265239719205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_laser_15
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 440
+        width: 132
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1e57cda4d76a7c60800000000000000
+      internalID: 7816674266401168922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_laser_16
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 334
+        width: 132
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5e06d864044f2eb0800000000000000
+      internalID: -4742497096868426148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_laser_17
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 334
+        width: 128
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba6cadac7d00b99f0800000000000000
+      internalID: -460773610054039893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_laser_18
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 334
+        width: 126
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be6716214ac7ba3c0800000000000000
+      internalID: -4347243971171223829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_laser_19
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 334
+        width: 132
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 103e78ff880f46eb0800000000000000
+      internalID: -4727389237638864127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_laser_20
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 230
+        width: 132
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a468ae8e87f1a4d0800000000000000
+      internalID: -3124944474767596377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_laser_21
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 232
+        width: 128
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a9e1476700ec2e10800000000000000
+      internalID: 2174359042514872744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_laser_22
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 232
+        width: 126
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 623965c5a92f0d470800000000000000
+      internalID: 8417494448343520038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_laser_23
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 230
+        width: 132
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40e5cc72fd6782d50800000000000000
+      internalID: 6712745945413213700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_laser_24
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 120
+        width: 76
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7470670c05a1c51d0800000000000000
+      internalID: -3360782287796566201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_laser_25
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 120
+        width: 68
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8869f4f3611895620800000000000000
+      internalID: 2763381778919954056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_laser_26
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 120
+        width: 84
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5a4fcab4af5713a0800000000000000
+      internalID: -6694777159949530532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_laser_27
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 120
+        width: 76
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c0d947e20f6c4ea0800000000000000
+      internalID: -5887208554619088703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_laser_28
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 2
+        width: 76
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a537b188f23851920800000000000000
+      internalID: 2960416570236171098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_laser_29
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 2
+        width: 68
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3680bcb7fa07b2d50800000000000000
+      internalID: 6713583568524347491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_laser_30
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 2
+        width: 84
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46149ef4851beb020800000000000000
+      internalID: 2359518247644643684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_laser_31
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 2
+        width: 76
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23d05a1d5a5603430800000000000000
+      internalID: 3760617451715628338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 0e5d749faef13e040886bfb08298b428
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

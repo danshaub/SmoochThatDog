@@ -152,7 +152,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -5980816369517921308, guid: 74bb884871d6bbe48b5a2db78d3b276b,
+  m_Sprite: {fileID: -3360782287796566201, guid: bc5969abe50e67247a7a55262213b393,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -418,8 +418,10 @@ MonoBehaviour:
   ambientHostile: {fileID: 8300000, guid: c949e18192cd32d4c8abd234dd604ed2, type: 3}
   ambientCured: {fileID: 8300000, guid: 93cf9a7695ce62743b869e176f5c3d67, type: 3}
   walkSounds: {fileID: 8300000, guid: 4e29a724426be3e4493e2e4d0107a34c, type: 3}
-  timeChasing: 5
   timeShooting: 10
+  timeChasing: 5
+  timeShootingVariance: 0
+  timeChasingVariance: 0
   shooting: 1
   projectilePrefab: {fileID: 440871730252885444, guid: 22bf46ed6c837484482d4fb8351dd9b9,
     type: 3}

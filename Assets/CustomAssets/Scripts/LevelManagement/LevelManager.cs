@@ -54,6 +54,7 @@ public class LevelManager : MonoBehaviour
         {
             public bool locked;
             public bool open;
+            public Material[][] materials;
         }
 
         #endregion

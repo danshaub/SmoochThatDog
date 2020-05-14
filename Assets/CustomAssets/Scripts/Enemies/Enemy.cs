@@ -308,7 +308,10 @@ public class Enemy : Target
             return;
         }
 
-        audioSource.PlayOneShot(ambientHostile);
+        if (gameObject.activeInHierarchy)
+        {
+            audioSource.PlayOneShot(ambientHostile);
+        }
         Invoke("PlaySoundRepeating", Random.Range(0.5f, 2f));
     }
 

@@ -123,6 +123,7 @@ public class PlayerManager : MonoBehaviour
     public void LoadCheckpoint(LevelManager.CheckpointData.PlayerData data)
     {
         deathText.SetActive(false);
+        isAlive = true;
         GetComponent<CharacterController>().enabled = false;
         StartCoroutine(LockControlTemporarily());
         transform.position = data.worldPosition;
@@ -138,6 +139,7 @@ public class PlayerManager : MonoBehaviour
         armorDurability = data.armor;
         maxArmorDurability = data.maxArmor;
         rageAmount = data.rageAmount;
+        hurtVignette.color = new Color(1, 1, 1, 0);
 
         for (int i = 1; i < data.guns.Length; i++)
         {
@@ -164,7 +166,7 @@ public class PlayerManager : MonoBehaviour
     public IEnumerator LockControlTemporarily()
     {
         CharacterActions.instance.lockControl = true;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.01f);
         CharacterActions.instance.lockControl = false;
     }
     #region UI Updating
@@ -178,6 +180,8 @@ public class PlayerManager : MonoBehaviour
         UpdateGunTexts();
         UpdateRageBar();
         ResetMinimap();
+
+        faceAnimations.SetTrigger("Reset");
     }
 
     public void UpdateKeySlots()
