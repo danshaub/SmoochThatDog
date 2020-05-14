@@ -12,7 +12,8 @@ public class Enemy : Target
         DEFAULT,
         AGRO,
         ATTACKING,
-        SEARCHING
+        SEARCHING,
+        HEALING
     }
     [System.Serializable]
     public enum SearchSubState
@@ -59,6 +60,8 @@ public class Enemy : Target
     #endregion
 
     #region Variables
+
+    public static List<Enemy> curedEnemies;
 
     #region AnimationVariables
     [Header("Animation Variables")]
@@ -123,6 +126,8 @@ public class Enemy : Target
     protected int nextPatrolPoint = 0;
     protected float initialStoppingDistance;
 
+    [HideInInspector] public bool targeted;
+
     #endregion
     #endregion
 
@@ -139,6 +144,14 @@ public class Enemy : Target
     #endregion
 
     #region Methods
+    private void Awake()
+    {
+        if (curedEnemies == null)
+        {
+            curedEnemies = new List<Enemy>();
+        }
+    }
+
     protected virtual void Start()
     {
         health = maxHealth;
@@ -188,6 +201,9 @@ public class Enemy : Target
             searchSubState = SearchSubState.NOT_SEARCHING;
             defaultSubState = DefaultSubState.NOT_DEFAULT;
             audioSource.clip = walkSounds;
+
+            curedEnemies.Remove(this);
+            targeted = false;
         }
         else
         {
@@ -784,6 +800,9 @@ public class Enemy : Target
 
     override public void Kill()
     {
+        curedEnemies.Add(this);
+        targeted = false;
+
         canStun = false;
         killed = true;
         playAmbientSounds = false;
@@ -799,6 +818,35 @@ public class Enemy : Target
         }
 
         audioSource.clip = ambientCured;
+    }
+
+    virtual public void Revive()
+    {
+        Debug.Log("REVIVED");
+        curedEnemies.Remove(this);
+        targeted = false;
+
+        health = maxHealth;
+        agent.stoppingDistance = initialStoppingDistance;
+        agent.SetDestination(transform.position);
+        nextPatrolPoint = 0;
+        state = State.DEFAULT;
+        defaultSubState = DefaultSubState.NOT_DEFAULT;
+        attackSubState = AttackSubState.NOT_ATTACKING;
+        searchSubState = SearchSubState.NOT_SEARCHING;
+        isStunned = false;
+        sprite.color = Color.white;
+        canStun = true;
+        audioSource.clip = walkSounds;
+
+        GetComponent<Collider>().enabled = true;
+
+
+        killed = false;
+
+
+        enemyAnimations.SetBool("Cured", false);
+        StopAllCoroutines();
     }
 
     public IEnumerator StunnedCoroutine()
