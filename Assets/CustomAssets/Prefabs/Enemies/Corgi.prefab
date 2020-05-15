@@ -368,16 +368,16 @@ MonoBehaviour:
   finalHitTextColor: {r: 0, g: 1, b: 0, a: 1}
   enemyAnimations: {fileID: 0}
   sprite: {fileID: 0}
-  chaseLimitRadius: 10
-  agroRadius: 7.5
+  chaseLimitRadius: 23.8
+  agroRadius: 10.6
   attackRaduis: 2
   attackDamage: 1
-  attackTimeType: 0
+  attackTimeType: 1
   attackTime: 1
   attackTimeMin: 1
   attackTimeMax: 2
-  timeAtPosition: 0
-  defaultStateType: 0
+  timeAtPosition: 2
+  defaultStateType: 2
   patrolPoints: []
   wanderRaduisMax: 10
   wanderRaduisMin: 0
@@ -417,7 +417,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.35
   m_Pitch: 1
   Loop: 1
   Mute: 0

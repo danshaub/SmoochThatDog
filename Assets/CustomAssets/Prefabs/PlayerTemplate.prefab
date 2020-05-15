@@ -5119,7 +5119,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2440849950219122399
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5185,7 +5185,7 @@ Animator:
   m_GameObject: {fileID: 2440849950219122398}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 49d4b10616ae6114895c75a68c5e7b25, type: 2}
+  m_Controller: {fileID: 9100000, guid: eb6d9190daacfec4eb19c791bd4f59b5, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -6447,9 +6447,9 @@ MonoBehaviour:
   smooch: {fileID: 6384366232937241147, guid: a397034c478543940bd30e27797f2449, type: 3}
   gunNames:
   - None
-  - Shotgun
   - Pistol
-  - 
+  - Shotgun
+  - Gatling Gun
   - 
   - 
   - 
@@ -8062,7 +8062,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 8a4c04980333bfa4599694427d969505, type: 3}
-    m_FontSize: 142
+    m_FontSize: 130
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -8073,7 +8073,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: '[x] asdfghjkls'
+  m_Text: '[4] Gatling GUn'
 --- !u!1 &3984321185338517234
 GameObject:
   m_ObjectHideFlags: 0
@@ -9045,7 +9045,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 8a4c04980333bfa4599694427d969505, type: 3}
-    m_FontSize: 142
+    m_FontSize: 130
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -9056,7 +9056,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: '[x] asdfghjkls'
+  m_Text: '[4] Gatling GUn'
 --- !u!1 &4818655568548540204
 GameObject:
   m_ObjectHideFlags: 0
@@ -11946,7 +11946,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 8a4c04980333bfa4599694427d969505, type: 3}
-    m_FontSize: 142
+    m_FontSize: 130
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -11957,7 +11957,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: '[x] asdfghjkls'
+  m_Text: '[4] Gatling GUn'
 --- !u!1 &6898015070718628562
 GameObject:
   m_ObjectHideFlags: 0
@@ -14797,7 +14797,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 8a4c04980333bfa4599694427d969505, type: 3}
-    m_FontSize: 142
+    m_FontSize: 130
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -14808,4 +14808,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: '[x] asdfghjkls'
+  m_Text: '[4] Gatling GUn'

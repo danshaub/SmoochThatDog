@@ -205,16 +205,16 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1.5
+  m_Volume: 0.35
+  m_Pitch: 0.9
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 35
+  Priority: 186
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 50
+  MaxDistance: 18
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -340,14 +340,14 @@ MonoBehaviour:
   walkSounds: {fileID: 8300000, guid: 8233ef340944e154aa88d18185a12165, type: 3}
   audioSource: {fileID: 0}
   timeShooting: 10
-  timeChasing: 5
+  timeChasing: 0
   timeShootingVariance: 2
-  timeChasingVariance: 2
+  timeChasingVariance: 0
   projectilePrefab: {fileID: 2569487309409024417, guid: b7bdb86ab6465334fab870e20b974b62,
     type: 3}
   projectileSpeed: 10
   projectileDamage: 0
-  healSearchRadius: 25
+  healSearchRadius: 18.2
   healingSubState: 0
   target: {fileID: 0}
 --- !u!1 &6744350432678379663
