@@ -60,7 +60,12 @@ public class EnemyGate : MonoBehaviour, ITriggerableObject
     {
         triggered = false;
         door.locked = false;
-        door.Open();
+
+        if (!door.interactable)
+        {
+            door.Open();
+        }
+        
 
         foreach (GameObject go in door.doors)
         {

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4472748276832541382}
   - component: {fileID: 3739951235461814568}
   - component: {fileID: 4485514058642782659}
+  - component: {fileID: 1051317239810912135}
   m_Layer: 10
   m_Name: LongTallDoorPB
   m_TagString: Untagged
@@ -1032,6 +1033,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!208 &1051317239810912135
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7056613188740138283}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 3.3750002, y: 1.5000001, z: 0.031000001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.5000001, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &8791942755273473683
 GameObject:
   m_ObjectHideFlags: 0

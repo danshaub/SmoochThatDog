@@ -212,6 +212,7 @@ MonoBehaviour:
   lockID: 0
   consumeKey: 0
   interactable: 1
+  openOnTrigger: 1
   openSound: {fileID: 8300000, guid: 2bc95adddb5dec64387dc6f89b929b1c, type: 3}
   closeSound: {fileID: 8300000, guid: 1910e0e5b6eb34546ab4f1843c1654e2, type: 3}
   lockedSound: {fileID: 8300000, guid: f139468fc06c00b41a70af8be7f48943, type: 3}

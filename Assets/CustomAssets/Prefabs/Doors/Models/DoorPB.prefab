@@ -1044,6 +1044,7 @@ GameObject:
   - component: {fileID: 4547899530540795532}
   - component: {fileID: 6372381254524539101}
   - component: {fileID: 49127762361376890}
+  - component: {fileID: 4863813130507323832}
   m_Layer: 10
   m_Name: DoorPB
   m_TagString: Untagged
@@ -2063,3 +2064,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!208 &4863813130507323832
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4579512533895951996}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.87500006, y: 1.1880001, z: 0.031000001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1.1880001, z: 0}
+  m_TimeToStationary: 0.5
