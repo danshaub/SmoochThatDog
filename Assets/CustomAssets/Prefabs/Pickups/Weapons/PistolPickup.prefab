@@ -64,6 +64,8 @@ MonoBehaviour:
   respawnTime: 0
   bobSpeed: 5
   bobHeight: 0.1
+  isTrigger: 0
+  triggerables: []
   gun: {fileID: 7282836446445882, guid: 924444f9476a6eb4580956dde0a3f7a9, type: 3}
 --- !u!212 &9209011351127229747
 SpriteRenderer:
@@ -104,7 +106,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 857f26f0a08473943a9f8eecef7d8bac, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d5d08ef8c3ea15b4297718b801c2d7f6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -185,7 +187,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 857f26f0a08473943a9f8eecef7d8bac, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d5d08ef8c3ea15b4297718b801c2d7f6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

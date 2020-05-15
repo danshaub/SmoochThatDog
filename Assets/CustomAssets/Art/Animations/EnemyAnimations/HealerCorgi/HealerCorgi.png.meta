@@ -1,265 +1,103 @@
 fileFormatVersion: 2
-guid: cdb53e1b8507d2c42ae0b4c46a4231ee
+guid: cf4164ae7b35eb34eb484d51d0ff4818
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4046870627777575081
-    second: DogSpriteSheet2_0
+      213: -9158200532294700572
+    second: HealerCorgi_0
   - first:
-      213: 6226878728092534432
-    second: DogSpriteSheet2_1
+      213: -9165527105452729997
+    second: HealerCorgi_1
   - first:
-      213: 6373646328354223230
-    second: DogSpriteSheet2_2
+      213: -7647804735886060585
+    second: HealerCorgi_2
   - first:
-      213: -863314605644777586
-    second: DogSpriteSheet2_3
+      213: 1811187186653347536
+    second: HealerCorgi_3
   - first:
-      213: -3650685140674301731
-    second: DogSpriteSheet2_4
+      213: -5509343831175600697
+    second: HealerCorgi_4
   - first:
-      213: 8564913606865554459
-    second: DogSpriteSheet2_5
+      213: -973848752601605162
+    second: HealerCorgi_5
   - first:
-      213: 5425052885646086098
-    second: DogSpriteSheet2_6
+      213: -889608260391111869
+    second: HealerCorgi_6
   - first:
-      213: 6214215283937735224
-    second: DogSpriteSheet2_7
+      213: 3219334629164379471
+    second: HealerCorgi_7
   - first:
-      213: -4912704672286782683
-    second: DogSpriteSheet2_8
+      213: -29576578036686566
+    second: HealerCorgi_8
   - first:
-      213: 5661952294819346098
-    second: DogSpriteSheet2_9
+      213: 3512947489218826350
+    second: HealerCorgi_9
   - first:
-      213: 2351764705962355967
-    second: DogSpriteSheet2_10
+      213: -6243639767912197825
+    second: HealerCorgi_10
   - first:
-      213: 5348706819395203527
-    second: DogSpriteSheet2_11
+      213: 8723810027811848505
+    second: HealerCorgi_11
   - first:
-      213: 3984090153086831115
-    second: DogSpriteSheet2_12
+      213: 1931242711678931443
+    second: HealerCorgi_12
   - first:
-      213: -8745730287978482754
-    second: DogSpriteSheet2_13
+      213: -6673953192100546943
+    second: HealerCorgi_13
   - first:
-      213: 2319890161951811590
-    second: DogSpriteSheet2_14
+      213: 4082956335614793514
+    second: HealerCorgi_14
   - first:
-      213: -4377770478305258990
-    second: DogSpriteSheet2_15
+      213: 2702812451343631205
+    second: HealerCorgi_15
   - first:
-      213: 2229845594875659649
-    second: DogSpriteSheet2_16
+      213: 2869244005492956534
+    second: HealerCorgi_16
   - first:
-      213: 6559997550799898903
-    second: DogSpriteSheet2_17
+      213: -4134263660451225238
+    second: HealerCorgi_17
   - first:
-      213: 4161750769234139580
-    second: DogSpriteSheet2_18
+      213: -8329626220608484482
+    second: HealerCorgi_18
   - first:
-      213: -8158637612599607952
-    second: DogSpriteSheet2_19
+      213: -1707402981189509039
+    second: HealerCorgi_19
   - first:
-      213: 2688274292697990390
-    second: DogSpriteSheet2_20
+      213: -8702564012095571897
+    second: HealerCorgi_20
   - first:
-      213: -3096250330355704424
-    second: DogSpriteSheet2_21
+      213: 4742286376382226882
+    second: HealerCorgi_21
   - first:
-      213: 320286628259928833
-    second: DogSpriteSheet2_22
+      213: -1988389797877384906
+    second: HealerCorgi_22
   - first:
-      213: 8244941014918917598
-    second: DogSpriteSheet2_23
+      213: -4260831971712264238
+    second: HealerCorgi_23
   - first:
-      213: 8592261278045498379
-    second: CorgiSpriteSheet_0
+      213: 5537301707691626253
+    second: HealerCorgi_24
   - first:
-      213: 53625203374828562
-    second: CorgiSpriteSheet_1
+      213: 2053979664674237327
+    second: HealerCorgi_25
   - first:
-      213: 6810500068916660100
-    second: CorgiSpriteSheet_2
+      213: 3654337264550784687
+    second: HealerCorgi_26
   - first:
-      213: -3584939601501999742
-    second: CorgiSpriteSheet_3
+      213: 1229448927478024498
+    second: HealerCorgi_27
   - first:
-      213: -7571431856191962884
-    second: CorgiSpriteSheet_4
+      213: 283119425637096266
+    second: HealerCorgi_28
   - first:
-      213: 590122266587346753
-    second: CorgiSpriteSheet_5
+      213: 7842190646839067318
+    second: HealerCorgi_29
   - first:
-      213: 3076758444330968485
-    second: CorgiSpriteSheet_6
+      213: -2402909217742860370
+    second: HealerCorgi_30
   - first:
-      213: -5194515942599406166
-    second: CorgiSpriteSheet_7
-  - first:
-      213: 5925216606156376021
-    second: CorgiSpriteSheet_8
-  - first:
-      213: 24223606781509889
-    second: CorgiSpriteSheet_9
-  - first:
-      213: 3374332398772100908
-    second: CorgiSpriteSheet_10
-  - first:
-      213: 1591254723101767491
-    second: CorgiSpriteSheet_11
-  - first:
-      213: -6533951106682555539
-    second: CorgiSpriteSheet_12
-  - first:
-      213: 1310411656029748735
-    second: CorgiSpriteSheet_13
-  - first:
-      213: -1186329283598675027
-    second: CorgiSpriteSheet_14
-  - first:
-      213: -1799203004078042572
-    second: CorgiSpriteSheet_15
-  - first:
-      213: -2310350151645184825
-    second: CorgiSpriteSheet_16
-  - first:
-      213: -8737163248403419221
-    second: CorgiSpriteSheet_17
-  - first:
-      213: 6447276351150234354
-    second: CorgiSpriteSheet_18
-  - first:
-      213: -1172811030158416560
-    second: CorgiSpriteSheet_19
-  - first:
-      213: 8576605184000257380
-    second: CorgiSpriteSheet_20
-  - first:
-      213: 8238777945482457664
-    second: CorgiSpriteSheet_21
-  - first:
-      213: -3272982221777165502
-    second: CorgiSpriteSheet_22
-  - first:
-      213: -6786008880413710090
-    second: CorgiSpriteSheet_23
-  - first:
-      213: 1900376530769763738
-    second: CorgiSpriteSheet_0
-  - first:
-      213: -2996656077240671318
-    second: CorgiSpriteSheet_1
-  - first:
-      213: -2044444681662583055
-    second: CorgiSpriteSheet_2
-  - first:
-      213: -978353830858644297
-    second: CorgiSpriteSheet_3
-  - first:
-      213: 959056406082126725
-    second: CorgiSpriteSheet_4
-  - first:
-      213: -6489328071004767960
-    second: CorgiSpriteSheet_5
-  - first:
-      213: -4839685984232370430
-    second: CorgiSpriteSheet_6
-  - first:
-      213: -9023939508277569384
-    second: CorgiSpriteSheet_7
-  - first:
-      213: 5019243884411566229
-    second: CorgiSpriteSheet_8
-  - first:
-      213: -6622030026709927261
-    second: CorgiSpriteSheet_9
-  - first:
-      213: 4274463585526202350
-    second: CorgiSpriteSheet_10
-  - first:
-      213: 4479262478994035270
-    second: CorgiSpriteSheet_11
-  - first:
-      213: -6512922435214406631
-    second: CorgiSpriteSheet_12
-  - first:
-      213: -8621409764110239565
-    second: CorgiSpriteSheet_13
-  - first:
-      213: -657384336818999185
-    second: CorgiSpriteSheet_14
-  - first:
-      213: -249927285133748996
-    second: CorgiSpriteSheet_15
-  - first:
-      213: 736388887399788153
-    second: CorgiSpriteSheet_16
-  - first:
-      213: -2896156943447991900
-    second: CorgiSpriteSheet_17
-  - first:
-      213: -5116731740541607816
-    second: CorgiSpriteSheet_18
-  - first:
-      213: 6138868814001251975
-    second: CorgiSpriteSheet_19
-  - first:
-      213: -8316608901168614501
-    second: CorgiSpriteSheet_20
-  - first:
-      213: 6120841924026105016
-    second: CorgiSpriteSheet_21
-  - first:
-      213: 7822311055043293499
-    second: CorgiSpriteSheet_22
-  - first:
-      213: 240009237913953729
-    second: CorgiSpriteSheet_23
-  - first:
-      213: -5980816369517921308
-    second: CorgiSpriteSheet_24
-  - first:
-      213: 3749129604668053649
-    second: CorgiSpriteSheet_25
-  - first:
-      213: -627650315962031703
-    second: CorgiSpriteSheet_26
-  - first:
-      213: -2011161150134850646
-    second: CorgiSpriteSheet_27
-  - first:
-      213: 7465893641296382204
-    second: CorgiSpriteSheet_28
-  - first:
-      213: 1743122126854258401
-    second: CorgiSpriteSheet_29
-  - first:
-      213: 8855232310115098769
-    second: CorgiSpriteSheet_24
-  - first:
-      213: -2621426102909091250
-    second: CorgiSpriteSheet_25
-  - first:
-      213: 3055030910756180031
-    second: CorgiSpriteSheet_26
-  - first:
-      213: 566643793197531416
-    second: CorgiSpriteSheet_27
-  - first:
-      213: -62213468322313318
-    second: CorgiSpriteSheet_28
-  - first:
-      213: 8932110700108428283
-    second: CorgiSpriteSheet_29
-  - first:
-      213: -8099501841795355658
-    second: CorgiSpriteSheet_30
-  - first:
-      213: 3865073112398781257
-    second: CorgiSpriteSheet_31
+      213: 7505105945488061282
+    second: HealerCorgi_31
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -303,7 +141,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 44
+  spritePixelsToUnits: 88
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -356,13 +194,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CorgiSpriteSheet_4
+      name: HealerCorgi_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 323
-        width: 66
-        height: 46
+        x: 2
+        y: 752
+        width: 132
+        height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -370,20 +208,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 583861458b04f4d00800000000000000
-      internalID: 959056406082126725
+      spriteID: 4e1f7ca532987e080800000000000000
+      internalID: -9158200532294700572
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CorgiSpriteSheet_5
+      name: HealerCorgi_1
       rect:
         serializedVersion: 2
-        x: 73
-        y: 323
-        width: 64
-        height: 50
+        x: 138
+        y: 752
+        width: 128
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -391,20 +229,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8293ac8508641f5a0800000000000000
-      internalID: -6489328071004767960
+      spriteID: 379964c98a18dc080800000000000000
+      internalID: -9165527105452729997
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CorgiSpriteSheet_6
+      name: HealerCorgi_2
       rect:
         serializedVersion: 2
-        x: 139
-        y: 323
-        width: 63
-        height: 50
+        x: 274
+        y: 752
+        width: 126
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -412,20 +250,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 20f84653d3bf5dcb0800000000000000
-      internalID: -4839685984232370430
+      spriteID: 7d316fdcc1a8dd590800000000000000
+      internalID: -7647804735886060585
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CorgiSpriteSheet_7
+      name: HealerCorgi_3
       rect:
         serializedVersion: 2
-        x: 204
-        y: 322
-        width: 66
-        height: 46
+        x: 406
+        y: 752
+        width: 132
+        height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -433,20 +271,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 898908ef3d684c280800000000000000
-      internalID: -9023939508277569384
+      spriteID: 0de36327621a22910800000000000000
+      internalID: 1811187186653347536
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CorgiSpriteSheet_8
+      name: HealerCorgi_4
       rect:
         serializedVersion: 2
-        x: 1
-        y: 271
-        width: 66
-        height: 46
+        x: 2
+        y: 646
+        width: 132
+        height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -454,20 +292,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 598376348bfe7a540800000000000000
-      internalID: 5019243884411566229
+      spriteID: 7c5e94da9f0ea83b0800000000000000
+      internalID: -5509343831175600697
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CorgiSpriteSheet_9
+      name: HealerCorgi_5
       rect:
         serializedVersion: 2
-        x: 73
-        y: 270
-        width: 64
-        height: 50
+        x: 146
+        y: 646
+        width: 128
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -475,20 +313,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3aafbf596c2d914a0800000000000000
-      internalID: -6622030026709927261
+      spriteID: 6db593c18b13c72f0800000000000000
+      internalID: -973848752601605162
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CorgiSpriteSheet_10
+      name: HealerCorgi_6
       rect:
         serializedVersion: 2
-        x: 139
-        y: 270
-        width: 63
-        height: 50
+        x: 278
+        y: 646
+        width: 126
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -496,20 +334,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eefb1a4ebf1f15b30800000000000000
-      internalID: 4274463585526202350
+      spriteID: 3437222200a77a3f0800000000000000
+      internalID: -889608260391111869
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CorgiSpriteSheet_11
+      name: HealerCorgi_7
       rect:
         serializedVersion: 2
-        x: 206
-        y: 272
-        width: 66
-        height: 46
+        x: 408
+        y: 644
+        width: 132
+        height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -517,20 +355,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 642dc241e79892e30800000000000000
-      internalID: 4479262478994035270
+      spriteID: f4de478d9cf5dac20800000000000000
+      internalID: 3219334629164379471
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CorgiSpriteSheet_12
+      name: HealerCorgi_8
       rect:
         serializedVersion: 2
-        x: 1
-        y: 219
-        width: 66
-        height: 46
+        x: 2
+        y: 542
+        width: 132
+        height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -538,20 +376,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 91c8f575d837d95a0800000000000000
-      internalID: -6512922435214406631
+      spriteID: a11a37c424ce69ff0800000000000000
+      internalID: -29576578036686566
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CorgiSpriteSheet_13
+      name: HealerCorgi_9
       rect:
         serializedVersion: 2
-        x: 73
-        y: 219
-        width: 64
-        height: 50
+        x: 146
+        y: 540
+        width: 128
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -559,20 +397,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3b8ff1b6f799a5880800000000000000
-      internalID: -8621409764110239565
+      spriteID: e601d79012f70c030800000000000000
+      internalID: 3512947489218826350
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CorgiSpriteSheet_14
+      name: HealerCorgi_10
       rect:
         serializedVersion: 2
-        x: 139
-        y: 219
-        width: 63
-        height: 50
+        x: 278
+        y: 540
+        width: 126
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -580,20 +418,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f607ffabd6080e6f0800000000000000
-      internalID: -657384336818999185
+      spriteID: f31571816b22a59a0800000000000000
+      internalID: -6243639767912197825
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CorgiSpriteSheet_15
+      name: HealerCorgi_11
       rect:
         serializedVersion: 2
-        x: 206
-        y: 220
-        width: 66
-        height: 46
+        x: 412
+        y: 544
+        width: 132
+        height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -601,20 +439,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf4dce55574188cf0800000000000000
-      internalID: -249927285133748996
+      spriteID: 93147b3eff2311970800000000000000
+      internalID: 8723810027811848505
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CorgiSpriteSheet_16
+      name: HealerCorgi_12
       rect:
         serializedVersion: 2
-        x: 1
-        y: 167
-        width: 66
-        height: 46
+        x: 2
+        y: 438
+        width: 132
+        height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -622,20 +460,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 97e6202aacd283a00800000000000000
-      internalID: 736388887399788153
+      spriteID: 3f15fac93072dca10800000000000000
+      internalID: 1931242711678931443
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CorgiSpriteSheet_17
+      name: HealerCorgi_13
       rect:
         serializedVersion: 2
-        x: 73
-        y: 167
-        width: 64
-        height: 50
+        x: 146
+        y: 438
+        width: 128
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -643,20 +481,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a9500cba98cec7d0800000000000000
-      internalID: -2896156943447991900
+      spriteID: 18633419eea5163a0800000000000000
+      internalID: -6673953192100546943
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CorgiSpriteSheet_18
+      name: HealerCorgi_14
       rect:
         serializedVersion: 2
-        x: 139
-        y: 167
-        width: 63
-        height: 50
+        x: 278
+        y: 438
+        width: 126
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -664,20 +502,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8702d027797bdf8b0800000000000000
-      internalID: -5116731740541607816
+      spriteID: a2710c1a72399a830800000000000000
+      internalID: 4082956335614793514
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CorgiSpriteSheet_19
+      name: HealerCorgi_15
       rect:
         serializedVersion: 2
-        x: 206
-        y: 167
-        width: 66
-        height: 46
+        x: 412
+        y: 440
+        width: 132
+        height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -685,20 +523,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 786a44549a4a13550800000000000000
-      internalID: 6138868814001251975
+      spriteID: 56307d8ba91528520800000000000000
+      internalID: 2702812451343631205
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CorgiSpriteSheet_20
+      name: HealerCorgi_16
       rect:
         serializedVersion: 2
-        x: 1
-        y: 115
-        width: 66
-        height: 46
+        x: 2
+        y: 334
+        width: 132
+        height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -706,20 +544,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b933ef58448759c80800000000000000
-      internalID: -8316608901168614501
+      spriteID: 67d9359983a91d720800000000000000
+      internalID: 2869244005492956534
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CorgiSpriteSheet_21
+      name: HealerCorgi_17
       rect:
         serializedVersion: 2
-        x: 73
-        y: 116
-        width: 64
-        height: 50
+        x: 146
+        y: 334
+        width: 128
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -727,20 +565,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8bcf4efdc4991f450800000000000000
-      internalID: 6120841924026105016
+      spriteID: a61aff6ea1520a6c0800000000000000
+      internalID: -4134263660451225238
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CorgiSpriteSheet_22
+      name: HealerCorgi_18
       rect:
         serializedVersion: 2
-        x: 139
-        y: 116
-        width: 63
-        height: 50
+        x: 278
+        y: 334
+        width: 126
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -748,20 +586,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b31777ec57e6e8c60800000000000000
-      internalID: 7822311055043293499
+      spriteID: e7b0ad8a519376c80800000000000000
+      internalID: -8329626220608484482
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CorgiSpriteSheet_23
+      name: HealerCorgi_19
       rect:
         serializedVersion: 2
-        x: 203
-        y: 115
-        width: 66
-        height: 46
+        x: 412
+        y: 334
+        width: 132
+        height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -769,20 +607,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1c56ca8512fa45300800000000000000
-      internalID: 240009237913953729
+      spriteID: 150a1c9e8061e48e0800000000000000
+      internalID: -1707402981189509039
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CorgiSpriteSheet_0
+      name: HealerCorgi_20
       rect:
         serializedVersion: 2
-        x: 1
-        y: 376
-        width: 66
-        height: 46
+        x: 2
+        y: 230
+        width: 132
+        height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -790,20 +628,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b0cee3fcb18dd3770800000000000000
-      internalID: 8592261278045498379
+      spriteID: 748f1ff93284a3780800000000000000
+      internalID: -8702564012095571897
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CorgiSpriteSheet_1
+      name: HealerCorgi_21
       rect:
         serializedVersion: 2
-        x: 69
-        y: 376
-        width: 64
-        height: 50
+        x: 146
+        y: 232
+        width: 128
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -811,20 +649,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 21c2a2e96d38eb000800000000000000
-      internalID: 53625203374828562
+      spriteID: 2c1ef67655cffc140800000000000000
+      internalID: 4742286376382226882
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CorgiSpriteSheet_2
+      name: HealerCorgi_22
       rect:
         serializedVersion: 2
-        x: 137
-        y: 376
-        width: 63
-        height: 50
+        x: 278
+        y: 232
+        width: 126
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -832,20 +670,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4870d86aab1c38e50800000000000000
-      internalID: 6810500068916660100
+      spriteID: 639f1868302d764e0800000000000000
+      internalID: -1988389797877384906
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CorgiSpriteSheet_3
+      name: HealerCorgi_23
       rect:
         serializedVersion: 2
-        x: 203
-        y: 376
-        width: 66
-        height: 46
+        x: 406
+        y: 230
+        width: 132
+        height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -853,20 +691,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 28d2e3f1d6cbf3ec0800000000000000
-      internalID: -3584939601501999742
+      spriteID: 2d7967685eb7ed4c0800000000000000
+      internalID: -4260831971712264238
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CorgiSpriteSheet_24
+      name: HealerCorgi_24
       rect:
         serializedVersion: 2
-        x: 15
-        y: 60
-        width: 38
-        height: 46
+        x: 30
+        y: 120
+        width: 76
+        height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -874,20 +712,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 190e8f77eda14ea70800000000000000
-      internalID: 8855232310115098769
+      spriteID: d0f8f15b09278dc40800000000000000
+      internalID: 5537301707691626253
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CorgiSpriteSheet_25
+      name: HealerCorgi_25
       rect:
         serializedVersion: 2
-        x: 85
-        y: 60
-        width: 34
-        height: 50
+        x: 170
+        y: 120
+        width: 68
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -895,20 +733,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e42ca2b29d2de9bd0800000000000000
-      internalID: -2621426102909091250
+      spriteID: f8ba8c06f93318c10800000000000000
+      internalID: 2053979664674237327
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CorgiSpriteSheet_26
+      name: HealerCorgi_26
       rect:
         serializedVersion: 2
-        x: 151
-        y: 60
-        width: 38
-        height: 46
+        x: 298
+        y: 120
+        width: 84
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -916,20 +754,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f30d5755d66a56a20800000000000000
-      internalID: 3055030910756180031
+      spriteID: faea50f6160d6b230800000000000000
+      internalID: 3654337264550784687
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CorgiSpriteSheet_27
+      name: HealerCorgi_27
       rect:
         serializedVersion: 2
-        x: 217
-        y: 60
-        width: 38
-        height: 46
+        x: 434
+        y: 120
+        width: 76
+        height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -937,20 +775,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 81108b7178f1dd700800000000000000
-      internalID: 566643793197531416
+      spriteID: 23900df1941ef0110800000000000000
+      internalID: 1229448927478024498
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CorgiSpriteSheet_28
+      name: HealerCorgi_28
       rect:
         serializedVersion: 2
-        x: 15
-        y: 1
-        width: 38
-        height: 46
+        x: 30
+        y: 2
+        width: 76
+        height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -958,20 +796,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a9b47602e29f22ff0800000000000000
-      internalID: -62213468322313318
+      spriteID: a4b9c1a1e97dde300800000000000000
+      internalID: 283119425637096266
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CorgiSpriteSheet_29
+      name: HealerCorgi_29
       rect:
         serializedVersion: 2
-        x: 85
-        y: 1
-        width: 34
-        height: 50
+        x: 170
+        y: 2
+        width: 68
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -979,20 +817,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bf3bd6e7b5b35fb70800000000000000
-      internalID: 8932110700108428283
+      spriteID: 6b2cbb5f7de05dc60800000000000000
+      internalID: 7842190646839067318
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CorgiSpriteSheet_30
+      name: HealerCorgi_30
       rect:
         serializedVersion: 2
-        x: 151
-        y: 1
-        width: 38
-        height: 46
+        x: 298
+        y: 2
+        width: 84
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1000,20 +838,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6fb6a26ecf9c89f80800000000000000
-      internalID: -8099501841795355658
+      spriteID: eafcce03cc627aed0800000000000000
+      internalID: -2402909217742860370
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CorgiSpriteSheet_31
+      name: HealerCorgi_31
       rect:
         serializedVersion: 2
-        x: 217
-        y: 1
-        width: 38
-        height: 46
+        x: 434
+        y: 2
+        width: 76
+        height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1021,8 +859,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 94b5177848f73a530800000000000000
-      internalID: 3865073112398781257
+      spriteID: 263fc7af71e772860800000000000000
+      internalID: 7505105945488061282
       vertices: []
       indices: 
       edges: []
@@ -1030,7 +868,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 16c8381f37181dc469f75b587437f341
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -1039,7 +877,7 @@ TextureImporter:
     secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 1
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
