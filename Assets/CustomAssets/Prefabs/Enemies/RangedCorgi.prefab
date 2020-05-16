@@ -384,7 +384,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 15
   health: 0
-  rageFill: 5
+  rageFill: 10
   respawn: 0
   delayBeforeRespawn: 0
   respawnTime: 0
@@ -401,7 +401,7 @@ MonoBehaviour:
   chaseLimitRadius: 10
   agroRadius: 7.5
   attackRaduis: 2
-  attackDamage: 5
+  attackDamage: 60
   attackTimeType: 0
   attackTime: 1
   attackTimeMin: 1
@@ -426,8 +426,8 @@ MonoBehaviour:
   timeChasingVariance: 2
   projectilePrefab: {fileID: 440871730252885444, guid: 22bf46ed6c837484482d4fb8351dd9b9,
     type: 3}
-  projectileSpeed: 10
-  projectileDamage: 0
+  projectileSpeed: 15
+  projectileDamage: 50
 --- !u!1 &8252486119460822899
 GameObject:
   m_ObjectHideFlags: 0
