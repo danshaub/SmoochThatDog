@@ -53,7 +53,7 @@ MonoBehaviour:
   damagePerBullet: 3
   spreadRate: 0.2
   maxBulletSpread: 20
-  fireRate: 8
+  fireRate: 4
   range: 100
   verticalRecoilStrength: 3
   maxVerticalRecoil: 10
