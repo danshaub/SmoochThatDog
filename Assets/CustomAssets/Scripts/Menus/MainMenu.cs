@@ -62,6 +62,11 @@ public class MainMenu : MonoBehaviour
         LevelLoader.instance.LoadLevel(1);
     }
 
+    public void StartTutorial()
+    {
+        LevelLoader.instance.LoadLevel(2);
+    }
+
     public void Quit()
     {
         Application.Quit();
