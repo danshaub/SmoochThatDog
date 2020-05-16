@@ -9,6 +9,7 @@ public class EnemyGate : MonoBehaviour, ITriggerableObject
     public Material lockedMaterial;
     public Material unlockedMaterial;
     public GameObject enemyParent;
+    public bool lockedAtStart = false;
 
     private bool triggered = false;
     private Enemy[] enemies;
@@ -16,6 +17,11 @@ public class EnemyGate : MonoBehaviour, ITriggerableObject
     private void Start()
     {
         door = GetComponent<Door>();
+
+        if (lockedAtStart)
+        {
+            Trigger();
+        }
     }
     private void Update()
     {
@@ -40,6 +46,7 @@ public class EnemyGate : MonoBehaviour, ITriggerableObject
 
         door.Close();
         door.locked = true;
+        door.lockedByEnemies = true;
 
         foreach (GameObject go in door.doors)
         {
@@ -60,6 +67,7 @@ public class EnemyGate : MonoBehaviour, ITriggerableObject
     {
         triggered = false;
         door.locked = false;
+        door.lockedByEnemies = false;
 
         if (!door.interactable)
         {

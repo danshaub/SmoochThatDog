@@ -23,6 +23,8 @@ public class Door : MonoBehaviour, IInteractableObject, ITriggerableObject
     public bool interactable = true;
     public bool openOnTrigger = true;
 
+    public bool lockedByEnemies = false;
+
     public AudioClip openSound;
     public AudioClip closeSound;
     public AudioClip lockedSound;
@@ -33,7 +35,7 @@ public class Door : MonoBehaviour, IInteractableObject, ITriggerableObject
     public int sequenceFrame { get; private set; } = 0;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         EnsureLayer();
 
@@ -141,6 +143,7 @@ public class Door : MonoBehaviour, IInteractableObject, ITriggerableObject
     {
         if (!interactable)
         {
+            PlayerManager.instance.DisplayInfoText("This door does not open", 2f);
             return;
         }
 
@@ -158,6 +161,15 @@ public class Door : MonoBehaviour, IInteractableObject, ITriggerableObject
         }
         else if (locked)
         {
+            if (lockedByEnemies)
+            {
+                PlayerManager.instance.DisplayInfoText("Defeat enemies in room", 2f);
+            }
+            else
+            {
+                PlayerManager.instance.DisplayInfoText("Door Locked", 2f);
+            }
+            
             source.PlayOneShot(lockedSound);
         }
     }
