@@ -50,15 +50,15 @@ MonoBehaviour:
   spreadOverTime: 1
   maxAmmo: 100
   bulletsPerShot: 1
-  damagePerBullet: 2
+  damagePerBullet: 3
   spreadRate: 0.25
-  maxBulletSpread: 10
+  maxBulletSpread: 5
   fireRate: 15
   range: 100
-  verticalRecoilStrength: 2
-  maxVerticalRecoil: 20
-  horizontalRecoilStrength: 5
-  maxHorizontalRecoil: 10
+  verticalRecoilStrength: 1
+  maxVerticalRecoil: 10
+  horizontalRecoilStrength: 3
+  maxHorizontalRecoil: 8
   recoilResistance: 0.1
   groundedKnockback: 1
   airborneKnockback: 2

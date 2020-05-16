@@ -352,9 +352,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d698f8a7f73f5847b101e65b8354eb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 15
+  maxHealth: 20
   health: 0
-  rageFill: 0
+  rageFill: 10
   respawn: 0
   delayBeforeRespawn: 0
   respawnTime: 0
@@ -371,7 +371,7 @@ MonoBehaviour:
   chaseLimitRadius: 23.8
   agroRadius: 10.6
   attackRaduis: 2
-  attackDamage: 1
+  attackDamage: 60
   attackTimeType: 1
   attackTime: 1
   attackTimeMin: 1
