@@ -55,6 +55,7 @@ public class PlayerManager : MonoBehaviour
     public Color emptyGunSlot;
     public Image crosshair;
     public Graphic hurtVignette;
+    public TMPro.TextMeshPro infoText;
 
     public GameObject deathText;
 
@@ -75,6 +76,7 @@ public class PlayerManager : MonoBehaviour
 
     void Start()
     {
+        infoText.enabled = false;
         currentHealth = maxHealth;
         armorDurability = 0;
         maxArmorDurability = 1;
@@ -182,6 +184,27 @@ public class PlayerManager : MonoBehaviour
         ResetMinimap();
 
         faceAnimations.SetTrigger("Reset");
+    }
+
+    public void DisplayInfoText(string message, float duration)
+    {
+        if (infoText.enabled)
+        {
+            StopCoroutine("HideInfoText");
+        }
+
+        infoText.enabled = true;
+
+        infoText.text = message;
+
+        StartCoroutine(HideInfoText(duration));
+    }
+
+    private IEnumerator HideInfoText(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+
+        infoText.enabled = false;
     }
 
     public void UpdateKeySlots()
