@@ -130,6 +130,7 @@ public class InGameMenu : MonoBehaviour
                 break;
 
             case State.LEVEL_INTRO:
+                LevelLoader.instance.loadingPanel.SetActive(false);
                 paused = true;
                 Time.timeScale = 0;
                 CharacterActions.instance.lockControl = true;

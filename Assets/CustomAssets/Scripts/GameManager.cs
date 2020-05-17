@@ -20,6 +20,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public Camera playerCamera;
+    public Camera minimapCamera;
+    public Camera uiCamera;
+
     public AudioMixer mixer;
     public Light[] basicLights;
     public LightManager lightManager;
@@ -32,7 +36,27 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        LevelLoader.instance.loadingPanel.SetActive(false);
+        ClearCameras();
         RealizeOptions();
+    }
+
+    public void ClearCameras()
+    {
+        playerCamera.clearFlags = CameraClearFlags.Color;
+        minimapCamera.clearFlags = CameraClearFlags.Color;
+        uiCamera.clearFlags = CameraClearFlags.Color;
+
+        StartCoroutine(ClearCameras2());
+    }
+
+    public IEnumerator ClearCameras2()
+    {
+        yield return new WaitForEndOfFrame();
+
+        playerCamera.clearFlags = CameraClearFlags.Skybox;
+        minimapCamera.clearFlags = CameraClearFlags.Color;
+        uiCamera.clearFlags = CameraClearFlags.Depth;
     }
 
     public void RealizeOptions()
@@ -45,14 +69,22 @@ public class GameManager : MonoBehaviour
 
         foreach (Light light in basicLights)
         {
-            light.intensity = Options.currentOptions.brightness;
+            if (Options.currentOptions.dynamicLighting)
+            {
+                light.intensity = Options.currentOptions.brightness / 2;
+            }
+            else
+            {
+                light.intensity = Options.currentOptions.brightness;
+            }
+            
         }
 
         if (lightManager != null)
         {
             if (Options.currentOptions.dynamicLighting)
             {
-                lightManager.currentLightLevel = lightManager.lightLevels.Length - 1;
+                lightManager.SetLightLevel(1);
             }
             else
             {

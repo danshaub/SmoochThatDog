@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSound: {fileID: 8300000, guid: 38a32bd47405b474ab5d4f4c85964a3b, type: 3}
-  respawns: 1
+  respawns: 0
   respawnTime: 5
   bobSpeed: 5
   bobHeight: 0.1

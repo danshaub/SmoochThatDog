@@ -46,11 +46,11 @@ MonoBehaviour:
   animations: {fileID: 9100000, guid: 49d4b10616ae6114895c75a68c5e7b25, type: 2}
   gunName: Pistol
   automatic: 1
-  unlimitedAmmo: 1
+  unlimitedAmmo: 0
   spreadOverTime: 1
-  maxAmmo: 50
+  maxAmmo: 100
   bulletsPerShot: 1
-  damagePerBullet: 3
+  damagePerBullet: 7
   spreadRate: 0.2
   maxBulletSpread: 20
   fireRate: 4

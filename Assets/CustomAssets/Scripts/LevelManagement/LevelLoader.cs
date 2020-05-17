@@ -15,11 +15,6 @@ public class LevelLoader : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(instance.gameObject);
-        }
-        else
-        {
-            Destroy(this.gameObject);
         }
     }
 
@@ -29,7 +24,7 @@ public class LevelLoader : MonoBehaviour
     }
 
     public void LoadLevel(int sceneIndex)
-    {
+    {        
         loadingPanel.SetActive(true);
         StartCoroutine(LoadSceneAsynchronously(sceneIndex));
     }
@@ -40,9 +35,11 @@ public class LevelLoader : MonoBehaviour
 
         while (!operation.isDone)
         {
+            loadingPanel.SetActive(true);
             float progress = Mathf.Clamp01(operation.progress / 0.9f);
             loadBar.value = progress;
             yield return null;
+            loadingPanel.SetActive(false);
         }
 
         loadingPanel.SetActive(false);

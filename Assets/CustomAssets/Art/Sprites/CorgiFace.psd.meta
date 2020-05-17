@@ -1,0 +1,1051 @@
+fileFormatVersion: 2
+guid: 7381d65f033a7de4d80570c2ffdf3d48
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4046870627777575081
+    second: DogSpriteSheet2_0
+  - first:
+      213: 6226878728092534432
+    second: DogSpriteSheet2_1
+  - first:
+      213: 6373646328354223230
+    second: DogSpriteSheet2_2
+  - first:
+      213: -863314605644777586
+    second: DogSpriteSheet2_3
+  - first:
+      213: -3650685140674301731
+    second: DogSpriteSheet2_4
+  - first:
+      213: 8564913606865554459
+    second: DogSpriteSheet2_5
+  - first:
+      213: 5425052885646086098
+    second: DogSpriteSheet2_6
+  - first:
+      213: 6214215283937735224
+    second: DogSpriteSheet2_7
+  - first:
+      213: -4912704672286782683
+    second: DogSpriteSheet2_8
+  - first:
+      213: 5661952294819346098
+    second: DogSpriteSheet2_9
+  - first:
+      213: 2351764705962355967
+    second: DogSpriteSheet2_10
+  - first:
+      213: 5348706819395203527
+    second: DogSpriteSheet2_11
+  - first:
+      213: 3984090153086831115
+    second: DogSpriteSheet2_12
+  - first:
+      213: -8745730287978482754
+    second: DogSpriteSheet2_13
+  - first:
+      213: 2319890161951811590
+    second: DogSpriteSheet2_14
+  - first:
+      213: -4377770478305258990
+    second: DogSpriteSheet2_15
+  - first:
+      213: 2229845594875659649
+    second: DogSpriteSheet2_16
+  - first:
+      213: 6559997550799898903
+    second: DogSpriteSheet2_17
+  - first:
+      213: 4161750769234139580
+    second: DogSpriteSheet2_18
+  - first:
+      213: -8158637612599607952
+    second: DogSpriteSheet2_19
+  - first:
+      213: 2688274292697990390
+    second: DogSpriteSheet2_20
+  - first:
+      213: -3096250330355704424
+    second: DogSpriteSheet2_21
+  - first:
+      213: 320286628259928833
+    second: DogSpriteSheet2_22
+  - first:
+      213: 8244941014918917598
+    second: DogSpriteSheet2_23
+  - first:
+      213: 8592261278045498379
+    second: CorgiSpriteSheet_0
+  - first:
+      213: 53625203374828562
+    second: CorgiSpriteSheet_1
+  - first:
+      213: 6810500068916660100
+    second: CorgiSpriteSheet_2
+  - first:
+      213: -3584939601501999742
+    second: CorgiSpriteSheet_3
+  - first:
+      213: -7571431856191962884
+    second: CorgiSpriteSheet_4
+  - first:
+      213: 590122266587346753
+    second: CorgiSpriteSheet_5
+  - first:
+      213: 3076758444330968485
+    second: CorgiSpriteSheet_6
+  - first:
+      213: -5194515942599406166
+    second: CorgiSpriteSheet_7
+  - first:
+      213: 5925216606156376021
+    second: CorgiSpriteSheet_8
+  - first:
+      213: 24223606781509889
+    second: CorgiSpriteSheet_9
+  - first:
+      213: 3374332398772100908
+    second: CorgiSpriteSheet_10
+  - first:
+      213: 1591254723101767491
+    second: CorgiSpriteSheet_11
+  - first:
+      213: -6533951106682555539
+    second: CorgiSpriteSheet_12
+  - first:
+      213: 1310411656029748735
+    second: CorgiSpriteSheet_13
+  - first:
+      213: -1186329283598675027
+    second: CorgiSpriteSheet_14
+  - first:
+      213: -1799203004078042572
+    second: CorgiSpriteSheet_15
+  - first:
+      213: -2310350151645184825
+    second: CorgiSpriteSheet_16
+  - first:
+      213: -8737163248403419221
+    second: CorgiSpriteSheet_17
+  - first:
+      213: 6447276351150234354
+    second: CorgiSpriteSheet_18
+  - first:
+      213: -1172811030158416560
+    second: CorgiSpriteSheet_19
+  - first:
+      213: 8576605184000257380
+    second: CorgiSpriteSheet_20
+  - first:
+      213: 8238777945482457664
+    second: CorgiSpriteSheet_21
+  - first:
+      213: -3272982221777165502
+    second: CorgiSpriteSheet_22
+  - first:
+      213: -6786008880413710090
+    second: CorgiSpriteSheet_23
+  - first:
+      213: 1900376530769763738
+    second: CorgiSpriteSheet_0
+  - first:
+      213: -2996656077240671318
+    second: CorgiSpriteSheet_1
+  - first:
+      213: -2044444681662583055
+    second: CorgiSpriteSheet_2
+  - first:
+      213: -978353830858644297
+    second: CorgiSpriteSheet_3
+  - first:
+      213: 959056406082126725
+    second: CorgiSpriteSheet_4
+  - first:
+      213: -6489328071004767960
+    second: CorgiSpriteSheet_5
+  - first:
+      213: -4839685984232370430
+    second: CorgiSpriteSheet_6
+  - first:
+      213: -9023939508277569384
+    second: CorgiSpriteSheet_7
+  - first:
+      213: 5019243884411566229
+    second: CorgiSpriteSheet_8
+  - first:
+      213: -6622030026709927261
+    second: CorgiSpriteSheet_9
+  - first:
+      213: 4274463585526202350
+    second: CorgiSpriteSheet_10
+  - first:
+      213: 4479262478994035270
+    second: CorgiSpriteSheet_11
+  - first:
+      213: -6512922435214406631
+    second: CorgiSpriteSheet_12
+  - first:
+      213: -8621409764110239565
+    second: CorgiSpriteSheet_13
+  - first:
+      213: -657384336818999185
+    second: CorgiSpriteSheet_14
+  - first:
+      213: -249927285133748996
+    second: CorgiSpriteSheet_15
+  - first:
+      213: 736388887399788153
+    second: CorgiSpriteSheet_16
+  - first:
+      213: -2896156943447991900
+    second: CorgiSpriteSheet_17
+  - first:
+      213: -5116731740541607816
+    second: CorgiSpriteSheet_18
+  - first:
+      213: 6138868814001251975
+    second: CorgiSpriteSheet_19
+  - first:
+      213: -8316608901168614501
+    second: CorgiSpriteSheet_20
+  - first:
+      213: 6120841924026105016
+    second: CorgiSpriteSheet_21
+  - first:
+      213: 7822311055043293499
+    second: CorgiSpriteSheet_22
+  - first:
+      213: 240009237913953729
+    second: CorgiSpriteSheet_23
+  - first:
+      213: -5980816369517921308
+    second: CorgiSpriteSheet_24
+  - first:
+      213: 3749129604668053649
+    second: CorgiSpriteSheet_25
+  - first:
+      213: -627650315962031703
+    second: CorgiSpriteSheet_26
+  - first:
+      213: -2011161150134850646
+    second: CorgiSpriteSheet_27
+  - first:
+      213: 7465893641296382204
+    second: CorgiSpriteSheet_28
+  - first:
+      213: 1743122126854258401
+    second: CorgiSpriteSheet_29
+  - first:
+      213: 8855232310115098769
+    second: CorgiSpriteSheet_24
+  - first:
+      213: -2621426102909091250
+    second: CorgiSpriteSheet_25
+  - first:
+      213: 3055030910756180031
+    second: CorgiSpriteSheet_26
+  - first:
+      213: 566643793197531416
+    second: CorgiSpriteSheet_27
+  - first:
+      213: -62213468322313318
+    second: CorgiSpriteSheet_28
+  - first:
+      213: 8932110700108428283
+    second: CorgiSpriteSheet_29
+  - first:
+      213: -8099501841795355658
+    second: CorgiSpriteSheet_30
+  - first:
+      213: 3865073112398781257
+    second: CorgiSpriteSheet_31
+  - first:
+      213: 2384988020835977712
+    second: CorgiSpriteSheet_30
+  - first:
+      213: -2115229889730346609
+    second: CorgiSpriteSheet_31
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 88
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 646
+        width: 132
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 583861458b04f4d00800000000000000
+      internalID: 959056406082126725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 646
+        width: 128
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8293ac8508641f5a0800000000000000
+      internalID: -6489328071004767960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 646
+        width: 126
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20f84653d3bf5dcb0800000000000000
+      internalID: -4839685984232370430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 644
+        width: 132
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 898908ef3d684c280800000000000000
+      internalID: -9023939508277569384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 542
+        width: 132
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 598376348bfe7a540800000000000000
+      internalID: 5019243884411566229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 540
+        width: 128
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3aafbf596c2d914a0800000000000000
+      internalID: -6622030026709927261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 540
+        width: 126
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eefb1a4ebf1f15b30800000000000000
+      internalID: 4274463585526202350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_11
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 544
+        width: 132
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 642dc241e79892e30800000000000000
+      internalID: 4479262478994035270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_12
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 438
+        width: 132
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91c8f575d837d95a0800000000000000
+      internalID: -6512922435214406631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_13
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 438
+        width: 128
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b8ff1b6f799a5880800000000000000
+      internalID: -8621409764110239565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_14
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 438
+        width: 126
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f607ffabd6080e6f0800000000000000
+      internalID: -657384336818999185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_15
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 440
+        width: 132
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf4dce55574188cf0800000000000000
+      internalID: -249927285133748996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_16
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 334
+        width: 132
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97e6202aacd283a00800000000000000
+      internalID: 736388887399788153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_17
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 334
+        width: 128
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a9500cba98cec7d0800000000000000
+      internalID: -2896156943447991900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_18
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 334
+        width: 126
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8702d027797bdf8b0800000000000000
+      internalID: -5116731740541607816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_19
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 334
+        width: 132
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 786a44549a4a13550800000000000000
+      internalID: 6138868814001251975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_20
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 230
+        width: 132
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b933ef58448759c80800000000000000
+      internalID: -8316608901168614501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_21
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 232
+        width: 128
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bcf4efdc4991f450800000000000000
+      internalID: 6120841924026105016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_22
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 232
+        width: 126
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b31777ec57e6e8c60800000000000000
+      internalID: 7822311055043293499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_23
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 230
+        width: 132
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c56ca8512fa45300800000000000000
+      internalID: 240009237913953729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_24
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 120
+        width: 76
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 190e8f77eda14ea70800000000000000
+      internalID: 8855232310115098769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_25
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 120
+        width: 68
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e42ca2b29d2de9bd0800000000000000
+      internalID: -2621426102909091250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_26
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 120
+        width: 84
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f30d5755d66a56a20800000000000000
+      internalID: 3055030910756180031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_27
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 120
+        width: 76
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81108b7178f1dd700800000000000000
+      internalID: 566643793197531416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_28
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 2
+        width: 76
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9b47602e29f22ff0800000000000000
+      internalID: -62213468322313318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_29
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 2
+        width: 68
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf3bd6e7b5b35fb70800000000000000
+      internalID: 8932110700108428283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 752
+        width: 132
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9d5508d26e7f5a10800000000000000
+      internalID: 1900376530769763738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 752
+        width: 128
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa3ed0abc2db966d0800000000000000
+      internalID: -2996656077240671318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 752
+        width: 126
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fea09ad46ca0a3e0800000000000000
+      internalID: -2044444681662583055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 752
+        width: 132
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b42707df503c62f0800000000000000
+      internalID: -978353830858644297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_30
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 2
+        width: 84
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f98d7ff7fd291120800000000000000
+      internalID: 2384988020835977712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CorgiSpriteSheet_31
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 2
+        width: 76
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f81855c4f9135a2e0800000000000000
+      internalID: -2115229889730346609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 16c8381f37181dc469f75b587437f341
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
